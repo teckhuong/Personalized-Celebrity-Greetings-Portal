@@ -73,7 +73,7 @@ nav ul ul li{
     display: list-items;
     border-bottom: 1px solid rgba(0, 0, 0, .3);
 }
-.show,.icon, input{
+.show,.icon, input[type="checkbox"]{
     display: none;
 }
 @media all and (max-width:968px){
