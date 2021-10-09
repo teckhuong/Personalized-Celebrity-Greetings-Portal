@@ -168,7 +168,7 @@ h2{
     font-size: 4rem;
     font-weight: 100;
     line-height: 1;
-    background-color: white;
+    color: white;
     max-width: max-content;
     max-width: -moz-max-content;
     position: relative;
@@ -371,6 +371,9 @@ h2{
         font-size: 18px;
     }
 }
+
+
+
 
 
 
