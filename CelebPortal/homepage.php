@@ -13,7 +13,6 @@
     <section class="container-fluid bg-landing" id="landing">
         <div class="overlay">
                 <div class="wrapper">
-
                         <div class="banner-text">
                                 <h1>Welcome to Celebrity Portal</h1>
                                 <h1>Where you can pick any Celebrities</h1>
