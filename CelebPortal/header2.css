@@ -7,6 +7,12 @@
 body{
     background: white;
 }
+.headercontainer{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
 nav{
     background: black;
 }
@@ -73,7 +79,7 @@ nav ul ul li{
     display: list-items;
     border-bottom: 1px solid rgba(0, 0, 0, .3);
 }
-.show,.icon, input[type="checkbox"]{
+.show,.icon, .cb{
     display: none;
 }
 @media all and (max-width:968px){
