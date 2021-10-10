@@ -6,6 +6,8 @@ if(!isset($_SESSION)) {
 // initializing variables
 $username = "";
 $email    = "";
+$fullname = "";
+$dob = "";
 $errors = array(); 
 
 // connect to the database
@@ -15,6 +17,8 @@ $db = mysqli_connect('localhost', 'root', '', 'LoginSystem');
 if (isset($_POST['reg_user'])) {
   // receive all input values from the form
   $username = mysqli_real_escape_string($db, $_POST['username']);
+  $fullname = mysqli_real_escape_string($db, $_POST['fullname']);
+  $dob = mysqli_real_escape_string($db, $_POST['dob']);
   $email = mysqli_real_escape_string($db, $_POST['email']);
   $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
   $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
@@ -22,6 +26,8 @@ if (isset($_POST['reg_user'])) {
   // form validation: ensure that the form is correctly filled ...
   // by adding (array_push()) corresponding error unto $errors array
   if (empty($username)) { array_push($errors, "Username is required"); }
+  if (empty($fullname)) { array_push($errors, "Full Name is required"); }
+  if (empty($dob)) { array_push($errors, "Date of birth is required"); }
   if (empty($email)) { array_push($errors, "Email is required"); }
   if (empty($password_1)) { array_push($errors, "Password is required"); }
   if ($password_1 != $password_2) {
@@ -48,15 +54,14 @@ if (isset($_POST['reg_user'])) {
   if (count($errors) == 0) {
   	$password = md5($password_1);//encrypt the password before saving in the database
 
-  	$query = "INSERT INTO users (username, email, password) 
-  			  VALUES('$username', '$email', '$password')";
+  	$query = "INSERT INTO users (username, email, password, fullname, dob) 
+  			  VALUES('$username', '$email', '$password','$fullname','$dob')";
   	mysqli_query($db, $query);
   	$_SESSION['username'] = $username;
-  	$_SESSION['success'] = "You have successfully registered";
-  	header('location: userSignup.php?error=none');
+  	$_SESSION['success'] = "You have been registered successfully";
+  	header('location: userSignup.php');
   }
 }
-
 
 // LOGIN USER
 if (isset($_POST['login_user'])) {
@@ -85,3 +90,4 @@ if (isset($_POST['login_user'])) {
   }
   
   ?>
+
