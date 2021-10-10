@@ -10,12 +10,27 @@
   <div class="header">
   	<h2>Register</h2>
   </div>
-	
   <form method="post" action="userSignup.php">
   	<?php include('errors.php'); ?>
+	  <?php if (isset($_SESSION['success'])) : ?>
+      <div class="error success" >
+          <?php 
+          	echo $_SESSION['success']; 
+          	// unset($_SESSION['success']);
+          ?>
+      </div>
+  	<?php endif ?>
   	<div class="input-group">
   	  <label>Username</label>
   	  <input type="text" name="username" value="<?php echo $username; ?>">
+  	</div>
+	  <div class="input-group">
+  	  <label>Full Name</label>
+  	  <input type="text" name="fullname">
+  	</div>
+	  <div class="input-group">
+  	  <label>Date of Birth</label>
+  	  <input type="date" name="dob">
   	</div>
   	<div class="input-group">
   	  <label>Email</label>
