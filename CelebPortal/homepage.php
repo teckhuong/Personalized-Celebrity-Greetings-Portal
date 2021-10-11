@@ -143,11 +143,13 @@
     </section>
     <!-- Footer -->
     <section class="d-flex-r justify-content-space-around p-1 bg-grey" id="social">
-    <ul class="footerforhome" id="footer">
+    <ul class="footerforhome d-flex-c" id="footer">
             <p class="wsnc">For more: </p>
             <li class="rnc"><a href="#" >Request New Celebrity</a></li>
             <li class="rnc"><a href="#" >How to Order?</a></li>
             <li class="rnc"><a href="#" >Contact Us</a></li>
+                    </br>
+            <p>&copy; celebportal.com | Designed by Farmer Team</p>
         </ul>
         <ul class="d-flex-r">
             
