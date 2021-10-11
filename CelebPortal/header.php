@@ -27,9 +27,9 @@
                <a href="#">Celebrity Categories</a>
                <input class ="cb" type="checkbox" id="btn-1" >
                   <ul>
-                     <li><a href="#">TikTok Stars</a></li>
-                     <li><a href="#">Youtubers</a></li>
-                     <li><a href="#">Actors</a></li>
+                     <li><a href="tiktokstarpage.php">TikTok Stars</a></li>
+                     <li><a href="youtuberpage.php">Youtubers</a></li>
+                     <li><a href="Actorpage.php">Actors</a></li>
                   </ul>
             </li>
             <li>
