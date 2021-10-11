@@ -1,5 +1,6 @@
 html,body{
     overflow:auto;
+    background-color: grey;
 }
 *{
     margin:0;
@@ -371,9 +372,5 @@ h2{
         font-size: 18px;
     }
 }
-
-
-
-
 
 
