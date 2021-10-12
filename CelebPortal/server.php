@@ -57,7 +57,6 @@ if (isset($_POST['reg_user'])) {
   	$query = "INSERT INTO users (username, email, password, fullname, dob) 
   			  VALUES('$username', '$email', '$password','$fullname','$dob')";
   	mysqli_query($db, $query);
-  	$_SESSION['username'] = $username;
   	$_SESSION['success'] = "You have been registered successfully";
   	header('location: userSignup.php');
   }
