@@ -3,6 +3,50 @@ if(!isset($_SESSION)) {
   session_start(); 
 } 
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Execption;
+
+if (function_exists("go") === FALSE){
+function go($email,$v_code)
+{
+  require_once 'phpmailer/Exception.php';
+require_once 'phpmailer/PHPMailer.php';
+require_once 'phpmailer/SMTP.php';
+
+  $mail1 = new PHPMailer(true);
+
+  try {
+
+    $mail1->isSMTP();                                            
+    $mail1->Host       = 'smtp.gmail.com';                     
+    $mail1->SMTPAuth   = true;                                   
+    $mail1->Username   = 'phptesting2@gmail.com';                     
+    $mail1->Password   = 'Qwerty@111';                               
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = '587';                            
+
+
+    $mail1->setFrom('phptesting2@gmail.com', 'Mailer');
+    $mail1->addAddress($email);     
+  
+  
+    $mail1->isHTML(true);                                  
+    $mail1->Subject = 'Email Verification from Celebrity Portal';
+    $mail1->Body    = "Thanks for registration! 
+    Click the link below to verify the email address
+    <a href='http://localhost/CelebPortalNEW/verify.php?email=$email&v_code=$v_code'>Verify</a>";
+
+    $mail1->send();
+    return true;
+  } 
+    catch (Exception $e) {
+    return false;
+  }
+
+  }
+}
+
 // initializing variables
 $username = "";
 $email    = "";
@@ -53,11 +97,12 @@ if (isset($_POST['reg_user'])) {
   // Finally, register user if there are no errors in the form
   if (count($errors) == 0) {
   	$password = md5($password_1);//encrypt the password before saving in the database
-
-  	$query = "INSERT INTO users (username, email, password, fullname, dob) 
-  			  VALUES('$username', '$email', '$password','$fullname','$dob')";
-  	mysqli_query($db, $query);
-  	$_SESSION['success'] = "You have been registered successfully";
+    $v_code =bin2hex(random_bytes(16));
+  	$query = "INSERT INTO users (username, email, password, fullname, dob, verification_code, is_verified) 
+  			  VALUES('$username', '$email', '$password','$fullname','$dob', '$v_code', '0')";
+  	mysqli_query($db, $query) && go($_POST['email'],$v_code);
+  	$_SESSION['success'] = "You have been registered successfully. 
+    Please Verify through the link on your email.";
   	header('location: userSignup.php');
   }
 }
@@ -78,15 +123,29 @@ if (isset($_POST['login_user'])) {
         $password = md5($password);
         $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
         $results = mysqli_query($db, $query);
-        if (mysqli_num_rows($results) == 1) {
-          $_SESSION['username'] = $username;
-          $_SESSION['success'] = "You are now logged in";
-          header('location: homepage.php');
-        }else {
-            array_push($errors, "Wrong username/password combination");
+
+        $result_fetch=mysqli_fetch_assoc($results);
+        if($result_fetch['is_verified']== 1){
+          if (mysqli_num_rows($results) == 1) {
+            $_SESSION['username'] = $username;
+            $_SESSION['success'] = "You are now logged in";
+            header('location: homepage.php');
+          }else {
+              array_push($errors, "Wrong username/password combination");
+          }
         }
+        else{
+          echo"
+                    <script>
+                    alert('Email not verified');
+                    window.location.href='userlogin.php';
+                    </script>
+                    ";
+        }
+      
     }
   }
   
   ?>
+
 
