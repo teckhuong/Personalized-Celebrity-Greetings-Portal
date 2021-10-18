@@ -9,6 +9,7 @@
    </head>
    <body>
       <div class="cards">
+         <br><br>
          <h2 class="header">
             How to Order
          </h2>
@@ -41,8 +42,6 @@
                </p>
             </div>
          </div>
-      </div>
-      <div class="cards">
          <div class="services">
             <div class="content content-4">
                <div class="fas fa-money-bill"></div>
