@@ -13,6 +13,7 @@ if(isset($_POST['submit'])){
   $name = $_POST['name'];
   $email = $_POST['email'];
   $message = $_POST['message'];
+  $subject = $_POST['subject'];
 
   try{
     $mail->isSMTP();
@@ -28,7 +29,7 @@ if(isset($_POST['submit'])){
     // $mail->AddCC('findphiliptiong@gmail.com'); // Email CC to send to someone as well
 
     $mail->isHTML(true);
-    $mail->Subject = 'Message Received (Contact Page)';
+    $mail->Subject = "Message Received (Contact Page) $subject";
     $mail->Body = "<h3>Name : $name <br>Email: $email <br>Message : $message</h3>";
 
     $mail->send();
