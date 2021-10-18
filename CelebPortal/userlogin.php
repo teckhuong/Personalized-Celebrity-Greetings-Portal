@@ -7,6 +7,7 @@
   <link rel="stylesheet" type="text/css" href="styleuser.css">
 </head>
 <body>
+<br><br>
   <div class="header">
   	<h2>Login</h2>
   </div>
@@ -27,6 +28,8 @@
   	<p>
   		Not yet a member? <a href="userSignup.php">Sign up</a>
   	</p>
+	  <br>
+	  <div style="font-size: 0.8em; text-align: center;"><a href="enter_email.php">Forgot Password?</a></div>
   </form>
 </body>
 </html>
