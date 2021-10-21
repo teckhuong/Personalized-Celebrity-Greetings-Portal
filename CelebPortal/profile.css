@@ -10,18 +10,67 @@ html,body{
     font-family: 'Montserrat', sans-serif;  
 }
 
-.profile-content {
-    max-width: 600px;
+section {
+    float: left;
+    width: 100%;
+	padding-bottom:3em;
+}
+
+.profile_pic {
+    width: 450px;
+}
+
+.profile-slider {
+    position: relative;
+    width: 450px;
+    padding-top: 320px;
+    margin: 100px auto;
+    line-height:28px;	
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.75);
 }
 
 .profileSlide {
-    width: 50%;
+    width: 100px;
+}
+
+/* Style for image */
+.profile-slider>img {
+    position: absolute;
+    left: 0; top: 0;
+    transition: all 0.5s;
+}
+
+.profile-slider input[name='slide_switch'] {
     display: none;
 }
 
-.demo {
-    width: 50%;
+.profile-slider label {
+    margin: 138px 0 0 18px;
+    border: 3px solid #999;
+    float: left;
     cursor: pointer;
+    transition: all 0.5s;
+    opacity: 0.6;
+}
+
+.profile-slider label img {
+    display: block;
+}
+
+.profile-slider input[name= 'slide_switch']:checked+label {
+    border-color: #666;
+    opacity: 1;
+}
+
+/* Main images */
+.profile-slider input[name= 'slide_switch'] ~ img {
+    opacity: 0;
+    transform: scale(1.1);
+}
+
+.profile-slider input[name= 'slide_switch']:checked+label+img {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .profilerow{
@@ -31,5 +80,150 @@ html,body{
     
 }
 
+/* Responsive Grids */
 
+.profile-container {
+	margin: 0 auto;
+	padding-left:12px;
+	padding-right:12px;
+}
+.profile-row:before, .profile-row:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+.profile-row:after {
+  clear: both;
+}
+[class^="col-profile-"] {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  padding: 0 15px;
+  min-height: 1px;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+    .profile-container {
+      width: 750px;
+    }
+    [class^="col-profile-"] {
+      float: left;
+      width: 49.9999999999%;
+    }
+    .col-profile-12 {
+      width: 50%;
+    }
+    
+}
+
+/* footer css */
+.d-flex-c {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.d-flex-r{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.justify-content-space-around{
+    justify-content: space-around;    
+}
+
+.p-1{
+    padding:1rem;
+}
+a{
+    color: white;
+    text-decoration: none;
+}
+p{
+    font-family: sans-serif;
+    color: white;
+}
+.text-center{
+    text-align: center;
+}
+.text-justify{
+    text-align: justify;
+}
+.font-md{
+    font-size: 1.5rem;
+}
+.text-container{
+    padding: 50px;
+}
+/* social icon */
+#social.bg-grey{
+    background-color: black;
+}
+#social li i{
+    font-size: 2rem;
+    margin: 1rem;
+}
+#social li i.fa-facebook{color: #4e64b5;}
+#social li i.fa-twitter{color: #0288d1;}
+#social li i.fa-instagram{color: #ff5757;}
+#social li i.fa-youtube{color: #f44336;}
+
+#social li i.fa-facebook:hover{
+    color: cyan;
+    border-radius: 5px;
+    
+    transition: 0.5s;
+}
+#social li i.fa-twitter:hover{
+    color: cyan;
+    border-radius: 5px;
+    
+    transition: 0.5s;
+}
+#social li i.fa-instagram:hover{
+    color: cyan;
+    border-radius: 5px;
+    
+    transition: 0.5s;
+}
+#social li i.fa-youtube:hover{
+    color: cyan;
+    border-radius: 5px;
+    
+    transition: 0.5s;
+}
+
+@media screen and (max-width:992px){
+    p{
+        font-size: 0.85rem;
+    }
+    h3{
+        font-size: 2rem;
+    }
+    .banner-text{font-size: 6rem !important;}
+}
+@media screen and (max-width:768px){
+    p{font-size: 0.75rem}
+    h3{font-size: 2rem;}
+    .banner-text h1{font-size: 5rem !important;}
+}
+.wsnc{
+    font-size: 1.2rem;
+    font-style: bold;
+    margin-bottom: 0.3rem;
+}
+.rnc{
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+}
+.rnc:hover a{
+    color: cyan;
+    border-radius: 5px;
+    box-shadow: 0 0 5px#33ffff,
+                0 0 5px#66ffff;
+}
 /*end CelebrityProfile.php css*/

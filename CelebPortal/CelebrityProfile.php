@@ -7,52 +7,38 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
         <link rel="stylesheet" type="text/css" href="profile.css">
-        <link rel="stylesheet" type="text/css" href="categorypage.css">
         </head>
      <body > 
         <section class="profilerow">
-        <div class="profile-container">
-            <div class="profile-content">
-                <img class="profileSlide" scr="youtuberimage/laowu/laowu.png" alt="LAO WU" />
-                <img class="profileSlide" scr="youtuberimage/laowu/laowu.png" alt="LAO WU" />
-                <img class="profileSlide" scr="youtuberimage/laowu/laowu.png" alt="LAO WU" />
+            <div class="profile-container">
+                <div class="col-profile-12">
+                    <div class="profile-slider">
+                        <!-- Image 1 -->
+                        <input type="radio" name="slide_switch" id="img1" checked="checked" />
+                        <label for="img1">
+                            <img class="profileSlide" src="youtuberimage/laowu/laowu.png" alt="LAO WU" />
+                        </label>
+                        <img src="youtuberimage/laowu/laowu.png" alt="LAO WU" class="profile_pic" />
 
-                <div class="profile-row-padding w3-section">
-                    <div class="profile-col s4">
-                        <img class="demo profile-opacity profile-hover-opacity-off" scr="youtuberimage/laowu/laowu.png" onclick="currDiv(1)" />
-                    </div>
-                    <div class="profile-col s4">
-                        <img class="demo profile-opacity profile-hover-opacity-off" scr="youtuberimage/laowu/laowu.png" onclick="currDiv(2)" />
-                    </div>
-                    <div class="profile-col s4">
-                        <img class="demo profile-opacity profile-hover-opacity-off" scr="youtuberimage/laowu/laowu.png" onclick="currDiv(3)" />
+                        <!-- Image 2 -->
+                        <input type="radio" name="slide_switch" id="img2" />
+                        <label for="img2">
+                            <img class="profileSlide" src="youtuberimage/laowu/laowu.png" alt="LAO WU" />
+                        </label>
+                        <img src="youtuberimage/laowu/laowu.png" alt="LAO WU" class="profile_pic" />
+
+                        <!-- Image 3 -->
+                        <input type="radio" name="slide_switch" id="img3" />
+                        <label for="img3">
+                            <img class="profileSlide" src="youtuberimage/laowu/laowu.png" alt="LAO WU" />
+                        </label>
+                        <img src="youtuberimage/laowu/laowu.png" alt="LAO WU" class="profile_pic" />
                     </div>
                 </div>
             </div>
-
-        <script>
-            function currDiv(i){
-                showDivs(slideIndex = i);
-            }
-
-            function showDivs(n) {
-                var x;
-                var y = document.getElementsByClassName("profileSlide");
-                var dots = document.getElementsByClassName("demo");
-                if (n > y.length) {slideIndex = 1;}
-                if(n < 1) {slideIndex = y.length;}
-                for(x = 0; x < y.length; x++) {
-                    y[x].style.display = "none";
-                }
-                for(x = 0; x < dots.length; x++) {
-                    dots[x].className = dots[x].className.replace(" profile-opacity-off", "")
-                }
-                y[slideIndex-1].style.display = "block";
-                dots[slideIndex-1].className += " profile-opacity-off";
-            }
-        </script>
+        </section>
         </div>
-         <div class="slideshow"></div>
+
              <!-- footer -->
             <section class="d-flex-r justify-content-space-around p-1 bg-grey" id="social">
                 <ul class="footerforhome d-flex-c" id="footer">
