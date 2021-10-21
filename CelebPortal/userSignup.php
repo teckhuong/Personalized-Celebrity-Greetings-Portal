@@ -7,6 +7,7 @@
   <link rel="stylesheet" type="text/css" href="styleuser.css">
 </head>
 <body>
+<br><br>
   <div class="header">
   	<h2>Register</h2>
   </div>

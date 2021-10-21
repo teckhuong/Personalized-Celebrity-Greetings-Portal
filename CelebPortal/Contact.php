@@ -10,10 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
   </head>
   <body>
-    
-    <?php echo $alert; ?>
-
     <div class="contact-section">
+    <?php echo $alert; ?>
       <div class="contact-info">
         <div><i class="fas fa-map-marker-alt"></i>Address, City, Country</div>
         <div><i class="fas fa-envelope"></i>contact@email.com</div>
@@ -25,6 +23,7 @@
         <br><br><br>
         <h2>Contact Us</h2>
         <form class="contact" action="" method="post">
+        <input type="text" name="subject" class="text-box" placeholder="Subject" required><br>
           <input type="text" name="name" class="text-box" placeholder="Your Name" required>
           <input type="email" name="email" class="text-box" placeholder="Your Email" required>
           <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
@@ -41,3 +40,4 @@
     </script>
   </body>
 </html>
+

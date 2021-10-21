@@ -145,7 +145,7 @@
     <section class="d-flex-r justify-content-space-around p-1 bg-grey" id="social">
     <ul class="footerforhome d-flex-c" id="footer">
             <p class="wsnc">For more: </p>
-            <li class="rnc"><a href="#" >Request New Celebrity</a></li>
+            <li class="rnc"><a href="RequestCeleb/requestceleb.php" >Request New Celebrity</a></li>
             <li class="rnc"><a href="#" >How to Order?</a></li>
             <li class="rnc"><a href="#" >Contact Us</a></li>
                     </br>
