@@ -1,0 +1,35 @@
+/*start CelebrityProfile.php css */
+html,body{
+    overflow:auto;
+}
+
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;  
+}
+
+.profile-content {
+    max-width: 600px;
+}
+
+.profileSlide {
+    width: 50%;
+    display: none;
+}
+
+.demo {
+    width: 50%;
+    cursor: pointer;
+}
+
+.profilerow{
+    background: grey;
+    margin-top: 30px;
+    padding-top: 30px;
+    
+}
+
+
+/*end CelebrityProfile.php css*/
