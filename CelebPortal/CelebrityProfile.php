@@ -12,17 +12,16 @@
             {
                 if(document.bookform.radio1[0].checked == true)
                 {
-                    document.bookform.action ="bussinessorder.php";
+                    document.bookform.action = "businessorder.php";
                 }
-                else
                 if(document.bookform.radio1[1].checked == true)
                 {
-                    document.bookform.action ="personalsorder.php";
+                    document.bookform.action = "personalorder.php";
                 }
                 return true;
             }
-            </script>
-        </head>
+        </script>
+    </head>
      <body> 
         
         <section class="profilerow">
@@ -58,10 +57,10 @@
                         <span class="celeb-categ">Gamer - Youtube</span><br/>
                         <span class="celeb-desc">124567</span>
                         <h2>Choose an option</h2>
-                        <form action="bussinessorder.php" method="POST" class="form cf" name="bookform" onsubmit="return OnSubmitForm();">
+                        <form method="POST" class="form cf" name="bookform">
                             <input type="radio" name="radio1" id="business" value="Business" checked="checked" /><label class="business-label four col" for="business">Business</label><br/>
                             <input type="radio" name="radio1" id="personal" value="Personal" /><label class="personal-label four col" for="personal">Personal</label><br/>
-                            <input type="submit" name="book" class="book" value="Book Now" />
+                            <input type="submit" name="book" class="book" value="Book Now" onclick="return OnSubmitForm();" />
                         </form>
                         </section>
                     </div>
