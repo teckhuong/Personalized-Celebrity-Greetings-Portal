@@ -121,6 +121,7 @@ html,body{
 .alert-success{
   z-index: 1;
   background: #D4EDDA;
+  margin-top: 100px;
   font-size: 18px;
   padding: 20px 40px;
   min-width: 420px;
@@ -134,6 +135,7 @@ html,body{
 .alert-error{
   z-index: 1;
   background: #FFF3CD;
+  margin-top: 100px;
   font-size: 18px;
   padding: 20px 40px;
   min-width: 420px;

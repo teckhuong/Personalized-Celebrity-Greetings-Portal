@@ -11,6 +11,7 @@
   </head>
   <body>
     <div class="contact-section">
+      <br><br>
     <?php echo $alert; ?>
       <div class="contact-info">
         <div><i class="fas fa-map-marker-alt"></i>Address, City, Country</div>
@@ -40,4 +41,3 @@
     </script>
   </body>
 </html>
-
