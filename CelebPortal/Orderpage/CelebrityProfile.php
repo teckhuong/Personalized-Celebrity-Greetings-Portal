@@ -60,7 +60,7 @@
                         <form method="POST" class="form cf" name="bookform">
                             <input type="radio" name="radio1" id="business" value="Business" checked="checked" /><label class="business-label four col" for="business">Business</label><br/>
                             <input type="radio" name="radio1" id="personal" value="Personal" /><label class="personal-label four col" for="personal">Personal</label><br/>
-                            <input type="submit" name="book" class="book" value="Book Now" onclick="return OnSubmitForm();" />
+                            <input type="submit" name="book" class="book" value="Next" onclick="return OnSubmitForm();" />
                         </form>
                         </section>
                     </div>

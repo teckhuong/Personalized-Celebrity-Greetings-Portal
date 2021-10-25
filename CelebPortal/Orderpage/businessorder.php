@@ -12,12 +12,21 @@
         <section>
             <h2>Order page (Business)</h2>
             <form action="">
-                <label for="purpose">Purpose: </label><input type="text" name="purpose" id="purpose" placeholder="The purpose of video" /><br/>
+                <label for="purpose">Purpose: </label>
+                <select name="occassion" id="occassion">
+			        <option value="">Choose option</option>
+			        <option value="1">Event</option>
+			        <option value="2">Marketing</option>
+			        <option value="3">Internal Comms & HR</option>
+			        <option value="4">Sales</option>
+			        <option value="5">Others</option>
+		        </select><br/>
+
                 <label for="recipient">Recipient: </label><input type="text" name="recipient" id="recipient" placeholder="Name of recipient" /><br/>
                 <label for="celebrity">Celebrity: </label><input type="text" name="celebrity" id="celebrity" placeholder="Name of celebrity" /><br/>
                 <label>Instruction: </label>
 		        <textarea name="address" id="address" rows="3" cols="70" placeholder="Enter your instruction here."></textarea><br/>
-                
+
                 <label for="phoneNum">Phone Number (Optional): </label><input type="text" name="phoneNum" id="phoneNum" placeholder="Name of celebrity" /><br/>
                 <input type="submit" name="order" />
             </form>
