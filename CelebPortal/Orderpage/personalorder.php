@@ -17,12 +17,14 @@
                 
                 <label class="occassion" for="occassion">Occassion: </label>
 		            <select name="occassion" id="occassion">
-			        <option value="">Choose option</option>
-			        <option value="1"></option>
-			        <option value="2"></option>
-			        <option value="3"></option>
-			        <option value="4"></option>
-			        <option value="5"></option>
+			        <option value="">Choose occasion</option>
+			        <option value="Birthday">Birthday</option>
+			        <option value="Father's Day">Father's Day</option>
+			        <option value="Debut">Debut</option>
+			        <option value="Wedding">Wedding</option>
+			        <option value="Anniversary">Anniversary</option>
+                    <option value="Holiday">Holiday</option>
+                    <option value="Others">Others</option>
 		        </select><br/>
 
                 <label><strong>Instruction: </strong>

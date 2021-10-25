@@ -13,13 +13,13 @@
             <h2>Order page (Business)</h2>
             <form action="">
                 <label for="purpose">Purpose: </label>
-                <select name="occassion" id="occassion">
-			        <option value="">Choose option</option>
-			        <option value="1">Event</option>
-			        <option value="2">Marketing</option>
-			        <option value="3">Internal Comms & HR</option>
-			        <option value="4">Sales</option>
-			        <option value="5">Others</option>
+                <select name="purpose" id="purpose">
+			        <option value="">Choose purpose</option>
+			        <option value="Event">Event</option>
+			        <option value="Marketing">Marketing</option>
+			        <option value="Internal Comms & HR">Internal Comms & HR</option>
+			        <option value="Sales">Sales</option>
+			        <option value="Others">Others</option>
 		        </select><br/>
 
                 <label for="recipient">Recipient: </label><input type="text" name="recipient" id="recipient" placeholder="Name of recipient" /><br/>
