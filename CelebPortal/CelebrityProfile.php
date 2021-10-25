@@ -7,8 +7,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
         <link rel="stylesheet" type="text/css" href="profile.css">
+        <script type="text/javascript">
+            function OnSubmitForm()
+            {
+                if(document.bookform.radio1[0].checked == true)
+                {
+                    document.bookform.action ="bussinessorder.php";
+                }
+                else
+                if(document.bookform.radio1[1].checked == true)
+                {
+                    document.bookform.action ="personalsorder.php";
+                }
+                return true;
+            }
+            </script>
         </head>
-     <body > 
+     <body> 
+        
         <section class="profilerow">
             <div class="profile-container">
                 <div class="col-profile-12">
@@ -35,10 +51,24 @@
                         <img src="youtuberimage/laowu/laowu.png" alt="LAO WU" class="profile_pic" />
                     </div>
                 </div>
+                <div class="profile-desc">
+                    <div class="radio-container">
+                        <section class="option cf">
+                        <span class="celeb-name">LAO WU</span><br/>
+                        <span class="celeb-categ">Gamer - Youtube</span><br/>
+                        <span class="celeb-desc">124567</span>
+                        <h2>Choose an option</h2>
+                        <form action="bussinessorder.php" method="POST" class="form cf" name="bookform" onsubmit="return OnSubmitForm();">
+                            <input type="radio" name="radio1" id="business" value="Business" checked="checked" /><label class="business-label four col" for="business">Business</label><br/>
+                            <input type="radio" name="radio1" id="personal" value="Personal" /><label class="personal-label four col" for="personal">Personal</label><br/>
+                            <input type="submit" name="book" class="book" value="Book Now" />
+                        </form>
+                        </section>
+                    </div>
+                </div>   
             </div>
         </section>
-        </div>
-
+                
              <!-- footer -->
             <section class="d-flex-r justify-content-space-around p-1 bg-grey" id="social">
                 <ul class="footerforhome d-flex-c" id="footer">

@@ -80,6 +80,16 @@ section {
     
 }
 
+/* show profile picture and details inline
+.profilerow ul {
+    list-style: none;
+}
+
+.profilerow ul li {
+    display: inline;
+}
+*/
+
 /* Responsive Grids */
 
 .profile-container {
@@ -121,6 +131,100 @@ section {
     
 }
 
+/* radio button */
+/*
+.radio-container {
+    max-width: 850px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.four {
+    width: 32.26%;
+    max-width: 32.26%;
+}
+
+.col {
+    display: block;
+    float: left;
+    margin: 1% 0 1% 1.6%;
+}
+
+.col:first-of-type {
+    margin-left: 0;
+}
+
+.cf:before,.cf:after {
+    content: " ";
+    display: table;
+}
+
+.cf:after {
+    clear: both;
+}
+
+.cf {
+    *zoom: 1;
+}
+
+.form .option input {
+    display: none;
+}
+
+.form label {
+    position: relative;
+    color: #fff;
+    background-color: #000;
+    font-size: 26px;
+    text-align: left;
+    height: 50px;
+    line-height: 50px;
+    display: block;
+    cursor: pointer;
+    border: 3px solod transparent;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form .option input:checked + label {
+    border: 3px solid #2fcc71;
+    background-color: #2fcc71;
+}
+
+.form .option input:checked + label:after {
+    content: "\2713";
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 100%;
+    border: 2px solid #333;
+    background-color: #2fcc71;
+    z-index: 999;
+    position: absolute;
+    top: -10px;
+    left: -10px;
+}
+
+.book {
+    padding: 15px 60px;
+    display: inline-block;
+    border: none;
+    margin: 20px 0;
+    background-color: #2fcc71;
+    color: #fff;
+    border: 2px solid #333;
+    font-size: 18px;
+    -webkit-transition: transform 0.3 ease-in-out;
+    -o-transition: transform 0.3 ease-in-out;
+    transition:  transform 0.3 ease-in-out;
+}
+
+.book:hover {
+    cursor: pointer;
+    transform: rotateY(360deg);
+}
+*/
 /* footer css */
 .d-flex-c {
     display: flex;
@@ -226,4 +330,5 @@ p{
     box-shadow: 0 0 5px#33ffff,
                 0 0 5px#66ffff;
 }
+
 /*end CelebrityProfile.php css*/
