@@ -9,7 +9,7 @@
   <div class="header">
   	<h2>Register</h2>
   </div>
-  <form method="post" action="adminsignup.php">
+  <form method="post" action="adminsignup.php" enctype="multipart/form-data">
   	<?php include('errors.php'); ?>
 	  <?php if (isset($_SESSION['success'])) : ?>
       <div class="error success" >
@@ -35,12 +35,17 @@
   	  <label>Confirm password</label>
   	  <input type="password" name="password_2">
   	</div>
+	<div>
+		<label >Profile picture</label>
+		<input type="file" name="aimage">
+	</div>
   	<div class="input-group">
-  	  <button type="submit" class="btn" name="reg_user">Register</button>
+  	  <button type="submit" class="btn" name="reg_user" value="upload">Register</button>
   	</div>
   	<!-- <p>
   		Already a member? <a href="adminlogin.php">Login</a>
   	</p> -->
   </form>
+
 </body>
 </html>

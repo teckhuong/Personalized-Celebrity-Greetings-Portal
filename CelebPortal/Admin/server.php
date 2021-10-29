@@ -18,6 +18,21 @@ if (isset($_POST['reg_user'])) {
   $fullname = mysqli_real_escape_string($db, $_POST['fullname']);
   $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
   $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
+  //profile pic
+	$file = $_FILES['aimage'];
+
+  $fileName=$file['name'];
+  $fileTmpName = $file['tmp_name'];
+  $fileSize = $file['size'];
+  $fileError = $file['error'];
+  $fileType = $file['type'];
+
+  $fileExt = explode('.', $fileName);
+  $fileActualExt = strtolower(end($fileExt));
+
+  $allowed = array('jpg','jpeg','png','pdf');
+
+  
 
   // form validation: ensure that the form is correctly filled ...
   // by adding (array_push()) corresponding error unto $errors array
@@ -47,6 +62,34 @@ if (isset($_POST['reg_user'])) {
   	$query = "INSERT INTO users (adminid, password, fullname) 
   			  VALUES('$adminid','$password','$fullname')";
   	mysqli_query($db, $query);
+
+    $sql = "SELECT * FROM users WHERE adminid = '$adminid' AND fullname = '$fullname'";
+    $result = mysqli_query($db, $sql);
+    if(mysqli_num_rows($result) > 0){
+      while($row = mysqli_fetch_assoc($result)){
+        $userid = $row['id'];
+        $sql = "INSERT INTO profileimg (userid, status) 
+        VALUES ('$userid', 0)";
+        mysqli_query($db, $sql);
+      }
+    }else{
+      echo "You have error!";
+    }
+    if(in_array($fileActualExt, $allowed)){
+      if($fileError === 0){
+        if($fileSize < 1000000){
+        $fileNameNew = $adminid.".".$fileActualExt;
+        $fileDestination = 'profilepicture/'.$fileNameNew;
+        move_uploaded_file($fileTmpName, $fileDestination);
+        }else{
+          echo "Your file is too big!";
+        }    
+    }else{
+      echo "There was an error uploading your file!";
+    }
+  }else{
+    echo "You cannot upload file of this type!";
+  }
   	$_SESSION['success'] = "You have been registered successfully";
   	header('location: adminsignup.php');
   }
@@ -70,7 +113,6 @@ if (isset($_POST['login_user'])) {
         $results = mysqli_query($db, $query);
         if (mysqli_num_rows($results) == 1) {
           $_SESSION['adminid'] = $adminid;
-          $_SESSION['fullname'] = $fullname;
           $_SESSION['success'] = "You are now logged in";
           header('location: adminhome.php');
         }else {

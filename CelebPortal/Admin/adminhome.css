@@ -135,3 +135,18 @@ body{
     font-size: 2.5em;
     cursor: pointer;
 }
+.adminname{
+    width: 400px;
+    padding: 10px;
+    background-color: #fff;
+    margin: 10px;
+    overflow: hidden;
+}
+.adminname img{
+    float:right;
+    height: 100px;
+    width: 60px;
+}
+.adminname div{
+    float:left;
+}
