@@ -1,3 +1,16 @@
+<?php 
+  session_start(); 
+
+  if (!isset($_SESSION['adminid'])) {
+  	$_SESSION['msg'] = "You must log in first";
+  	header('location: adminlogin.php');
+  }
+  if (isset($_GET['logout'])) {
+  	session_destroy();
+  	unset($_SESSION['adminid']);
+  	header("location: adminlogin.php");
+  }
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,9 +64,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="index.php?logout='1'">
+                    <a href="index1.php?logout='1'">
                         <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
-                        <span class="title">Sign Out</span>
+                        <span class="title">logout</span>
                     </a>
                 </li>
             </ul>
@@ -66,14 +79,15 @@
                     <ion-icon name="menu-outline"></ion-icon>
                 </div>
                 <div class="adminname">
+                <span>
                     <!-- username -->
                     <?php
-                   // if(isset($_SESSION["adminid"])){
-                   //     echo $_SESSION["adminfullname"];
+                    if(isset($_SESSION["adminid"])){
+                        echo $_SESSION["adminid"];
                         //echo "<li><a href='index.php?logout='1''>Log out</a></li>";
-                    //}
-                    //?>
-                    <span>Theressa Wong</span>
+                    }
+                    ?>
+                </span>
                 </div>
             </div>
         </div>

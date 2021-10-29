@@ -70,8 +70,9 @@ if (isset($_POST['login_user'])) {
         $results = mysqli_query($db, $query);
         if (mysqli_num_rows($results) == 1) {
           $_SESSION['adminid'] = $adminid;
+          $_SESSION['fullname'] = $fullname;
           $_SESSION['success'] = "You are now logged in";
-          header('location: index1.php');
+          header('location: adminhome.php');
         }else {
             array_push($errors, "Wrong username/password combination");
         }
