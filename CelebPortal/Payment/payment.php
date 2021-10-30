@@ -31,16 +31,15 @@
   <div class="header">
   	<h2>Payment</h2>
   </div>
-  <form method="post" action="payment.php">
-  	<?php include('errors.php'); ?>
-	  <?php if (isset($_SESSION['success'])) : ?>
-      <div class="error success" >
-          <?php 
-          	echo $_SESSION['success']; 
-          	//unset($_SESSION['success']);
-          ?>
-      </div>
-  	<?php endif ?>
+  <?php
+	$username = $_SESSION['username'];
+	$connection = mysqli_connect("localhost","root","","LoginSystem");
+	$query="SELECT * FROM businessorder WHERE username = '$username'";
+	$query_run = mysqli_query($connection, $query); 
+	foreach($query_run as $row){
+  ?>
+  <form method="post" action="payment.php">  
+  <input type="text" name="edit_id" value="<?php echo $row['verification_code']?>">  
 	  <div class="col-50">
 	  		<label for="fname">Please deposit RM 100</label><br>
             <label for="fname">Accepted Cards</label>
@@ -52,6 +51,7 @@
             </div>
 			<div class="input-group">
   	  <label>Email</label>
+		
   	  <input type="email" name="email">
   	</div>
   	<div class="input-group">
@@ -77,6 +77,10 @@
   	<div class="input-group">
   	  <button type="submit" class="btn" name="reg_user">Pay</button>
   	</div>
+	 <?php
+	}
+	?>
   </form>
+ 
 </body>
 </html>
