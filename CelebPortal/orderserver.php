@@ -39,7 +39,7 @@ if (isset($_POST['businessorder'])) {
     // Finally, register user if there are no errors in the form
     if (count($errors) == 0) {
   
-        $query = "INSERT INTO businessorder (username,purpose, recipient, celebrity, instruction, phoneNum ) 
+        $query = "INSERT INTO businessorder (username, purpose, recipient, celebrity, instruction, phoneNum ) 
                   VALUES('$username','$purpose','$recipient','$celebrity','$instruction','$phoneNo')";
         mysqli_query($db, $query);
         //$_SESSION['received'] = "Your order has received successfully";

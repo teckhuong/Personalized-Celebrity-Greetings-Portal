@@ -1,16 +1,16 @@
-<!-- <?php 
-//   session_start(); 
+<?php 
+  session_start(); 
 
-//   if (!isset($_SESSION['username'])) {
-//   	$_SESSION['msg'] = "You must log in first";
-//   	header('location: userlogin.php');
-//   }
-//   if (isset($_GET['logout'])) {
-//   	session_destroy();
-//   	unset($_SESSION['username']);
-//   	header("location: userlogin.php");
-//   }
-?> -->
+  if (!isset($_SESSION['username'])) {
+  	$_SESSION['msg'] = "You must log in first";
+  	header('location: userlogin.php');
+  }
+  if (isset($_GET['logout'])) {
+  	session_destroy();
+  	unset($_SESSION['username']);
+  	header("location: userlogin.php");
+  }
+?> 
 
 <?php include('paymentserver.php') ?>
 <!DOCTYPE html>
@@ -37,7 +37,7 @@
       <div class="error success" >
           <?php 
           	echo $_SESSION['success']; 
-          	unset($_SESSION['success']);
+          	//unset($_SESSION['success']);
           ?>
       </div>
   	<?php endif ?>
@@ -50,6 +50,10 @@
               <i class="fa fa-cc-mastercard" style="color:red;"></i>
               <i class="fa fa-cc-discover" style="color:orange;"></i>
             </div>
+			<div class="input-group">
+  	  <label>Email</label>
+  	  <input type="email" name="email">
+  	</div>
   	<div class="input-group">
   	  <label>Name on Card</label>
   	  <input type="text" name="name">
