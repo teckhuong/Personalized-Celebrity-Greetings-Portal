@@ -203,8 +203,6 @@ if (isset($_POST['new_password'])) {
       header('location: homepage.php');
     }
   }
-}
-  
-  ?>
+} 
 
-
+?>
