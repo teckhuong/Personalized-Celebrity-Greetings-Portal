@@ -10,7 +10,7 @@ $errors = array();
 
 // connect to the database
 $db = mysqli_connect('localhost', 'root', '', 'LoginAdminSystem');
-
+$connection = mysqli_connect('localhost', 'root', '', 'LoginSystem');
 // REGISTER USER
 if (isset($_POST['reg_user'])) {
   // receive all input values from the form
@@ -118,6 +118,43 @@ if (isset($_POST['login_user'])) {
         }else {
             array_push($errors, "Wrong username/password combination");
         }
+    }
+  }
+
+  //edit user
+  if(isset($_POST['updatebtn'])){
+    $id=$_POST['edit_id'];
+    $username = $_POST['edit_username'];
+    $email = $_POST['edit_email'];
+    $password = $_POST['edit_password'];
+    $fullname = $_POST['edit_fullname'];
+    $dob = $_POST['edit_dob'];
+
+    $query = "UPDATE users SET username='$username', email='$email', password='$password' WHERE id='$id'";
+    $query_run = mysqli_query($connection, $query);
+
+    if($query_run){
+      $_SESSION['success'] = "Your Data is Updated!";
+      header('location: userdatabase.php');
+    }else{
+      $_SESSION['success'] = "Your Data is Not Updated!";
+      header('location: userdatabase.php');
+    }
+
+  }
+
+  //delete user
+  if(isset($_POST['delete_btn'])){
+    $id = $_POST['delete_id'];
+    $query = "DELETE FROM users WHERE id='$id'";
+    $query_run=mysqli_query($connection, $query);
+
+    if($query_run){
+      $_SESSION['success'] = "Your Data is deleted";
+      header('location: userdatabase.php');
+    }else{
+      $_SESSION['success'] = "Your data is not deleted";
+      header('location: userdatabase.php');
     }
   }
   

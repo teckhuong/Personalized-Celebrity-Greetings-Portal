@@ -60,7 +60,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="userdatabase.php">
+                    <a href="#">
                         <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                         <span class="title">User Profile Management</span>
                     </a>
@@ -116,87 +116,66 @@
                 </div>
             </div>
 
-            <!-- cards -->
-            <div class="cardBox">
-                <div class="card">
-                    <div>
-                        <div class="numbers">1,504</div>
-                        <div class="cardName">Daily Views</div>
-                    </div>
-                    <div class="iconBx">
-                        <ion-icon name="eye-outline"></ionicon>
-                    </div>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="numbers">80</div>
-                        <div class="cardName">Sales</div>
-                    </div>
-                    <div class="iconBx">
-                        <ion-icon name="cart-outline"></ionicon>
-                    </div>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="numbers">284</div>
-                        <div class="cardName">Comments</div>
-                    </div>
-                    <div class="iconBx">
-                        <ion-icon name="chatbubbles-outline"></ionicon>
-                    </div>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="numbers">$7,842</div>
-                        <div class="cardName">Earnings</div>
-                    </div>
-                    <div class="iconBx">
-                        <ion-icon name="cash-outline"></ionicon>
-                    </div>
-                </div>
-            </div>
-            
             <!-- order details list -->
             <div class="details">
                 <div class="recentOrders">
+                    <?php
+                        $connection = mysqli_connect("localhost","root","","LoginSystem");
+
+                        $query = "SELECT * FROM users";
+                        $query_run = mysqli_query($connection, $query);
+                    ?>
                     <div class="cardHeader">
-                        <h2>Recent Orders</h2>
+                        <h2>User Database</h2>
                         <a href="#" class="btn">View All</a>
                     </div>
                     <table>
                         <thead>
                             <tr>
-                                <td>Name</td>
-                                <td>Price</td>
-                                <td>Payment</td>
-                                <td>Status</td>
+                                <td>ID</td>
+                                <td>Username</td>
+                                <td>Email</td>
+                                <td>Password</td>
+                                <td>Fullname</td>
+                                <td>DOB</td>
+                                <td>EDIT</td>
+                                <td>Delete</td>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php
+                                if(mysqli_num_rows($query_run) > 0)
+                                {
+                                    while($row = mysqli_fetch_assoc($query_run))
+                                    {
+                                        ?>
+                                        
                             <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status delivered">Delievered</span></td>
-                            </tr>
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status delivered">Delievered</span></td>
-                            </tr>
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status delivered">Delievered</span></td>
-                            </tr>
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status delivered">Delievered</span></td>
-                            </tr>
+                                <td><?php echo $row['id']; ?></td>
+                                <td><?php echo $row['username']; ?></td>
+                                <td><?php echo $row['email']; ?></td>
+                                <td><?php echo $row['password']; ?></td>
+                                <td><?php echo $row['fullname']; ?></td>
+                                <td><?php echo $row['dob']; ?></td>
+                                <td>
+                                    <form action="edituser.php" method="POST">
+                                        <input type="hidden" name="edit_id" value="<?php echo $row['id']; ?>">
+                                        <button type = "submit" name="edit_btn" class="ebtn btn-success">EDIT</button>
+                                    </form>
+                                </td>
+                                <td>
+                                <form action="server.php" method="post">
+                                    <input type="hidden" name="delete_id" value="<?php echo $row['id'];?>">
+                                <button type = "submit" name="delete_btn" class="dbtn btn-danger">DELETE</button></td>
+                                </form>    
+                            </tr>   
+                            <?php
+                                    }
+                                }else{
+                                    echo "No Record Found!";
+                                }
+
+                            ?>                         
                         </tbody>
                     </table>
                 </div>

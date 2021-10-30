@@ -115,98 +115,63 @@
                     ?>  
                 </div>
             </div>
-
-            <!-- cards -->
-            <div class="cardBox">
-                <div class="card">
-                    <div>
-                        <div class="numbers">1,504</div>
-                        <div class="cardName">Daily Views</div>
-                    </div>
-                    <div class="iconBx">
-                        <ion-icon name="eye-outline"></ionicon>
-                    </div>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="numbers">80</div>
-                        <div class="cardName">Sales</div>
-                    </div>
-                    <div class="iconBx">
-                        <ion-icon name="cart-outline"></ionicon>
-                    </div>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="numbers">284</div>
-                        <div class="cardName">Comments</div>
-                    </div>
-                    <div class="iconBx">
-                        <ion-icon name="chatbubbles-outline"></ionicon>
-                    </div>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="numbers">$7,842</div>
-                        <div class="cardName">Earnings</div>
-                    </div>
-                    <div class="iconBx">
-                        <ion-icon name="cash-outline"></ionicon>
-                    </div>
-                </div>
-            </div>
-            
             <!-- order details list -->
             <div class="details">
                 <div class="recentOrders">
                     <div class="cardHeader">
-                        <h2>Recent Orders</h2>
-                        <a href="#" class="btn">View All</a>
+                        <h2>Edit User Details Page</h2>
                     </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <td>Name</td>
-                                <td>Price</td>
-                                <td>Payment</td>
-                                <td>Status</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status delivered">Delievered</span></td>
-                            </tr>
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status delivered">Delievered</span></td>
-                            </tr>
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status delivered">Delievered</span></td>
-                            </tr>
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status delivered">Delievered</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <!-- Edit User -->
+                    <?php
+                    $connection = mysqli_connect("localhost","root","","LoginSystem");
+                    if(isset($_POST['edit_btn'])){
+                            $id = $_POST['edit_id'];
+                            
+                            $query = "SELECT * FROM users WHERE id ='$id'";
+                            $query_run = mysqli_query($connection, $query); 
+                            
+                     foreach($query_run as $row){
+                                ?>
+
+                    <form  action="server.php" method="post">   
+                        <input type="hidden" name="edit_id" value="<?php echo $row['id']?>">         
+                    <div class="form-group">
+                        <label >Username</label>
+                        <input type="text" name="edit_username" value="<?php echo $row['username']?>" class="form-control" placeholder ="Enter Username">
+                    </div>
+                    <div class="form-group">
+                        <label >Email</label>
+                        <input type="email" name="edit_email" value="<?php echo $row['email']?>" class="form-control" placeholder ="Enter Username">
+                    </div>
+                    <div class="form-group">
+                        <label >Password</label>
+                        <input type="password" name="edit_password" value="<?php echo $row['password']?>" class="form-control" placeholder ="Enter Username">
+                    </div>
+                    <div class="form-group">
+                        <label >Fullname</label>
+                        <input type="text" name="edit_fullname" value="<?php echo $row['fullname']?>" class="form-control" placeholder ="Enter Username">
+                    </div>
+                    <div class="form-group">
+                        <label >Date Of Birth</label>
+                        <input type="date" name="edit_dob" value="<?php echo $row['dob']?>" class="form-control" placeholder ="Enter Username">
+                    </div>
+                    <a href="userdatabase.php" class="btn btn-danger"> Cancel </a>
+                    <button type="submit" name="updatebtn" class="btn btn-primary">Update</button>
+
+                    </form>
+
+                    <?php
+
+                            }
+                        }
+                    ?>
+
                 </div>
             </div>
 
+
+
         </div>
-
-       
-
-    </div>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script>
