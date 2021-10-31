@@ -62,6 +62,11 @@
                             <input type="radio" name="radio1" id="personal" value="Personal" /><label class="personal-label four col" for="personal">Personal</label><br/>
                             <input type="submit" name="book" class="book" value="Next" onclick="return OnSubmitForm();" />
                         </form>
+                        <form action="businessorder.php" method="POST">
+                                        <input  type="hidden" name="celebemail" value="laowu@gmail.com"/>
+                                        <!-- <input type="hidden" name="edit_id" value="?php echo $row['id']; ?><"> -->
+                                        <input type = "submit" name="business" class="businessclick" value="Business">
+                                    </form>
                         </section>
                     </div>
                 </div>   

@@ -22,13 +22,18 @@
         <link rel="stylesheet" type="text/css" href="profile.css">
     </head>
     <body> 
+    <?php
+                    $connection = mysqli_connect("localhost","root","","LoginSystem");
+                    if(isset($_POST['business'])){
+                            $celebemail = $_POST['celebemail'];
+                                ?>
         <section>
             <h2>Order page (Business)</h2>
             <form action="" method="POST">
                 <?php include('errors.php'); ?>
-
+                
                 <input type="hidden" name="username" value="<?php echo $_SESSION['username']; ?>" />
-
+                <input type="hidden" name="celebemail" value="<?php echo $celebemail ?>"/> 
                 <label for="purpose">Purpose: </label>
                 <select name="purpose" id="purpose">
 			        <option value="">Choose purpose</option>
@@ -48,6 +53,9 @@
                 <button type="submit" class="btn" name="businessorder">Submit</button>
                 <!--<input type="submit" name="businessorder" />-->
             </form>
+            <?php
+                    }
+            ?>
         </section>
              <!-- footer -->
             <section class="d-flex-r justify-content-space-around p-1 bg-grey" id="social">
