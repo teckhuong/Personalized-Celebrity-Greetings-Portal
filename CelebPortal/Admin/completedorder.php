@@ -122,45 +122,7 @@
                 </div>
             </div>
 
-            <!-- cards -->
-            <div class="cardBox">
-                <div class="card">
-                    <div>
-                        <div class="numbers">1,504</div>
-                        <div class="cardName">Daily Views</div>
-                    </div>
-                    <div class="iconBx">
-                        <ion-icon name="eye-outline"></ionicon>
-                    </div>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="numbers">80</div>
-                        <div class="cardName">Sales</div>
-                    </div>
-                    <div class="iconBx">
-                        <ion-icon name="cart-outline"></ionicon>
-                    </div>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="numbers">284</div>
-                        <div class="cardName">Comments</div>
-                    </div>
-                    <div class="iconBx">
-                        <ion-icon name="chatbubbles-outline"></ionicon>
-                    </div>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="numbers">$7,842</div>
-                        <div class="cardName">Earnings</div>
-                    </div>
-                    <div class="iconBx">
-                        <ion-icon name="cash-outline"></ionicon>
-                    </div>
-                </div>
-            </div>
+            
             
             <!-- order details list -->
             <div class="details">
@@ -172,7 +134,7 @@
                         $query_run = mysqli_query($connection, $query);
                     ?>
                     <div class="cardHeader">
-                        <h2>Recent Orders</h2>
+                        <h2>Completed Orders</h2>
                         <a href="#" class="btn">View All</a>
                     </div>
                     <table>

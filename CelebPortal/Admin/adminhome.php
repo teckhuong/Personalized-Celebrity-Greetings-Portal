@@ -134,8 +134,16 @@
                     </div>
                 </div>
                 <div class="card">
+                <?php
+                        $connection = mysqli_connect("localhost","root","","LoginAdminSystem");
+
+                        $sql = "SELECT count(id) AS total FROM completedorder WHERE status='Completed'";
+                        $result=mysqli_query($connection, $sql);
+                        $values = mysqli_fetch_assoc($result);
+                        $num_rows=$values['total'];                        
+                    ?>
                     <div>
-                        <div class="numbers">80</div>
+                        <div class="numbers"><?php echo $num_rows; ?></div>
                         <div class="cardName">Sales</div>
                     </div>
                     <div class="iconBx">
@@ -160,6 +168,7 @@
                         <ion-icon name="cash-outline"></ionicon>
                     </div>
                 </div>
+                
             </div>
             
             <!-- order details list -->
