@@ -194,6 +194,7 @@
                                 <td>Celebrity</td>
                                 <td>Instruction</td>
                                 <td>Phone No.</td>
+                                <td>Payment</td>
                                 <td>Completed</td>
                                 <td>Delete</td>
                             </tr>
@@ -213,6 +214,7 @@
                                 <td><?php echo $row['celebrity']; ?></td>
                                 <td><?php echo $row['instruction']; ?></td>
                                 <td><?php echo $row['phoneNum']; ?></td>
+                                <td><?php echo $row['payment']; ?></td>
                                 <td>
                                 <form action="editorder.php" method="POST">
                                         <input type="hidden" name="edit_id" value="<?php echo $row['Old']; ?>">

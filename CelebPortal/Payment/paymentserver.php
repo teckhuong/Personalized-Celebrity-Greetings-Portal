@@ -56,7 +56,7 @@ $errors = array();
 
 // connect to the database
 $db = mysqli_connect('localhost', 'root', '', 'OrderSystem');
-
+$connection = mysqli_connect('localhost', 'root', '', 'LoginSystem');
 // REGISTER USER
 if (isset($_POST['reg_user'])) {
   // receive all input values from the form
@@ -66,7 +66,7 @@ if (isset($_POST['reg_user'])) {
   $expyear = mysqli_real_escape_string($db, $_POST['expyear']);
   $email = mysqli_real_escape_string($db, $_POST['email']);
   $cvv = mysqli_real_escape_string($db, $_POST['cvv']);
-
+  $payment = 'Done';
   $v_code = $_POST['edit_id'];
 
   // form validation: ensure that the form is correctly filled ...
@@ -80,11 +80,21 @@ if (isset($_POST['reg_user'])) {
 
 
   if (count($errors) == 0) {
-  	$query = "INSERT INTO orders (name, cnumber, expmonth, expyear, cvv, email, verification_code) 
+  	$query = "INSERT INTO orders (name, cnumber, expmonth, expyear, cvv, email, verfication_code) 
   			  VALUES('$name', '$cnumber', '$expmonth','$expyear','$cvv', '$email', '$v_code')";
-  	mysqli_query($db, $query) && go($_POST['email'],$v_code);
-  	$_SESSION['success'] = "You money has been deposited sucessfully. A receipt has been sent to your email address";
-  	header('location: payment.php');
+  	if(mysqli_query($db, $query)){
+    $changepayment = "UPDATE businessorder SET payment = '$payment' WHERE verification_code='$v_code'";
+    $query_run = mysqli_query($connection, $changepayment);
+  	if($query_run){
+    $_SESSION['success'] = "You money has been deposited sucessfully. A receipt has been sent to your email address";
+  	go($_POST['email'],$v_code);
+    header('location: payment.php');
+  }else{
+    echo mysqli_error();
   }
+  }else{
+    echo mysqli_error();
+  }
+}
 }
 ?>

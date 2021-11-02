@@ -183,4 +183,18 @@ if (isset($_POST['login_user'])) {
       $_SESSION['success'] = "Error happend! Could not insert!";
     }
   }
+  //deleting order
+  if(isset($_POST['delete_btn'])){
+    $id = $_POST['delete_id'];
+    $query = "DELETE FROM businessorder WHERE Old='$id'";
+    $query_run=mysqli_query($connection, $query);
+
+    if($query_run){
+      $_SESSION['success'] = "Your Data is deleted";
+      header('location: adminhome.php');
+    }else{
+      $_SESSION['success'] = "Your data is not deleted";
+      header('location: adminhome.php');
+    }
+  }
   ?>

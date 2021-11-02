@@ -34,7 +34,7 @@
   <?php
 	$username = $_SESSION['username'];
 	$connection = mysqli_connect("localhost","root","","LoginSystem");
-	$query="SELECT * FROM businessorder WHERE username = '$username'";
+	$query="SELECT * FROM businessorder WHERE username = '$username' AND payment = 'No'";
 	$query_run = mysqli_query($connection, $query); 
 	foreach($query_run as $row){
   ?>
