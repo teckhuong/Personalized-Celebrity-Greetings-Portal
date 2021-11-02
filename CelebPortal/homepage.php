@@ -40,16 +40,16 @@
                         <!-- End of radio button -->
                         <!-- Start of images -->
                         <div class="slide first">
-                            <img src="youtuberimage/laowu/SitFirstShot.jpg">
+                            <img src="youtuberimage/laowu/News.png">
                         </div>
                         <div class="slide">
-                            <img src="youtuberimage/laowu/testback.png" alt="">
+                            <img src="youtuberimage/laowu/News.png" alt="">
                         </div>
                         <div class="slide">
-                            <img src="youtuberimage/laowu/SitFirstShot.jpg" alt="">
+                            <img src="youtuberimage/laowu/News.png" alt="">
                         </div>
                         <div class="slide">
-                            <img src="youtuberimage/laowu/SitFirstShot.jpg" alt="">
+                            <img src="youtuberimage/laowu/News.png" alt="">
                         </div>
                         <!-- End of Image -->
                         <!-- Auto Nav -->

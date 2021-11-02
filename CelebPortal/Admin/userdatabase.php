@@ -54,9 +54,15 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="adminhome.php">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="title">Homepage</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="completedorder.php">
+                        <span class="icon"><ion-icon name="document-outline"></ion-icon></span>
+                        <span class="title">Completed Orders</span>
                     </a>
                 </li>
                 <li>

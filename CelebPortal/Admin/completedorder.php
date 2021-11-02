@@ -166,9 +166,9 @@
             <div class="details">
                 <div class="recentOrders">
                     <?php
-                        $connection = mysqli_connect("localhost","root","","LoginSystem");
+                        $connection = mysqli_connect("localhost","root","","LoginAdminSystem");
 
-                        $query = "SELECT * FROM businessorder";
+                        $query = "SELECT * FROM completedorder";
                         $query_run = mysqli_query($connection, $query);
                     ?>
                     <div class="cardHeader">
@@ -197,25 +197,14 @@
                                     {
                                         ?>
                             <tr>
-                                <td><?php echo $row['verification_code']; ?></td>
+                                <td><?php echo $row['orderid']; ?></td>
                                 <td><?php echo $row['username']; ?></td>
                                 <td><?php echo $row['purpose']; ?></td>
                                 <td><?php echo $row['recipient']; ?></td>
                                 <td><?php echo $row['celebrity']; ?></td>
                                 <td><?php echo $row['instruction']; ?></td>
                                 <td><?php echo $row['phoneNum']; ?></td>
-                                <td>
-                                <form action="editorder.php" method="POST">
-                                        <input type="hidden" name="edit_id" value="<?php echo $row['Old']; ?>">
-                                        <button type = "submit" name="editorder_btn" class="ebtn btn-success">Complete</button>
-                                    </form>
-                                </td>
-                                <td>
-                                <form action="server.php" method="post">
-                                    <input type="hidden" name="delete_id" value="<?php echo $row['Old'];?>">
-                                <button type = "submit" name="delete_btn" class="dbtn btn-danger">DELETE</button></td>
-                                </form>
-                                </td>
+                                <td><?php echo $row['status']?></td>
                             </tr>   
                             <?php
                                     }

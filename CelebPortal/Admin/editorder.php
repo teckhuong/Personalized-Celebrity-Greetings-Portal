@@ -121,119 +121,79 @@
                     ?>  
                 </div>
             </div>
-
-            <!-- cards -->
-            <div class="cardBox">
-                <div class="card">
-                    <div>
-                        <div class="numbers">1,504</div>
-                        <div class="cardName">Daily Views</div>
-                    </div>
-                    <div class="iconBx">
-                        <ion-icon name="eye-outline"></ionicon>
-                    </div>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="numbers">80</div>
-                        <div class="cardName">Sales</div>
-                    </div>
-                    <div class="iconBx">
-                        <ion-icon name="cart-outline"></ionicon>
-                    </div>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="numbers">284</div>
-                        <div class="cardName">Comments</div>
-                    </div>
-                    <div class="iconBx">
-                        <ion-icon name="chatbubbles-outline"></ionicon>
-                    </div>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="numbers">$7,842</div>
-                        <div class="cardName">Earnings</div>
-                    </div>
-                    <div class="iconBx">
-                        <ion-icon name="cash-outline"></ionicon>
-                    </div>
-                </div>
-            </div>
-            
             <!-- order details list -->
             <div class="details">
                 <div class="recentOrders">
-                    <?php
-                        $connection = mysqli_connect("localhost","root","","LoginSystem");
-
-                        $query = "SELECT * FROM businessorder";
-                        $query_run = mysqli_query($connection, $query);
-                    ?>
                     <div class="cardHeader">
-                        <h2>Recent Orders</h2>
-                        <a href="#" class="btn">View All</a>
+                        <h2>Edit User Details Page</h2>
                     </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <td>Order ID</td>
-                                <td>Username</td>
-                                <td>Purpose</td>
-                                <td>Recipient</td>
-                                <td>Celebrity</td>
-                                <td>Instruction</td>
-                                <td>Phone No.</td>
-                                <td>Completed</td>
-                                <td>Delete</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                                if(mysqli_num_rows($query_run) > 0)
-                                {
-                                    while($row = mysqli_fetch_assoc($query_run))
-                                    {
-                                        ?>
-                            <tr>
-                                <td><?php echo $row['verification_code']; ?></td>
-                                <td><?php echo $row['username']; ?></td>
-                                <td><?php echo $row['purpose']; ?></td>
-                                <td><?php echo $row['recipient']; ?></td>
-                                <td><?php echo $row['celebrity']; ?></td>
-                                <td><?php echo $row['instruction']; ?></td>
-                                <td><?php echo $row['phoneNum']; ?></td>
-                                <td>
-                                <form action="editorder.php" method="POST">
-                                        <input type="hidden" name="edit_id" value="<?php echo $row['Old']; ?>">
-                                        <button type = "submit" name="editorder_btn" class="ebtn btn-success">Complete</button>
-                                    </form>
-                                </td>
-                                <td>
-                                <form action="server.php" method="post">
-                                    <input type="hidden" name="delete_id" value="<?php echo $row['Old'];?>">
-                                <button type = "submit" name="delete_btn" class="dbtn btn-danger">DELETE</button></td>
-                                </form>
-                                </td>
-                            </tr>   
-                            <?php
-                                    }
-                                }else{
-                                    echo "No Record Found!";
-                                }
+                    <!-- Edit User -->
+                    <?php
+                    $connection = mysqli_connect("localhost","root","","LoginSystem");
+                    if(isset($_POST['editorder_btn'])){
+                            $id = $_POST['edit_id'];
+                            
+                            $query = "SELECT * FROM businessorder WHERE Old ='$id'";
+                            $query_run = mysqli_query($connection, $query); 
+                            
+                     foreach($query_run as $row){
+                                ?>
 
-                            ?>                          
-                        </tbody>
-                    </table>
+                    <form  action="server.php" method="post">   
+                        <input type="hidden" name="edit_id" value="<?php echo $row['Old']?>">         
+                    <div class="form-group">
+                        <label >Order ID</label>
+                        <input type="text" name="edit_orderid" value="<?php echo $row['verification_code']?>" class="form-control" >
+                    </div>
+                    <div class="form-group">
+                        <label >Username</label>
+                        <input type="text" name="edit_username" value="<?php echo $row['username']?>" class="form-control" >
+                    </div>
+                    <div class="form-group">
+                        <label >Purpose</label>
+                        <input type="text" name="edit_purpose" value="<?php echo $row['purpose']?>" class="form-control" >
+                    </div>
+                    <div class="form-group">
+                        <label >Recipient</label>
+                        <input type="text" name="edit_password" value="<?php echo $row['recipient']?>" class="form-control" >
+                    </div>
+                    <div class="form-group">
+                        <label >Celebrity</label>
+                        <input type="text" name="edit_celebrity" value="<?php echo $row['celebrity']?>" class="form-control" >
+                    </div>
+                    <div class="form-group">
+                        <label >Instruction</label>
+                        <input type="text" name="edit_instruction" value="<?php echo $row['instruction']?>" class="form-control" >
+                    </div>
+                    <div class="form-group">
+                        <label >Phone No.</label>
+                        <input type="text" name="edit_phoneNum" value="<?php echo $row['phoneNum']?>" class="form-control" >
+                    </div>
+                    <div class="form-group">
+                        <label >Order Status</label>
+                        <select name="edit_status" id="purpose">
+			            <option value="Completed">Completed</option>
+                        <option value="Refunded">Refunded</option>
+                        <option value="Dummy">Dummy</option>
+		                </select>
+                    </div>
+                    <a href="adminhome.php" class="btn btn-danger"> Cancel </a>
+                    <button type="submit" name="editorder_btn" class="btn btn-primary">Update</button>
+
+                    </form>
+
+                    <?php
+
+                            }
+                        }
+                    ?>
+
                 </div>
             </div>
 
+
+
         </div>
-
-       
-
-    </div>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script>

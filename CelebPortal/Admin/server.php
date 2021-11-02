@@ -126,7 +126,7 @@ if (isset($_POST['login_user'])) {
     $id=$_POST['edit_id'];
     $username = $_POST['edit_username'];
     $email = $_POST['edit_email'];
-    $password = $_POST['edit_password'];
+    $password = md5($_POST['edit_password']);
     $fullname = $_POST['edit_fullname'];
     $dob = $_POST['edit_dob'];
 
@@ -158,4 +158,29 @@ if (isset($_POST['login_user'])) {
     }
   }
   
+  //completing order
+  if(isset($_POST['editorder_btn'])){
+    $id=$_POST['edit_id'];
+    $username = mysqli_real_escape_string($db, $_POST['edit_username']);
+    $orderid = mysqli_real_escape_string($db, $_POST['edit_orderid']);
+    $purpose = mysqli_real_escape_string($db, $_POST['edit_purpose']);
+    $recipient = mysqli_real_escape_string($db, $_POST['edit_password']);
+    $celebrity = mysqli_real_escape_string($db, $_POST['edit_celebrity']);
+    $instruction = mysqli_real_escape_string($db, $_POST['edit_instruction']);
+    $phoneNo = mysqli_real_escape_string($db, $_POST['edit_phoneNum']);
+    $status = mysqli_real_escape_string($db, $_POST['edit_status']);
+
+    $query = "DELETE FROM businessorder WHERE Old='$id'";
+    $query_run = mysqli_query($connection, $query);
+
+    if($query_run){
+      $newquery = "INSERT INTO completedorder (username, purpose, recipient, celebrity, instruction, phoneNum, orderid, status) 
+      VALUES('$username','$purpose', '$recipient', '$celebrity','$instruction','$phoneNo', '$orderid', '$status')";
+      mysqli_query($db,$newquery);
+      $_SESSION['success'] = "Order is completed!";
+      header('location: completedorder.php');
+    }else{
+      $_SESSION['success'] = "Error happend! Could not insert!";
+    }
+  }
   ?>
