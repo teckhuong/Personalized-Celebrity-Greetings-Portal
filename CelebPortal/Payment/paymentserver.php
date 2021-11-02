@@ -78,7 +78,8 @@ if (isset($_POST['reg_user'])) {
   if (empty($expyear)) { array_push($errors, "Expiriy Year is required"); }
   if (empty($cvv)) { array_push($errors, "CVV Number is required"); }
 
-
+  //By recording paid section into table, also changes the status of that order to done to prevent repeated
+  //order that is paid to appear.
   if (count($errors) == 0) {
   	$query = "INSERT INTO orders (name, cnumber, expmonth, expyear, cvv, email, verfication_code) 
   			  VALUES('$name', '$cnumber', '$expmonth','$expyear','$cvv', '$email', '$v_code')";

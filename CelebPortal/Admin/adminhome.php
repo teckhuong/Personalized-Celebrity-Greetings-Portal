@@ -62,7 +62,7 @@
                 <li>
                     <a href="completedorder.php">
                         <span class="icon"><ion-icon name="document-outline"></ion-icon></span>
-                        <span class="title">Completed Orders</span>
+                        <span class="title">Completed Deposit Orders</span>
                     </a>
                 </li>
                 <li>
