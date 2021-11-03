@@ -121,10 +121,11 @@
                     ?>  
                 </div>
             </div>
+            <link rel="stylesheet" type="text/css" href="styleagent.css">
             <!-- order details list -->
             <div class="details">
                 <div class="recentOrders">
-                    <div class="cardHeader">
+                    <div class="header">
                         <h2>Edit User Details Page</h2>
                     </div>
                     <!-- Edit User -->
@@ -141,27 +142,28 @@
 
                     <form  action="server.php" method="post">   
                         <input type="hidden" name="edit_id" value="<?php echo $row['id']?>">         
-                    <div class="form-group">
+                    <div class="input-group">
                         <label >Username</label>
                         <input type="text" name="edit_username" value="<?php echo $row['username']?>" class="form-control" placeholder ="Enter Username">
                     </div>
-                    <div class="form-group">
+                    <div class="input-group">
                         <label >Email</label>
                         <input type="email" name="edit_email" value="<?php echo $row['email']?>" class="form-control" placeholder ="Enter Username">
                     </div>
-                    <div class="form-group">
+                    <div class="input-group">
                         <label >Password</label>
                         <input type="password" name="edit_password" value="<?php echo $row['password']?>" class="form-control" placeholder ="Enter Username">
                     </div>
-                    <div class="form-group">
+                    <div class="input-group">
                         <label >Fullname</label>
                         <input type="text" name="edit_fullname" value="<?php echo $row['fullname']?>" class="form-control" placeholder ="Enter Username">
                     </div>
-                    <div class="form-group">
+                    <div class="input-group">
                         <label >Date Of Birth</label>
                         <input type="date" name="edit_dob" value="<?php echo $row['dob']?>" class="form-control" placeholder ="Enter Username">
                     </div>
-                    <a href="userdatabase.php" class="btn btn-danger"> Cancel </a>
+                    <br>
+                    <a href="userdatabase.php" class="btn btn-danger"> Cancel </a> <br><br>
                     <button type="submit" name="updatebtn" class="btn btn-primary">Update</button>
 
                     </form>

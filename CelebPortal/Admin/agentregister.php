@@ -121,8 +121,10 @@
                     ?>  
                 </div>
             </div>
-
-
+            <link rel="stylesheet" type="text/css" href="styleagent.css">
+            <div class="header">
+  	<h2>Register Agent</h2>
+  </div>
             <form method="post" action="server.php">
                 <div class="input-group">
                 <label>Username</label>
