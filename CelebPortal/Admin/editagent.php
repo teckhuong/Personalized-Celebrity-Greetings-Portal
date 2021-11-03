@@ -21,29 +21,6 @@
     <link rel="stylesheet" type="text/css" href="adminhome.css">
 </head>
 <body>
-    <?php
-        // $sql = "SELECT * FROM users";
-        // $result = mysqli_query($conn, $sql);
-        // if(mysqli_num_rows($result)>0){
-        //     //  while($row = mysqli_fetch_assoc($result)){
-        //     //      $id = $row['id'];
-        //     //      $sqlImg = "SELECT * FROM profileimg WHERE userid = '$id'";
-        //     //      $resultImg= mysqli_query($conn,$sqlImg);
-        //     //       while($rowImg = mysqli_fetch_assoc($resultImg)){
-        //     //           echo "<div>";
-        //     //           if($rowImg['status'] == 0 ){
-        //     //               echo "<img src='profilepicture/".$id.".jpg'>";
-        //     //           }else{
-        //     //               echo "<img src='profilepicture/profiledefault.jpg'>";
-        //     //           }
-        //     //           echo $row['adminid'];
-        //     //           echo "</div>";
-        //     //       }
-        //     //  }
-        // }else{
-        //     echo "There is no user yet";
-        // }
-    ?>
     <div class="admincontainer">
         <div class="navigation">
             <ul>
@@ -125,60 +102,56 @@
             <div class="details">
                 <div class="recentOrders">
                     <div class="cardHeader">
-                        <h2>Edit User Details Page</h2>
+                        <h2>Edit Agent Details Page</h2>
                     </div>
                     <!-- Edit User -->
                     <?php
-                    $connection = mysqli_connect("localhost","root","","LoginSystem");
-                    if(isset($_POST['editorder_btn'])){
+                    $connection = mysqli_connect("localhost","root","","agentdatabase");
+                    if(isset($_POST['editagent_btn'])){
                             $id = $_POST['edit_id'];
                             
-                            $query = "SELECT * FROM businessorder WHERE Old ='$id'";
+                            $query = "SELECT * FROM agentprofiledetail WHERE id ='$id'";
                             $query_run = mysqli_query($connection, $query); 
                             
                      foreach($query_run as $row){
                                 ?>
 
                     <form  action="server.php" method="post">   
-                        <input type="hidden" name="edit_id" value="<?php echo $row['Old']?>">         
-                    <div class="form-group">
-                        <label >Order ID</label>
-                        <input type="text" name="edit_orderid" value="<?php echo $row['verification_code']?>" class="form-control" >
-                    </div>
+                        <input type="text" name="edit_id" value="<?php echo $row['id']?>">                    
                     <div class="form-group">
                         <label >Username</label>
                         <input type="text" name="edit_username" value="<?php echo $row['username']?>" class="form-control" >
                     </div>
                     <div class="form-group">
-                        <label >Purpose</label>
-                        <input type="text" name="edit_purpose" value="<?php echo $row['purpose']?>" class="form-control" >
+                        <label >Password</label>
+                        <input type="text" name="edit_password" value="<?php echo $row['password']?>" class="form-control" >
                     </div>
                     <div class="form-group">
-                        <label >Recipient</label>
-                        <input type="text" name="edit_password" value="<?php echo $row['recipient']?>" class="form-control" >
+                        <label >Agent Name</label>
+                        <input type="text" name="edit_agentname" value="<?php echo $row['agentname']?>" class="form-control" >
                     </div>
                     <div class="form-group">
-                        <label >Celebrity</label>
-                        <input type="text" name="edit_celebrity" value="<?php echo $row['celebrity']?>" class="form-control" >
+                        <label >Email</label>
+                        <input type="text" name="edit_email" value="<?php echo $row['email']?>" class="form-control" >
                     </div>
                     <div class="form-group">
-                        <label >Instruction</label>
-                        <input type="text" name="edit_instruction" value="<?php echo $row['instruction']?>" class="form-control" >
+                        <label >Company Name</label>
+                        <input type="text" name="edit_compname" value="<?php echo $row['compname']?>" class="form-control" >
                     </div>
                     <div class="form-group">
-                        <label >Phone No.</label>
-                        <input type="text" name="edit_phoneNum" value="<?php echo $row['phoneNum']?>" class="form-control" >
+                        <label >Celebrity Name</label>
+                        <input type="text" name="edit_celebname" value="<?php echo $row['celebname']?>" class="form-control" >
                     </div>
                     <div class="form-group">
-                        <label >Order Status</label>
-                        <select name="edit_status" id="purpose">
-			            <option value="Completed">Completed</option>
-                        <option value="Refunded">Refunded</option>
-                        <option value="Dummy">Dummy</option>
-		                </select>
+                        <label >Phone Number</label>
+                        <input type="text" name="edit_phonenum" value="<?php echo $row['phonenum']?>" class="form-control" >
                     </div>
-                    <a href="adminhome.php" class="btn btn-danger"> Cancel </a>
-                    <button type="submit" name="editorder_btn" class="btn btn-primary">Update</button>
+                    <div class="form-group">
+                        <label >Date of Contract</label>
+                        <input type="date" name="edit_doc" value="<?php echo $row['doc']?>" class="form-control" >
+                    </div>
+                    <a href="agentdatabase.php" class="btn btn-danger"> Cancel </a>
+                    <button type="submit" name="editagent_btn" class="btn btn-primary">Update</button>
 
                     </form>
 

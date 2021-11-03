@@ -1,3 +1,4 @@
+<!-- starting from here is masterpage from admin -->
 <?php 
   session_start();
   include_once 'dbh.php'; 
@@ -72,7 +73,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="agentdatabase.php">
                         <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                         <span class="title">Agent Profile Management</span>
                     </a>
@@ -90,7 +91,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="agentregister.php">
                         <span class="icon"><ion-icon name="person-add-outline"></ion-icon></span>
                         <span class="title">Add New Agent</span>
                     </a>
@@ -121,6 +122,8 @@
                     ?>  
                 </div>
             </div>
+<!-- masterpage from admin ends here -->
+
 
             <!-- cards -->
             <div class="cardBox">
@@ -243,7 +246,7 @@
         </div>
 
        
-
+                                <!-- starting from here is masterpage from admin -->
     </div>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

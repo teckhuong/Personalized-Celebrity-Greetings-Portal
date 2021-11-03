@@ -72,7 +72,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="agentdatabase.php">
                         <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                         <span class="title">Agent Profile Management</span>
                     </a>
@@ -90,7 +90,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="agentregister.php">
                         <span class="icon"><ion-icon name="person-add-outline"></ion-icon></span>
                         <span class="title">Add New Agent</span>
                     </a>

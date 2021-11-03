@@ -121,79 +121,48 @@
                     ?>  
                 </div>
             </div>
-            <!-- order details list -->
-            <div class="details">
-                <div class="recentOrders">
-                    <div class="cardHeader">
-                        <h2>Edit User Details Page</h2>
-                    </div>
-                    <!-- Edit User -->
-                    <?php
-                    $connection = mysqli_connect("localhost","root","","LoginSystem");
-                    if(isset($_POST['editorder_btn'])){
-                            $id = $_POST['edit_id'];
-                            
-                            $query = "SELECT * FROM businessorder WHERE Old ='$id'";
-                            $query_run = mysqli_query($connection, $query); 
-                            
-                     foreach($query_run as $row){
-                                ?>
 
-                    <form  action="server.php" method="post">   
-                        <input type="hidden" name="edit_id" value="<?php echo $row['Old']?>">         
-                    <div class="form-group">
-                        <label >Order ID</label>
-                        <input type="text" name="edit_orderid" value="<?php echo $row['verification_code']?>" class="form-control" >
-                    </div>
-                    <div class="form-group">
-                        <label >Username</label>
-                        <input type="text" name="edit_username" value="<?php echo $row['username']?>" class="form-control" >
-                    </div>
-                    <div class="form-group">
-                        <label >Purpose</label>
-                        <input type="text" name="edit_purpose" value="<?php echo $row['purpose']?>" class="form-control" >
-                    </div>
-                    <div class="form-group">
-                        <label >Recipient</label>
-                        <input type="text" name="edit_password" value="<?php echo $row['recipient']?>" class="form-control" >
-                    </div>
-                    <div class="form-group">
-                        <label >Celebrity</label>
-                        <input type="text" name="edit_celebrity" value="<?php echo $row['celebrity']?>" class="form-control" >
-                    </div>
-                    <div class="form-group">
-                        <label >Instruction</label>
-                        <input type="text" name="edit_instruction" value="<?php echo $row['instruction']?>" class="form-control" >
-                    </div>
-                    <div class="form-group">
-                        <label >Phone No.</label>
-                        <input type="text" name="edit_phoneNum" value="<?php echo $row['phoneNum']?>" class="form-control" >
-                    </div>
-                    <div class="form-group">
-                        <label >Order Status</label>
-                        <select name="edit_status" id="purpose">
-			            <option value="Completed">Completed</option>
-                        <option value="Refunded">Refunded</option>
-                        <option value="Dummy">Dummy</option>
-		                </select>
-                    </div>
-                    <a href="adminhome.php" class="btn btn-danger"> Cancel </a>
-                    <button type="submit" name="editorder_btn" class="btn btn-primary">Update</button>
 
-                    </form>
-
-                    <?php
-
-                            }
-                        }
-                    ?>
-
+            <form method="post" action="server.php">
+                <div class="input-group">
+                <label>Username</label>
+                <input type="text" name="username" >
                 </div>
+                <div class="input-group">
+                <label>Password</label>
+                <input type="text" name="password">
+                </div>
+                <div class="input-group">
+                <label>Agent Name</label>
+                <input type="text" name="agentname">
+                </div>
+                <div class="input-group">
+                <label>Email</label>
+                <input type="email" name="email" >
+                </div>
+                <div class="input-group">
+                <label>Company Name</label>
+                <input type="text" name="compname">
+                </div>
+                <div class="input-group">
+                <label>Celebrity Name</label>
+                <input type="text" name="celebname">
+                </div>
+                <div class="input-group">
+                <label>Phone Number</label>
+                <input type="text" name="phonenum">
+                </div>
+                <div class="input-group">
+                <label>Date of Contract</label>
+                <input type="date" name="doc">
+                </div>
+                <div class="input-group">
+                <button type="submit" class="btn" name="agentreg">Register</button>
+                </div>
+            </form>
+
+
             </div>
-
-
-
-        </div>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script>

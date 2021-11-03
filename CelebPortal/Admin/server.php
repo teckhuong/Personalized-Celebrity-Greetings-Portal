@@ -11,6 +11,7 @@ $errors = array();
 // connect to the database
 $db = mysqli_connect('localhost', 'root', '', 'LoginAdminSystem');
 $connection = mysqli_connect('localhost', 'root', '', 'LoginSystem');
+$connectagent = mysqli_connect('localhost', 'root', '', 'agentdatabase');
 // REGISTER USER
 if (isset($_POST['reg_user'])) {
   // receive all input values from the form
@@ -130,7 +131,7 @@ if (isset($_POST['login_user'])) {
     $fullname = $_POST['edit_fullname'];
     $dob = $_POST['edit_dob'];
 
-    $query = "UPDATE users SET username='$username', email='$email', password='$password' WHERE id='$id'";
+    $query = "UPDATE users SET username='$username', email='$email', password='$password', fullname='$fullname',dob='$dob' WHERE id='$id'";
     $query_run = mysqli_query($connection, $query);
 
     if($query_run){
@@ -140,7 +141,6 @@ if (isset($_POST['login_user'])) {
       $_SESSION['success'] = "Your Data is Not Updated!";
       header('location: userdatabase.php');
     }
-
   }
 
   //delete user
@@ -197,4 +197,88 @@ if (isset($_POST['login_user'])) {
       header('location: adminhome.php');
     }
   }
+
+  //register agent
+  if(isset($_POST['agentreg'])){
+    
+  //initializing variable for agent register
+  $agentusername = "";
+  $agentpw = "";
+  $agentname = "";
+  $agentemail = "";
+  $agentcompname = "";
+  $agentcelebname = "";
+  $agentphonenum = "";
+  $agentdoc = "";
+
+  //receive inputs value from form
+  $agentusername = mysqli_real_escape_string($db, $_POST['username']);
+  $agentpw = mysqli_real_escape_string($db, $_POST['password']);
+  $agentname = mysqli_real_escape_string($db, $_POST['agentname']);
+  $agentemail = mysqli_real_escape_string($db, $_POST['email']);
+  $agentcompname = mysqli_real_escape_string($db, $_POST['compname']);
+  $agentcelebname = mysqli_real_escape_string($db, $_POST['celebname']);
+  $agentphonenum = mysqli_real_escape_string($db, $_POST['phonenum']);
+  $agentdoc = mysqli_real_escape_string($db, $_POST['doc']);
+
+  //form validation: to check form is filled or not
+  if (empty($agentusername)) { array_push($errors, "Username is required"); }
+  if (empty($agentpw)) { array_push($errors, "Password is required"); }
+  if (empty($agentname)) { array_push($errors, "Agent's Name is required"); }
+  if (empty($agentemail)) { array_push($errors, "Agent's Email is required"); }
+  if (empty($agentcompname)) { array_push($errors, "Agent's Company is required"); }
+  if (empty($agentcelebname)) { array_push($errors, "Celebrity Name is required"); }
+  if (empty($agentphonenum)) { array_push($errors, "Agent's Phone Number is required"); }
+  if (empty($agentdoc)) { array_push($errors, "Agent's Date of Contract is required"); }
+
+  //Register agent into database if no error
+  if (count($errors) == 0) {
+  	$agentpassword = md5($agentpw);//encrypt the password before saving in the database
+  	$insertagent = "INSERT INTO agentprofiledetail (username, password, agentname, email, compname, celebname, phonenum, doc) 
+  			  VALUES('$agentusername', '$agentpassword','$agentname', '$agentemail','$agentcompname','$agentcelebname','$agentphonenum','$agentdoc')";
+  	mysqli_query($connectagent, $insertagent);
+  	header('location: agentdatabase.php');
+  }else{
+    echo mysqli_error();
+  }
+  }
+
+    //edit agent
+    if(isset($_POST['editagent_btn'])){
+      $id=$_POST['edit_id'];
+      $username = $_POST['edit_username'];
+      $email = $_POST['edit_email'];
+      $password = md5($_POST['edit_password']);
+      $agentname = $_POST['edit_agentname'];
+      $compname = $_POST['edit_compname'];
+      $celebname = $_POST['edit_celebname'];
+      $phonenum = $_POST['edit_phonenum'];
+      $doc = $_POST['edit_doc'];
+  
+      $updatequery = "UPDATE agentprofiledetail SET username='$username', password='$password', agentname='$agentname', email='$email', compname='$compname', celebname='$celebname', phonenum='$phonenum', doc='$doc' WHERE id='$id'";
+      $query_run = mysqli_query($connectagent, $updatequery);
+  
+      if($query_run){
+        $_SESSION['success'] = "Your Data is Updated!";
+        header('location: agentdatabase.php');
+      }else{
+        $_SESSION['success'] = "Your Data is Not Updated!";
+        header('location: agentdatabase.php');
+      }
+    }
+  
+    //delete agent
+    if(isset($_POST['delete_btn'])){
+      $id = $_POST['delete_id'];
+      $query = "DELETE FROM agentprofiledetail WHERE id='$id'";
+      $query_run=mysqli_query($connectagent, $query);
+  
+      if($query_run){
+        $_SESSION['success'] = "Your Data is deleted";
+        header('location: agentdatabase.php');
+      }else{
+        $_SESSION['success'] = "Your data is not deleted";
+        header('location: agentdatabase.php');
+      }
+    }
   ?>

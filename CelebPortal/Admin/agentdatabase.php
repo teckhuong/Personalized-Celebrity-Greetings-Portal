@@ -21,29 +21,6 @@
     <link rel="stylesheet" type="text/css" href="adminhome.css">
 </head>
 <body>
-    <?php
-        // $sql = "SELECT * FROM users";
-        // $result = mysqli_query($conn, $sql);
-        // if(mysqli_num_rows($result)>0){
-        //     //  while($row = mysqli_fetch_assoc($result)){
-        //     //      $id = $row['id'];
-        //     //      $sqlImg = "SELECT * FROM profileimg WHERE userid = '$id'";
-        //     //      $resultImg= mysqli_query($conn,$sqlImg);
-        //     //       while($rowImg = mysqli_fetch_assoc($resultImg)){
-        //     //           echo "<div>";
-        //     //           if($rowImg['status'] == 0 ){
-        //     //               echo "<img src='profilepicture/".$id.".jpg'>";
-        //     //           }else{
-        //     //               echo "<img src='profilepicture/profiledefault.jpg'>";
-        //     //           }
-        //     //           echo $row['adminid'];
-        //     //           echo "</div>";
-        //     //       }
-        //     //  }
-        // }else{
-        //     echo "There is no user yet";
-        // }
-    ?>
     <div class="admincontainer">
         <div class="navigation">
             <ul>
@@ -66,7 +43,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="userdatabase.php">
+                    <a href="#">
                         <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                         <span class="title">User Profile Management</span>
                     </a>
@@ -121,79 +98,83 @@
                     ?>  
                 </div>
             </div>
+
             <!-- order details list -->
             <div class="details">
                 <div class="recentOrders">
-                    <div class="cardHeader">
-                        <h2>Edit User Details Page</h2>
-                    </div>
-                    <!-- Edit User -->
                     <?php
-                    $connection = mysqli_connect("localhost","root","","LoginSystem");
-                    if(isset($_POST['editorder_btn'])){
-                            $id = $_POST['edit_id'];
-                            
-                            $query = "SELECT * FROM businessorder WHERE Old ='$id'";
-                            $query_run = mysqli_query($connection, $query); 
-                            
-                     foreach($query_run as $row){
-                                ?>
+                        $connection = mysqli_connect("localhost","root","","agentdatabase");
 
-                    <form  action="server.php" method="post">   
-                        <input type="hidden" name="edit_id" value="<?php echo $row['Old']?>">         
-                    <div class="form-group">
-                        <label >Order ID</label>
-                        <input type="text" name="edit_orderid" value="<?php echo $row['verification_code']?>" class="form-control" >
-                    </div>
-                    <div class="form-group">
-                        <label >Username</label>
-                        <input type="text" name="edit_username" value="<?php echo $row['username']?>" class="form-control" >
-                    </div>
-                    <div class="form-group">
-                        <label >Purpose</label>
-                        <input type="text" name="edit_purpose" value="<?php echo $row['purpose']?>" class="form-control" >
-                    </div>
-                    <div class="form-group">
-                        <label >Recipient</label>
-                        <input type="text" name="edit_password" value="<?php echo $row['recipient']?>" class="form-control" >
-                    </div>
-                    <div class="form-group">
-                        <label >Celebrity</label>
-                        <input type="text" name="edit_celebrity" value="<?php echo $row['celebrity']?>" class="form-control" >
-                    </div>
-                    <div class="form-group">
-                        <label >Instruction</label>
-                        <input type="text" name="edit_instruction" value="<?php echo $row['instruction']?>" class="form-control" >
-                    </div>
-                    <div class="form-group">
-                        <label >Phone No.</label>
-                        <input type="text" name="edit_phoneNum" value="<?php echo $row['phoneNum']?>" class="form-control" >
-                    </div>
-                    <div class="form-group">
-                        <label >Order Status</label>
-                        <select name="edit_status" id="purpose">
-			            <option value="Completed">Completed</option>
-                        <option value="Refunded">Refunded</option>
-                        <option value="Dummy">Dummy</option>
-		                </select>
-                    </div>
-                    <a href="adminhome.php" class="btn btn-danger"> Cancel </a>
-                    <button type="submit" name="editorder_btn" class="btn btn-primary">Update</button>
-
-                    </form>
-
-                    <?php
-
-                            }
-                        }
+                        $query = "SELECT * FROM agentprofiledetail";
+                        $query_run = mysqli_query($connection, $query);
                     ?>
+                    <div class="cardHeader">
+                        <h2>Agent Database</h2>
+                        <a href="#" class="btn">View All</a>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>ID</td>
+                                <td>Username</td>
+                                <td>Password</td>
+                                <td>Agent Name</td>
+                                <td>Email</td>
+                                <td>Company Name</td>
+                                <td>Celebrity Name</td>
+                                <td>Phone Number</td>
+                                <td>Date Of Contract</td>
+                                <td>EDIT</td>
+                                <td>Delete</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                if(mysqli_num_rows($query_run) > 0)
+                                {
+                                    while($row = mysqli_fetch_assoc($query_run))
+                                    {
+                                        ?>
+                                        
+                            <tr>
+                                <td><?php echo $row['id']; ?></td>
+                                <td><?php echo $row['username']; ?></td>
+                                <td><?php echo $row['password']; ?></td>
+                                <td><?php echo $row['agentname']; ?></td>
+                                <td><?php echo $row['email']; ?></td>
+                                <td><?php echo $row['compname']; ?></td>
+                                <td><?php echo $row['celebname']; ?></td>
+                                <td><?php echo $row['phonenum']; ?></td>
+                                <td><?php echo $row['doc']; ?></td>
+                                <td>
+                                    <form action="editagent.php" method="POST">
+                                        <input type="hidden" name="edit_id" value="<?php echo $row['id']; ?>">
+                                        <button type = "submit" name="editagent_btn" class="ebtn btn-success">EDIT</button>
+                                    </form>
+                                </td>
+                                <td>
+                                <form action="server.php" method="post">
+                                    <input type="hidden" name="delete_id" value="<?php echo $row['id'];?>">
+                                <button type = "submit" name="delete_btn" class="dbtn btn-danger">DELETE</button></td>
+                                </form>    
+                            </tr>   
+                            <?php
+                                    }
+                                }else{
+                                    echo "No Record Found!";
+                                }
 
+                            ?>                         
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-
-
         </div>
+
+       
+
+    </div>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script>
