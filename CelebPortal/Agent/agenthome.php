@@ -1,14 +1,14 @@
 <?php 
    session_start();
 
-   if (!isset($_SESSION['adminid'])) {
+   if (!isset($_SESSION['agentid'])) {
    	$_SESSION['msg'] = "You must log in first";
-   	header('location: adminlogin.php');
+   	header('location: agentlogin.php');
    }
    if (isset($_GET['logout'])) {
    	session_destroy();
-   	unset($_SESSION['adminid']);
-   	header("location: adminlogin.php");
+   	unset($_SESSION['agentid']);
+   	header("location: agentlogin.php");
    }   
 
 ?>
@@ -48,7 +48,7 @@
                     </a>
                 </li>                             
                 <li>
-                    <a href="index1.php?logout='1'">
+                    <a href="index2.php?logout='1'">
                         <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
                         <span class="title">logout</span>
                     </a>
