@@ -53,7 +53,7 @@
                 <div class="profile-desc">
                     <div class="radio-container">
                         <section class="option cf">
-                        <span class="celeb-name">LAO WU</span><br/>
+                        <span class="celeb-name" >LAO WU</span><br/>
                         <span class="celeb-categ">Gamer - Youtube</span><br/>
                         <span class="celeb-desc">124567</span>
                         <h2>Choose an option</h2>
@@ -64,7 +64,8 @@
                         </form>
                         <form action="businessorder.php" method="POST">
                                         <input  type="hidden" name="celebemail" value="laowu@gmail.com"/>
-                                        <!-- <input type="hidden" name="edit_id" value="?php echo $row['id']; ?><"> -->
+                                        <input  type="hidden" name="celebname" value="Lao Wu"/>
+                                        
                                         <input type = "submit" name="business" class="businessclick" value="Business">
                                     </form>
                         </section>

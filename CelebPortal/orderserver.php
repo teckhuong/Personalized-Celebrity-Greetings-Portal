@@ -24,8 +24,9 @@ if (isset($_POST['businessorder'])) {
     $username = mysqli_real_escape_string($db, $_POST['username']);
     $purpose = mysqli_real_escape_string($db, $_POST['purpose']);
     $recipient = mysqli_real_escape_string($db, $_POST['recipient']);
-    $celebrity = mysqli_real_escape_string($db, $_POST['celebrity']);
+    $celebrity = mysqli_real_escape_string($db, $_POST['celebname']);
     $instruction = mysqli_real_escape_string($db, $_POST['instruction']);
+    $details = mysqli_real_escape_string($db, $_POST['details']);
     $phoneNo = mysqli_real_escape_string($db, $_POST['phoneNum']);
     $payment = 'No';
   
@@ -40,8 +41,8 @@ if (isset($_POST['businessorder'])) {
     // Finally, register user if there are no errors in the form
     if (count($errors) == 0) {
         $v_code =bin2hex(random_bytes(2));
-        $query = "INSERT INTO businessorder (username, purpose, recipient, celebrity, instruction, phoneNum, verification_code, payment) 
-                  VALUES('$username','$purpose','$recipient','$celebrity','$instruction','$phoneNo','$v_code', '$payment')";
+        $query = "INSERT INTO businessorder (username, purpose, recipient, celebrity, instruction, details, phoneNum, verification_code, payment) 
+                  VALUES('$username','$purpose','$recipient','$celebrity','$instruction','$details','$phoneNo','$v_code', '$payment')";
         mysqli_query($db, $query);
         //$_SESSION['received'] = "Your order has received successfully";
         header('location: Payment/payment.php');

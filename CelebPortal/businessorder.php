@@ -26,6 +26,7 @@
                     $connection = mysqli_connect("localhost","root","","LoginSystem");
                     if(isset($_POST['business'])){
                             $celebemail = $_POST['celebemail'];
+                            $celebname = $_POST['celebname'];
                                 ?>
         <section>
             <h2>Order page (Business)</h2>
@@ -33,23 +34,28 @@
                 <?php include('errors.php'); ?>
                 
                 <input type="hidden" name="username" value="<?php echo $_SESSION['username']; ?>" />
-                <input type="hidden" name="celebemail" value="<?php echo $celebemail ?>"/> 
-                <label for="purpose">Purpose: </label>
+                <input type="text" name="celebemail" value="<?php echo $celebemail ?>"/> 
+                <input type="text" name="celebname" value="<?php echo $celebname ?>"/> 
+                <label for="purpose">Category: </label>
                 <select name="purpose" id="purpose">
-			        <option value="">Choose purpose</option>
+			        <option value="">Choose Category</option>
 			        <option value="Event">Event</option>
 			        <option value="Marketing">Marketing</option>
+                    <option value="Advertising">Advertising</option>
 			        <option value="Internal Comms & HR">Internal Comms & HR</option>
 			        <option value="Sales">Sales</option>
+                    <option value="Birthday">Birthday</option>
+                    <option value="Normal Greetings">Normal Greetings</option>
 			        <option value="Others">Others</option>
 		        </select><br/>
 
-                <label for="recipient">Recipient: </label><input type="text" name="recipient" id="recipient" placeholder="Name of recipient" /><br/>
-                <label for="celebrity">Celebrity: </label><input type="text" name="celebrity" id="celebrity" placeholder="Name of celebrity" /><br/>
-                <label>Instruction: </label>
+                <label >To Who?: </label><input type="text" name="recipient"/><br/>
+                <label >From Who?: </label><input type="text" name="sender" /><br/>
+                <label >What do you want <?php echo $celebname ?> to do?</label>
 		        <textarea name="instruction" id="instruction" rows="3" cols="70" placeholder="Enter your instruction here."></textarea><br/>
-
-                <label for="phoneNum">Phone Number (Optional): </label><input type="text" name="phoneNum" id="phoneNum" placeholder="Phone no of user" /><br/>
+                <label >What are the details you want <?php echo $celebname ?> to know? (Optional)</label>
+                <textarea name="details" id="details" rows="3" cols="70" placeholder="Write here."></textarea><br/>
+                <label >Phone Number (Optional): </label><input type="text" name="phoneNum" id="phoneNum" placeholder="Phone no of user" /><br/>
                 <button type="submit" class="btn" name="businessorder">Submit</button>
                 <!--<input type="submit" name="businessorder" />-->
             </form>
