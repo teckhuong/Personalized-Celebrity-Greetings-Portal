@@ -89,7 +89,7 @@ if (isset($_POST['reg_user'])) {
   	if($query_run){
     $_SESSION['success'] = "You money has been deposited sucessfully. A receipt has been sent to your email address";
   	go($_POST['email'],$v_code);
-    header('location: payment.php');
+    header('location: success.php');
   }else{
     echo mysqli_error();
   }
