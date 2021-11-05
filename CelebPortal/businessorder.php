@@ -30,7 +30,7 @@
                                 ?>
         <section>
             <h2>Order page (Business)</h2>
-            <form action="" method="POST">
+            <form action="orderserver.php" method="POST">
                 <?php include('errors.php'); ?>
                 
                 <input type="hidden" name="username" value="<?php echo $_SESSION['username']; ?>" />

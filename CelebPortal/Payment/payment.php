@@ -40,15 +40,7 @@
   ?>
   <form method="post" action="payment.php">  
   <input type="text" name="edit_id" value="<?php echo $row['verification_code']?>">  
-  <?php include('errors.php'); ?>
-	  <?php if (isset($_SESSION['success'])) : ?>
-      <div class="error success" >
-          <?php 
-          	echo $_SESSION['success']; 
-          	// unset($_SESSION['success']);
-          ?>
-      </div>
-  	<?php endif ?>
+  
 	  <div class="col-50">
 	  		<label for="fname">Please deposit RM 100</label><br>
             <label for="fname">Accepted Cards</label>

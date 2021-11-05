@@ -123,8 +123,7 @@
                         <label >Order Status</label>
                             <select name="edit_status" id="purpose">
                                 <option value="Completed">Completed</option>
-                                <option value="Refunded">Refunded</option>
-                                <option value="Dummy">Dummy</option>
+                                <option value="Dummy">Dummy Message</option>
                             </select>
                     </div>         
                     <div class="input-group">

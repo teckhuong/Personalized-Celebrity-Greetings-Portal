@@ -164,9 +164,11 @@ if (isset($_POST['login_user'])) {
     $username = mysqli_real_escape_string($db, $_POST['edit_username']);
     $orderid = mysqli_real_escape_string($db, $_POST['edit_orderid']);
     $purpose = mysqli_real_escape_string($db, $_POST['edit_purpose']);
-    $recipient = mysqli_real_escape_string($db, $_POST['edit_password']);
+    $sender = mysqli_real_escape_string($db, $_POST['edit_sender']);
+    $recipient = mysqli_real_escape_string($db, $_POST['edit_recipient']);
     $celebrity = mysqli_real_escape_string($db, $_POST['edit_celebrity']);
     $instruction = mysqli_real_escape_string($db, $_POST['edit_instruction']);
+    $details = mysqli_real_escape_string($db, $_POST['edit_details']);
     $phoneNo = mysqli_real_escape_string($db, $_POST['edit_phoneNum']);
     $status = mysqli_real_escape_string($db, $_POST['edit_status']);
 
@@ -174,8 +176,8 @@ if (isset($_POST['login_user'])) {
     $query_run = mysqli_query($connection, $query);
 
     if($query_run){
-      $newquery = "INSERT INTO completedorder (username, purpose, recipient, celebrity, instruction, phoneNum, orderid, status) 
-      VALUES('$username','$purpose', '$recipient', '$celebrity','$instruction','$phoneNo', '$orderid', '$status')";
+      $newquery = "INSERT INTO completedorder (username, purpose, recipient, sender, celebrity, instruction, details, phoneNum, orderid, status) 
+      VALUES('$username','$purpose', '$recipient', '$sender','$celebrity','$instruction','$details','$phoneNo', '$orderid', '$status')";
       mysqli_query($db,$newquery);
       $_SESSION['success'] = "Order is completed!";
       header('location: completedorder.php');

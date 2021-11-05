@@ -121,8 +121,10 @@
                                 <td>Username</td>
                                 <td>Purpose</td>
                                 <td>Recipient</td>
+                                <td>Sender</td>
                                 <td>Celebrity</td>
                                 <td>Instruction</td>
+                                <td>Details</td>
                                 <td>Phone No.</td>
                                 <td>Deposit</td>
                                 <td>Agent Status</td>
@@ -140,8 +142,10 @@
                                 <td><?php echo $row['username']; ?></td>
                                 <td><?php echo $row['purpose']; ?></td>
                                 <td><?php echo $row['recipient']; ?></td>
+                                <td><?php echo $row['sender']; ?></td>
                                 <td><?php echo $row['celebrity']; ?></td>
                                 <td><?php echo $row['instruction']; ?></td>
+                                <td><?php echo $row['details']; ?></td>
                                 <td><?php echo $row['phoneNum']; ?></td>
                                 <td><?php echo $row['status']?></td>
                                 <td><?php echo $row['agentstatus']?></td>
