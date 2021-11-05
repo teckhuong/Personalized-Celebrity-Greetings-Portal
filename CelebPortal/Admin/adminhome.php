@@ -22,29 +22,6 @@
     <link rel="stylesheet" type="text/css" href="adminhome.css">
 </head>
 <body>
-    <?php
-        // $sql = "SELECT * FROM users";
-        // $result = mysqli_query($conn, $sql);
-        // if(mysqli_num_rows($result)>0){
-        //     //  while($row = mysqli_fetch_assoc($result)){
-        //     //      $id = $row['id'];
-        //     //      $sqlImg = "SELECT * FROM profileimg WHERE userid = '$id'";
-        //     //      $resultImg= mysqli_query($conn,$sqlImg);
-        //     //       while($rowImg = mysqli_fetch_assoc($resultImg)){
-        //     //           echo "<div>";
-        //     //           if($rowImg['status'] == 0 ){
-        //     //               echo "<img src='profilepicture/".$id.".jpg'>";
-        //     //           }else{
-        //     //               echo "<img src='profilepicture/profiledefault.jpg'>";
-        //     //           }
-        //     //           echo $row['adminid'];
-        //     //           echo "</div>";
-        //     //       }
-        //     //  }
-        // }else{
-        //     echo "There is no user yet";
-        // }
-    ?>
     <div class="admincontainer">
         <div class="navigation">
             <ul>
@@ -130,7 +107,7 @@
                 <div class="card">
                     <div>
                         <div class="numbers">1,504</div>
-                        <div class="cardName">Daily Views</div>
+                        <div class="cardName">Total Order</div>
                     </div>
                     <div class="iconBx">
                         <ion-icon name="eye-outline"></ionicon>
@@ -147,7 +124,7 @@
                     ?>
                     <div>
                         <div class="numbers"><?php echo $num_rows; ?></div>
-                        <div class="cardName">Sales</div>
+                        <div class="cardName">Order in progress</div>
                     </div>
                     <div class="iconBx">
                         <ion-icon name="cart-outline"></ionicon>
@@ -156,7 +133,7 @@
                 <div class="card">
                     <div>
                         <div class="numbers">284</div>
-                        <div class="cardName">Comments</div>
+                        <div class="cardName">Order Fully Completed</div>
                     </div>
                     <div class="iconBx">
                         <ion-icon name="chatbubbles-outline"></ionicon>
@@ -184,8 +161,7 @@
                         $query_run = mysqli_query($connection, $query);
                     ?>
                     <div class="cardHeader">
-                        <h2>Recent Orders</h2>
-                        <a href="#" class="btn">View All</a>
+                        <h2>New Orders</h2>                        
                     </div>
                     <table>
                         <thead>
@@ -198,8 +174,6 @@
                                 <td>Instruction</td>
                                 <td>Phone No.</td>
                                 <td>Payment</td>
-                                <td>Completed</td>
-                                <td>Delete</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -221,7 +195,7 @@
                                 <td>
                                 <form action="editorder.php" method="POST">
                                         <input type="hidden" name="edit_id" value="<?php echo $row['Old']; ?>">
-                                        <button type = "submit" name="editorder_btn" class="ebtn btn-success">Complete</button>
+                                        <button type = "submit" name="editorder_btn" class="ebtn btn-success">Done</button>
                                     </form>
                                 </td>
                                 <td>
@@ -270,6 +244,8 @@
         }
         list.forEach((item)=>
         item.addEventListener('mouseover',activeLink));
+
+        
     </script>
 </body>
 </html>

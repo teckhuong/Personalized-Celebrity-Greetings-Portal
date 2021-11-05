@@ -36,7 +36,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="makequotation.php">
+                    <a href="userdatabase.php">
                         <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                         <span class="title">Quotation Form</span>
                     </a>
@@ -61,7 +61,17 @@
                 </li>
             </ul>
         </div>        
-
+        <?php
+            $temp = $_SESSION['agentid'];
+            $connectagent = mysqli_connect("localhost","root","","agentdatabase");
+            $getcelebname = "SELECT * FROM agentprofiledetail WHERE username='$temp'";
+             $query_run= mysqli_query($connectagent,$getcelebname);
+                        
+            foreach($query_run as $row){
+                $celebname = $row['celebname']; 
+            }
+                                               
+        ?>
              <!-- main -->
         <div class="main">
             <div class="topbar">
@@ -79,71 +89,14 @@
                 </div>
             </div>
             <!-- Body starts from here -->
-            <!-- Show notification -->
-            <div class="cardBox">
-                <div class="card">
-                    <div>
-                        <div class="numbers">1,504</div>
-                        <div class="cardName">Daily Views</div>
-                    </div>
-                    <div class="iconBx">
-                        <ion-icon name="eye-outline"></ionicon>
-                    </div>
-                </div>
-                <div class="card">
-                <?php
-                        $temp = $_SESSION['agentid'];
-                        $connectagent = mysqli_connect("localhost","root","","agentdatabase");
-                        $getcelebname = "SELECT * FROM agentprofiledetail WHERE username='$temp'";
-                        $query_run= mysqli_query($connectagent,$getcelebname);
-                        
-                        foreach($query_run as $row){
-                            $celebname = $row['celebname'];
-                            $connection = mysqli_connect("localhost","root","","loginadminsystem");
 
-                            $sql = "SELECT count(id) AS total FROM completedorder WHERE status='Completed' AND celebrity='$celebname' AND agentstatus=''";
-                            $result=mysqli_query($connection, $sql);
-                            $values = mysqli_fetch_assoc($result);
-                            $num_rows=$values['total'];  
-                        }
-                                               
-                    ?>
-                    <div>
-                        <div class="numbers"><?php echo $num_rows; ?></div>
-                        <div class="cardName">New Orders</div>
-                    </div>
-                    <div class="iconBx">
-                        <ion-icon name="document-outline"></ionicon>
-                    </div>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="numbers">284</div>
-                        <div class="cardName">Comments</div>
-                    </div>
-                    <div class="iconBx">
-                        <ion-icon name="chatbubbles-outline"></ionicon>
-                    </div>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="numbers">$7,842</div>
-                        <div class="cardName">Earnings</div>
-                    </div>
-                    <div class="iconBx">
-                        <ion-icon name="cash-outline"></ionicon>
-                    </div>
-                </div>
-                
-            </div>
-                            
-                <!-- New Order List -->
+
+            <!-- New Order List -->
             <div class="details">
                 <div class="recentOrders">
                     <?php
                         $connection = mysqli_connect("localhost","root","","loginadminsystem");
-
-                        $query = "SELECT * FROM completedorder WHERE celebrity='$celebname' AND agentstatus=''";
+                        $query = "SELECT * FROM completedorder WHERE celebrity='$celebname' AND agentstatus='Accepted'";
                         $query_run = mysqli_query($connection, $query);
                     ?>
                     <div class="cardHeader">
@@ -159,7 +112,7 @@
                                 <td>From Who?</td>
                                 <td>What to do</td>
                                 <td>What are the details</td>
-                                <td>View</td>
+                                <td>Status</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -176,8 +129,9 @@
                                 <td><?php echo $row['sender']; ?></td>
                                 <td><?php echo $row['instruction']; ?></td>
                                 <td><?php echo $row['details']; ?></td>
+                                <td><?php echo $row['agentstatus']; ?></td>
                                 <td>
-                                <form action="vieworder.php" method="POST">
+                                <form action="viewonly.php" method="POST">
                                         <input type="hidden" name="edit_id" value="<?php echo $row['id']; ?>">
                                         <button type = "submit" name="editorder_btn" class="ebtn btn-success">View</button>
                                     </form>

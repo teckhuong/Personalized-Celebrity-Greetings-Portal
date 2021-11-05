@@ -38,4 +38,20 @@ if (isset($_POST['login_agent'])) {
     }
   }
 
+  //Accept Function
+  if(isset($_POST['updatebtn'])){
+    $orderid = $_POST['edit_orderid'];
+    $status = 'Accepted';
+    $query = "UPDATE completedorder SET agentstatus='$status' WHERE orderid='$orderid'";
+    mysqli_query($db,$query);
+    header('location: agenthome.php');
+  }
+  //Decline Function
+  if(isset($_POST['declinebtn'])){
+    $orderid = $_POST['edit_orderid'];
+    $status = 'Decline';
+    $query = "UPDATE completedorder SET agentstatus='$status' WHERE orderid='$orderid'";
+    mysqli_query($db,$query);
+    header('location: agenthome.php');
+  }
 ?>

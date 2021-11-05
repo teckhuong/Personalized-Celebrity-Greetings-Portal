@@ -121,7 +121,7 @@
                     ?>  
                 </div>
             </div>
-            <link rel="stylesheet" type="text/css" href="styleagent.css">
+            <link rel="stylesheet" type="text/css" href="form.css">
             <!-- order details list -->
             <div class="details">
                 <div class="recentOrders">
@@ -163,7 +163,7 @@
                         <input type="date" name="edit_dob" value="<?php echo $row['dob']?>" class="form-control" placeholder ="Enter Username">
                     </div>
                     <br>
-                    <a href="userdatabase.php" class="btn btn-danger"> Cancel </a> <br><br>
+                    <a href="userdatabase.php" class="btn btn-danger"> Cancel </a>
                     <button type="submit" name="updatebtn" class="btn btn-primary">Update</button>
 
                     </form>

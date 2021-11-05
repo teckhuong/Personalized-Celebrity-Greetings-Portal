@@ -1,0 +1,83 @@
+* {
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+  } 
+  .header {
+    width: 100%;
+    margin: 50px auto 0px;
+    color: white;
+    background: #287bff;
+    text-align: center;
+    border: 1px solid gray;
+    border-bottom: none;
+    border-radius: 10px 10px 0px 0px;
+    padding: 20px;
+  }
+  form, .content {
+    width: 100%;
+    margin: 0px auto;
+    padding: 20px;
+    border: 1px solid #B0C4DE;
+    background: white;
+    border-radius: 0px 0px 10px 10px;
+  }
+  .input-group {
+    margin: 10px 0px 10px 0px;
+  }
+  .input-group label {
+    display: block;
+    text-align: left;
+    margin: 3px;
+  }
+  .input-group input {
+    height: 30px;
+    width: 93%;
+    padding: 5px 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid gray;
+  }
+  p{
+    width: 93%;
+    border: 1px solid gray;
+    border-radius: 5px;    
+    padding: 5px 10px;
+  }
+  .dbtn {    
+    margin-left: 30%;
+    padding: 10px;
+    font-size: 15px;
+    color: white;
+    background: #287bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .abtn { 
+    margin-left: 20%;
+    padding: 10px;
+    font-size: 15px;
+    color: white;
+    background: #287bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .error {
+    width: 92%; 
+    margin: 0px auto; 
+    padding: 10px; 
+    border: 1px solid #a94442; 
+    color: #a94442; 
+    background: #f2dede; 
+    border-radius: 5px; 
+    text-align: left; 
+  }
+  .success {
+    color: #3c763d; 
+    background: #dff0d8; 
+    border: 1px solid #3c763d;
+    margin-bottom: 20px;
+  }
+  

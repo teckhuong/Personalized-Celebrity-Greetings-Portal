@@ -98,10 +98,11 @@
                     ?>  
                 </div>
             </div>
+            <link rel="stylesheet" type="text/css" href="form.css">
             <!-- order details list -->
             <div class="details">
                 <div class="recentOrders">
-                    <div class="cardHeader">
+                    <div class="header">
                         <h2>Edit Agent Details Page</h2>
                     </div>
                     <!-- Edit User -->
@@ -117,36 +118,36 @@
                                 ?>
 
                     <form  action="server.php" method="post">   
-                        <input type="text" name="edit_id" value="<?php echo $row['id']?>">                    
-                    <div class="form-group">
+                        <input type="hidden" name="edit_id" value="<?php echo $row['id']?>">                    
+                    <div class="input-group">
                         <label >Username</label>
                         <input type="text" name="edit_username" value="<?php echo $row['username']?>" class="form-control" >
                     </div>
-                    <div class="form-group">
+                    <div class="input-group">
                         <label >Password</label>
                         <input type="text" name="edit_password" value="<?php echo $row['password']?>" class="form-control" >
                     </div>
-                    <div class="form-group">
+                    <div class="input-group">
                         <label >Agent Name</label>
                         <input type="text" name="edit_agentname" value="<?php echo $row['agentname']?>" class="form-control" >
                     </div>
-                    <div class="form-group">
+                    <div class="input-group">
                         <label >Email</label>
                         <input type="text" name="edit_email" value="<?php echo $row['email']?>" class="form-control" >
                     </div>
-                    <div class="form-group">
+                    <div class="input-group">
                         <label >Company Name</label>
                         <input type="text" name="edit_compname" value="<?php echo $row['compname']?>" class="form-control" >
                     </div>
-                    <div class="form-group">
+                    <div class="input-group">
                         <label >Celebrity Name</label>
                         <input type="text" name="edit_celebname" value="<?php echo $row['celebname']?>" class="form-control" >
                     </div>
-                    <div class="form-group">
+                    <div class="input-group">
                         <label >Phone Number</label>
                         <input type="text" name="edit_phonenum" value="<?php echo $row['phonenum']?>" class="form-control" >
                     </div>
-                    <div class="form-group">
+                    <div class="input-group">
                         <label >Date of Contract</label>
                         <input type="date" name="edit_doc" value="<?php echo $row['doc']?>" class="form-control" >
                     </div>

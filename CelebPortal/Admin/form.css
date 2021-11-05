@@ -4,7 +4,7 @@
     box-sizing: border-box;
   } 
   .header {
-    width: 30%;
+    width: 100%;
     margin: 50px auto 0px;
     color: white;
     background: #287bff;
@@ -15,7 +15,7 @@
     padding: 20px;
   }
   form, .content {
-    width: 30%;
+    width: 100%;
     margin: 0px auto;
     padding: 20px;
     border: 1px solid #B0C4DE;
@@ -38,13 +38,21 @@
     border-radius: 5px;
     border: 1px solid gray;
   }
+  p{
+    width: 93%;
+    border: 1px solid gray;
+    border-radius: 5px;    
+    padding: 5px 10px;
+  }
   .btn {
+    margin-left: 38px;
     padding: 10px;
     font-size: 15px;
     color: white;
     background: #287bff;
     border: none;
     border-radius: 5px;
+    cursor: pointer;
   }
   .error {
     width: 92%; 
@@ -62,4 +70,5 @@
     border: 1px solid #3c763d;
     margin-bottom: 20px;
   }
+  
   

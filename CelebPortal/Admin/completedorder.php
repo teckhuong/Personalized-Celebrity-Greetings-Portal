@@ -21,29 +21,6 @@
     <link rel="stylesheet" type="text/css" href="adminhome.css">
 </head>
 <body>
-    <?php
-        // $sql = "SELECT * FROM users";
-        // $result = mysqli_query($conn, $sql);
-        // if(mysqli_num_rows($result)>0){
-        //     //  while($row = mysqli_fetch_assoc($result)){
-        //     //      $id = $row['id'];
-        //     //      $sqlImg = "SELECT * FROM profileimg WHERE userid = '$id'";
-        //     //      $resultImg= mysqli_query($conn,$sqlImg);
-        //     //       while($rowImg = mysqli_fetch_assoc($resultImg)){
-        //     //           echo "<div>";
-        //     //           if($rowImg['status'] == 0 ){
-        //     //               echo "<img src='profilepicture/".$id.".jpg'>";
-        //     //           }else{
-        //     //               echo "<img src='profilepicture/profiledefault.jpg'>";
-        //     //           }
-        //     //           echo $row['adminid'];
-        //     //           echo "</div>";
-        //     //       }
-        //     //  }
-        // }else{
-        //     echo "There is no user yet";
-        // }
-    ?>
     <div class="admincontainer">
         <div class="navigation">
             <ul>
@@ -147,8 +124,8 @@
                                 <td>Celebrity</td>
                                 <td>Instruction</td>
                                 <td>Phone No.</td>
-                                <td>Completed</td>
-                                <td>Delete</td>
+                                <td>Deposit</td>
+                                <td>Agent Status</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -167,6 +144,7 @@
                                 <td><?php echo $row['instruction']; ?></td>
                                 <td><?php echo $row['phoneNum']; ?></td>
                                 <td><?php echo $row['status']?></td>
+                                <td><?php echo $row['agentstatus']?></td>
                             </tr>   
                             <?php
                                     }
