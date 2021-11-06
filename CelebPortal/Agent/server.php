@@ -62,8 +62,9 @@ if (isset($_POST['login_agent'])) {
     $message = $_POST['message'];
     $price = $_POST['price'];
     $status = 'Not Paid';
+    $markup = 'No';
     
-    $insertquot = "INSERT INTO quotation (orderid, celebrity, dtd, message, price, status) VALUES ('$orderid','$celebname','$dtd','$message','$price','$status')";
+    $insertquot = "INSERT INTO quotation (orderid, celebrity, dtd, message, price, status, markup) VALUES ('$orderid','$celebname','$dtd','$message','$price','$status','$markup')";
     $query_run=mysqli_query($db,$insertquot);    
     if($query_run){
     header('location: agenthome.php');

@@ -23,19 +23,26 @@
     </head>
     <body> 
     <?php
-                    $connection = mysqli_connect("localhost","root","","LoginSystem");
-                    if(isset($_POST['business'])){
-                            $celebemail = $_POST['celebemail'];
-                            $celebname = $_POST['celebname'];
-                                ?>
+        $temp=$_SESSION['username'];
+         $connection = mysqli_connect("localhost","root","","LoginSystem");
+        if(isset($_POST['business'])){
+            $celebemail = $_POST['celebemail'];
+            $celebname = $_POST['celebname'];
+
+            $getemail = "SELECT * FROM users WHERE username='$temp'";
+            $query_run=mysqli_query($connection,$getemail);
+            foreach($query_run as $row){
+                $useremail = $row['email'];
+            }
+    ?>
         <section>
             <h2>Order page (Business)</h2>
             <form action="orderserver.php" method="POST">
                 <?php include('errors.php'); ?>
-                
+                <input type="hidden" name="useremail" value="<?php echo $useremail ?>"/> 
                 <input type="hidden" name="username" value="<?php echo $_SESSION['username']; ?>" />
-                <input type="text" name="celebemail" value="<?php echo $celebemail ?>"/> 
-                <input type="text" name="celebname" value="<?php echo $celebname ?>"/> 
+                <input type="hidden" name="celebemail" value="<?php echo $celebemail ?>"/> 
+                <input type="hidden" name="celebname" value="<?php echo $celebname ?>"/> 
                 <label for="purpose">Category: </label>
                 <select name="purpose" id="purpose">
 			        <option value="">Choose Category</option>

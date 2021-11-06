@@ -56,9 +56,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="editquotation.php">
+                    <a href="viewquotation.php">
                         <span class="icon"><ion-icon name="document-outline"></ion-icon></span>
-                        <span class="title">Quotation Form</span>
+                        <span class="title">View Quotation Form</span>
                     </a>
                 </li>
                 <li>
@@ -169,11 +169,7 @@
                                 <td>Order ID</td>
                                 <td>Username</td>
                                 <td>Purpose</td>
-                                <td>Recipient</td>
-                                <td>Sender</td>
-                                <td>Celebrity</td>
-                                <td>Instruction</td>
-                                <td>Details</td>
+                                <td>Celebrity</td>                                
                                 <td>Phone No.</td>
                                 <td>Payment</td>
                             </tr>
@@ -189,17 +185,13 @@
                                 <td><?php echo $row['verification_code']; ?></td>
                                 <td><?php echo $row['username']; ?></td>
                                 <td><?php echo $row['purpose']; ?></td>
-                                <td><?php echo $row['recipient']; ?></td>
-                                <td><?php echo $row['sender']; ?></td>
                                 <td><?php echo $row['celebrity']; ?></td>
-                                <td><?php echo $row['instruction']; ?></td>
-                                <td><?php echo $row['details']; ?></td>
                                 <td><?php echo $row['phoneNum']; ?></td>
                                 <td><?php echo $row['payment']; ?></td>
                                 <td>
                                 <form action="editorder.php" method="POST">
                                         <input type="hidden" name="edit_id" value="<?php echo $row['Old']; ?>">
-                                        <button type = "submit" name="editorder_btn" class="ebtn btn-success">Done</button>
+                                        <button type = "submit" name="editorder_btn" class="ebtn btn-success">View</button>
                                     </form>
                                 </td>
                                 <td>
@@ -220,7 +212,6 @@
                     </table>
                 </div>
             </div>
-
         </div>
 
        

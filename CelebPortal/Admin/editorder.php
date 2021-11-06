@@ -55,9 +55,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="editquotation.php">
+                    <a href="viewquotation.php">
                         <span class="icon"><ion-icon name="document-outline"></ion-icon></span>
-                        <span class="title">Quotation Form</span>
+                        <span class="title">View Quotation Form</span>
                     </a>
                 </li>
                 <li>
@@ -133,6 +133,10 @@
                     <div class="input-group">
                         <label >Username</label>
                         <input type="text" name="edit_username" value="<?php echo $row['username']?>" class="form-control" >
+                    </div>
+                    <div class="input-group">
+                        <label >User Email</label>
+                        <input type="text" name="edit_useremail" value="<?php echo $row['useremail']?>" class="form-control" >
                     </div>
                     <div class="input-group">
                         <label >Category</label>

@@ -98,70 +98,62 @@
                     ?>  
                 </div>
             </div>
-            <link rel="stylesheet" type="text/css" href="form.css">
-            <!-- order details list -->
-            <div class="details">
+            
+        <!-- order details list -->
+        <div class="details">
                 <div class="recentOrders">
-                    <div class="header">
-                        <h2>Edit Order Details Page</h2>
-                    </div>
-                    <!-- Edit User -->
                     <?php
-                    $connection = mysqli_connect("localhost","root","","LoginAdminSystem");
-                    if(isset($_POST['editquot_btn'])){
-                            $id = $_POST['edit_id'];
-                            
-                            $query = "SELECT * FROM quotation WHERE id ='$id'";
-                            $query_run = mysqli_query($connection, $query); 
-                            
-                     foreach($query_run as $row){
-                                ?>
+                        $connection = mysqli_connect("localhost","root","","LoginAdminSystem");
 
-                    <form  action="server.php" method="post">   
-                        <input type="hidden" name="edit_id" value="<?php echo $row['id']?>">       
-                    <div class="input-group">
-                        <label >Order ID</label>
-                        <input type="text" name="quotid" value="<?php echo $row['orderid']?>" class="form-control" >
-                    </div>
-                    <div class="input-group">
-                        <label >Status</label>
-                        <input type="text" name="status" value="<?php echo $row['status']?>" class="form-control" >
-                    </div>
-                    <div class="input-group">
-                        <label >User Email</label>
-                        <input type="text" name="email" value="<?php echo $row['useremail']?>" class="form-control" >
-                    </div>
-                    <div class="input-group">
-                        <label >Celebrity</label>
-                        <input type="text" name="celebrity" value="<?php echo $row['celebrity']?>" class="form-control" >
-                    </div>
-                    <div class="input-group">
-                        <label >Date to Deliver</label>
-                        <input type="text" name="dtd" value="<?php echo $row['dtd']?>" class="form-control" >
-                    </div>
-                    <div class="input-group">
-                        <label >Message</label>
-                        <input type="hidden" name="message" value="<?php echo $row['message']?>" class="form-control" >
-                        <p  allign="justify" ><?php echo nl2br($row['message']);?></p>
-                    </div>                    
-                    <div class="input-group">
-                        <label >Price (RM)</label>
-                        <input type="text" name="price" value="<?php echo $row['price']?>" class="form-control" >
-                    </div>
-                    <a href="adminhome.php" class="btn btn-danger"> Cancel </a>
-                    <button type="submit" name="updatequot" class="btn btn-primary">Update</button>
-
-                    </form>
-
-                    <?php
-
-                            }
-                        }
+                        $query = "SELECT * FROM quotation WHERE markup='No'";
+                        $query_run = mysqli_query($connection, $query);
                     ?>
+                    <div class="cardHeader">
+                        <h2>New Quotation</h2>                        
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Order ID</td>
+                                <td>Celebrity</td>
+                                <td>Date to Deliver</td>
+                                <td>Price</td>
+                                <td>Payment</td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                                if(mysqli_num_rows($query_run) > 0)
+                                {
+                                    while($row = mysqli_fetch_assoc($query_run))
+                                    {
+                                        ?>
+                            <tr>
+                                <td><?php echo $row['orderid']; ?></td>
+                                <td><?php echo $row['celebrity']; ?></td>
+                                <td><?php echo $row['dtd']; ?></td>
+                                <td><?php echo $row['price']; ?></td>
+                                <td><?php echo $row['status']; ?></td>
+                                <td>
+                                <form action="editquotation.php" method="POST">
+                                        <input type="hidden" name="edit_id" value="<?php echo $row['id']; ?>">
+                                        <button type = "submit" name="editquot_btn" class="ebtn btn-success">Mark up</button>
+                                    </form>
+                                </td>
+                            </tr>   
+                            <?php
+                                    }
+                                }else{
+                                    echo "No Record Found!";
+                                }
 
+                            ?>                          
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
+            
 
 
         </div>

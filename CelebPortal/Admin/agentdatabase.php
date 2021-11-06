@@ -55,9 +55,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="editquotation.php">
+                    <a href="viewquotation.php">
                         <span class="icon"><ion-icon name="document-outline"></ion-icon></span>
-                        <span class="title">Quotation Form</span>
+                        <span class="title">View Quotation Form</span>
                     </a>
                 </li>
                 <li>

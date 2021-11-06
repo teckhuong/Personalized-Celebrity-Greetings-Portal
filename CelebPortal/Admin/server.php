@@ -162,6 +162,7 @@ if (isset($_POST['login_user'])) {
   if(isset($_POST['editorder_btn'])){
     $id=$_POST['edit_id'];
     $username = mysqli_real_escape_string($db, $_POST['edit_username']);
+    $useremail = mysqli_real_escape_string($db, $_POST['edit_useremail']);
     $orderid = mysqli_real_escape_string($db, $_POST['edit_orderid']);
     $purpose = mysqli_real_escape_string($db, $_POST['edit_purpose']);
     $sender = mysqli_real_escape_string($db, $_POST['edit_sender']);
@@ -176,8 +177,8 @@ if (isset($_POST['login_user'])) {
     $query_run = mysqli_query($connection, $query);
 
     if($query_run){
-      $newquery = "INSERT INTO completedorder (username, purpose, recipient, sender, celebrity, instruction, details, phoneNum, orderid, status) 
-      VALUES('$username','$purpose', '$recipient', '$sender','$celebrity','$instruction','$details','$phoneNo', '$orderid', '$status')";
+      $newquery = "INSERT INTO completedorder (username, useremail, purpose, recipient, sender, celebrity, instruction, details, phoneNum, orderid, status) 
+      VALUES('$username', '$useremail', '$purpose', '$recipient', '$sender','$celebrity','$instruction','$details','$phoneNo', '$orderid', '$status')";
       mysqli_query($db,$newquery);
       $_SESSION['success'] = "Order is completed!";
       header('location: completedorder.php');
@@ -282,5 +283,27 @@ if (isset($_POST['login_user'])) {
         $_SESSION['success'] = "Your data is not deleted";
         header('location: agentdatabase.php');
       }
+    }
+    
+    //markup quotation
+    if(isset($_POST['updatequot'])){
+      $id=$_POST['edit_id'];
+      $quotid = $_POST['quotid'];
+      $useremail = $_POST['email'];
+      $celebrity = $_POST['celebrity'];
+      $dtd = $_POST['dtd'];
+      $message = $_POST['message'];
+      $price = $_POST['price'];
+      $status = $_POST['status'];
+      $markup = 'Yes';
+  
+      $insertquot = "INSERT INTO finalquotation (orderid, useremail,celebrity,dtd,message,price,status,markup) VALUES ('$quotid','$useremail','$celebrity','$dtd','$message','$price','$status','$markup')";
+      mysqli_query($db, $insertquot);  
+     
+      $updatequot = "UPDATE quotation SET markup='$markup' WHERE orderid='$quotid'";
+      mysqli_query($db,$updatequot);
+      $_SESSION['success'] = "Your Data is Updated!";
+      header('location: viewquotation.php');
+      
     }
   ?>
