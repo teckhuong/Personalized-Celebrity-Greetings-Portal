@@ -43,7 +43,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="userdatabase.php">
                         <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                         <span class="title">User Profile Management</span>
                     </a>
@@ -57,7 +57,7 @@
                 <li>
                     <a href="editquotation.php">
                         <span class="icon"><ion-icon name="document-outline"></ion-icon></span>
-                        <span class="title">Mark up Quotation Form</span>
+                        <span class="title">Quotation Form</span>
                     </a>
                 </li>
                 <li>
@@ -98,77 +98,12 @@
                     ?>  
                 </div>
             </div>
+            
 
-            <!-- order details list -->
-            <div class="details">
-                <div class="recentOrders">
-                    <?php
-                        $connection = mysqli_connect("localhost","root","","LoginSystem");
+            
 
-                        $query = "SELECT * FROM users";
-                        $query_run = mysqli_query($connection, $query);
-                    ?>
-                    <div class="cardHeader">
-                        <h2>User Database</h2>
-                        <a href="#" class="btn">View All</a>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <td>ID</td>
-                                <td>Username</td>
-                                <td>Email</td>
-                                <td>Password</td>
-                                <td>Fullname</td>
-                                <td>DOB</td>
-                                <td>EDIT</td>
-                                <td>Delete</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                                if(mysqli_num_rows($query_run) > 0)
-                                {
-                                    while($row = mysqli_fetch_assoc($query_run))
-                                    {
-                                        ?>
-                                        
-                            <tr>
-                                <td><?php echo $row['id']; ?></td>
-                                <td><?php echo $row['username']; ?></td>
-                                <td><?php echo $row['email']; ?></td>
-                                <td><?php echo $row['password']; ?></td>
-                                <td><?php echo $row['fullname']; ?></td>
-                                <td><?php echo $row['dob']; ?></td>
-                                <td>
-                                    <form action="edituser.php" method="POST">
-                                        <input type="hidden" name="edit_id" value="<?php echo $row['id']; ?>">
-                                        <button type = "submit" name="edit_btn" class="ebtn btn-success">EDIT</button>
-                                    </form>
-                                </td>
-                                <td>
-                                <form action="server.php" method="post">
-                                    <input type="hidden" name="delete_id" value="<?php echo $row['id'];?>">
-                                <button type = "submit" name="delete_btn" class="dbtn btn-danger">DELETE</button></td>
-                                </form>    
-                            </tr>   
-                            <?php
-                                    }
-                                }else{
-                                    echo "No Record Found!";
-                                }
-
-                            ?>                         
-                        </tbody>
-                    </table>
-                </div>
-            </div>
 
         </div>
-
-       
-
-    </div>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script>

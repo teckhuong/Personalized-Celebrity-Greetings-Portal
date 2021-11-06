@@ -90,91 +90,79 @@
             </div>
             <!-- Body starts from here -->
 
-
-            <!-- New Order List -->
+            <link rel="stylesheet" type="text/css" href="form.css">
+            <!-- order details list -->
             <div class="details">
                 <div class="recentOrders">
                     <?php
-                        $connection = mysqli_connect("localhost","root","","loginadminsystem");
+                        $connection = mysqli_connect("localhost","root","","loginadminsystem");                        
                         $query = "SELECT * FROM completedorder WHERE celebrity='$celebname' AND agentstatus='Accepted'";
                         $query_run = mysqli_query($connection, $query);
                     ?>
-                    <div class="cardHeader">
-                        <h2>New Orders</h2>
-                        <a href="#" class="btn">View All</a>
+                    <div class="header">
+                        <h2>Quotation Form</h2>
                     </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <td>Order ID</td>
-                                <td>Category</td>
-                                <td>To Who?</td>
-                                <td>From Who?</td>
-                                <td>What to do</td>
-                                <td>What are the details</td>
-                                <td>Status</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                                if(mysqli_num_rows($query_run) > 0)
-                                {
-                                    while($row = mysqli_fetch_assoc($query_run))
-                                    {
-                                        ?>
-                            <tr>
-                                <td><?php echo $row['orderid']; ?></td>
-                                <td><?php echo $row['purpose']; ?></td>
-                                <td><?php echo $row['recipient']; ?></td>
-                                <td><?php echo $row['sender']; ?></td>
-                                <td><?php echo $row['instruction']; ?></td>
-                                <td><?php echo $row['details']; ?></td>
-                                <td><?php echo $row['agentstatus']; ?></td>
-                                <td>
-                                <form action="viewonly.php" method="POST">
-                                        <input type="hidden" name="edit_id" value="<?php echo $row['id']; ?>">
-                                        <button type = "submit" name="editorder_btn" class="ebtn btn-success">View</button>
-                                    </form>
-                                </td>
-                            </tr>   
+                    <!-- Read Order Id from Accepted Order -->
+                    <form  action="server.php" method="post">   
+                    <input type="hidden" name="celebname" value="<?php echo $celebname ?>"/> 
+                    <div class="input-group">
+                        <label >Order ID</label>                            
                             <?php
+                                    echo "<select name='orderid' class='form-control'>";
+                                    while($row = mysqli_fetch_array($query_run))
+                                    {
+                                        echo "<option value='".$row['orderid']."'>".$row['orderid']."</option>";
                                     }
-                                }else{
-                                    echo "No Record Found!";
-                                }
-
-                                ?>                          
-                            </tbody>
-                        </table>
+                                    echo "</select>";                                    
+                            ?>
                     </div>
+                    <div class="input-group">
+                        <label >Date to Deliver</label>
+                        <input type="Date" name="dtd" />
+                    </div>
+                    <div class="input-group">
+                        <label >Message From Celebrity</label>
+                        <textarea name="message" class="textarea" placeholder="Write here."></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label >Total Price:</label>
+                        <input type="price" name="price"/>                        
+                    </div>
+                    <div class="input-group">
+                        <button type="submit" name="quotsub" class="btn btn-primary">Submit</button>                       
+                        </div>
+                    </form>
+                    
                 </div>
-
             </div>
+            
 
-                            <!-- Body Ends here -->
-    </div>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script>
-        //menutoggle
-        let toggle = document.querySelector('.toggle');
-        let navigation = document.querySelector('.navigation');
-        let main = document.querySelector('.main');
 
-        toggle.onclick = function(){
-            navigation.classList.toggle('active');
-            main.classList.toggle('active');
-        }
 
-        //add hovered class in selected list item
-        let list = document.querySelectorAll('.navigation li');
-        function activeLink(){
+            <!-- Body Ends here -->
+        </div>
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script>
+            //menutoggle
+            let toggle = document.querySelector('.toggle');
+            let navigation = document.querySelector('.navigation');
+            let main = document.querySelector('.main');
+
+            toggle.onclick = function(){
+                navigation.classList.toggle('active');
+                main.classList.toggle('active');
+            }
+
+            //add hovered class in selected list item
+            let list = document.querySelectorAll('.navigation li');
+            function activeLink(){
+                list.forEach((item)=>
+                item.classList.remove('hovered'));
+                this.classList.add('hovered');
+            }
             list.forEach((item)=>
-            item.classList.remove('hovered'));
-            this.classList.add('hovered');
-        }
-        list.forEach((item)=>
-        item.addEventListener('mouseover',activeLink));
-    </script>
-</body>
+            item.addEventListener('mouseover',activeLink));
+        </script>
+    </body>
 </html> 

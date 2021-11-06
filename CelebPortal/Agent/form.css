@@ -4,7 +4,7 @@
     box-sizing: border-box;
   } 
   .header {
-    width: 100%;
+    width: 50%;
     margin: 50px auto 0px;
     color: white;
     background: #287bff;
@@ -15,7 +15,7 @@
     padding: 20px;
   }
   form, .content {
-    width: 100%;
+    width: 50%;
     margin: 0px auto;
     padding: 20px;
     border: 1px solid #B0C4DE;
@@ -32,14 +32,14 @@
   }
   .input-group input {
     height: 30px;
-    width: 93%;
+    width: auto;
     padding: 5px 10px;
     font-size: 16px;
     border-radius: 5px;
     border: 1px solid gray;
   }
   p{
-    width: 93%;
+    width: fit-content;
     border: 1px solid gray;
     border-radius: 5px;    
     padding: 5px 10px;
@@ -80,4 +80,27 @@
     border: 1px solid #3c763d;
     margin-bottom: 20px;
   }
-  
+  .textarea{
+    background-color: #ddd;
+    color: #666;
+    padding: 1em;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    outline: none;
+    font-size: 16px;
+    width: 93%;
+    height: 200px;
+    font-weight: 500;
+    line-height: 1.4;
+    transition: all 0.2s;
+  }
+  .textarea:hover{
+    cursor: pointer;
+    background-color: #eee;
+  }
+  .textarea:focus{
+    cursor: text;
+    color: #333;
+    background-color: white;
+    border-color: #333;
+  }
