@@ -121,32 +121,32 @@
                         <input type="hidden" name="edit_id" value="<?php echo $row['id']?>">       
                     <div class="input-group">
                         <label >Order ID</label>
-                        <input type="text" name="quotid" value="<?php echo $row['orderid']?>" class="form-control" >
+                        <input type="text" name="quotid" value="<?php echo $row['orderid']?>" class="form-control" readonly>
                     </div>
                     <div class="input-group">
                         <label >Status</label>
-                        <input type="text" name="status" value="<?php echo $row['status']?>" class="form-control" >
+                        <input type="text" name="status" value="<?php echo $row['status']?>" class="form-control" readonly>
                     </div>
                     <div class="input-group">
                         <label >User Email</label>
-                        <input type="text" name="email" value="<?php echo $row['useremail']?>" class="form-control" >
+                        <input type="text" name="email" value="<?php echo $row['useremail']?>" class="form-control" readonly>
                     </div>
                     <div class="input-group">
                         <label >Celebrity</label>
-                        <input type="text" name="celebrity" value="<?php echo $row['celebrity']?>" class="form-control" >
+                        <input type="text" name="celebrity" value="<?php echo $row['celebrity']?>" class="form-control" readonly>
                     </div>
                     <div class="input-group">
                         <label >Date to Deliver</label>
-                        <input type="text" name="dtd" value="<?php echo $row['dtd']?>" class="form-control" >
+                        <input type="text" name="dtd" value="<?php echo $row['dtd']?>" class="form-control" readonly>
                     </div>
                     <div class="input-group">
                         <label >Message</label>
-                        <input type="hidden" name="message" value="<?php echo $row['message']?>" class="form-control" >
+                        <input type="hidden" name="message" value="<?php echo $row['message']?>" class="form-control" readonly>
                         <p  allign="justify" ><?php echo nl2br($row['message']);?></p>
                     </div>                    
                     <div class="input-group">
                         <label >Price (RM)</label>
-                        <input type="text" name="price" value="<?php echo $row['price']?>" class="form-control" >
+                        <input type="number" name="price" value="<?php echo $row['price']?>" class="form-control" >
                     </div>
                     <a href="adminhome.php" class="btn btn-danger"> Cancel </a>
                     <button type="submit" name="updatequot" class="btn btn-primary">Update</button>

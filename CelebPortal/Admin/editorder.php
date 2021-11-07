@@ -128,45 +128,45 @@
                     </div>         
                     <div class="input-group">
                         <label >Order ID</label>
-                        <input type="text" name="edit_orderid" value="<?php echo $row['verification_code']?>" class="form-control" >
+                        <input type="text" name="edit_orderid" value="<?php echo $row['verification_code']?>" class="form-control" readonly>
                     </div>
                     <div class="input-group">
                         <label >Username</label>
-                        <input type="text" name="edit_username" value="<?php echo $row['username']?>" class="form-control" >
+                        <input type="text" name="edit_username" value="<?php echo $row['username']?>" class="form-control" readonly>
                     </div>
                     <div class="input-group">
                         <label >User Email</label>
-                        <input type="text" name="edit_useremail" value="<?php echo $row['useremail']?>" class="form-control" >
+                        <input type="text" name="edit_useremail" value="<?php echo $row['useremail']?>" class="form-control" readonly>
                     </div>
                     <div class="input-group">
                         <label >Category</label>
-                        <input type="text" name="edit_purpose" value="<?php echo $row['purpose']?>" class="form-control" >
+                        <input type="text" name="edit_purpose" value="<?php echo $row['purpose']?>" class="form-control" readonly>
                     </div>
                     <div class="input-group">
                         <label >To Who</label>
-                        <input type="text" name="edit_recipient" value="<?php echo $row['recipient']?>" class="form-control" placeholder ="Enter Username">
+                        <input type="text" name="edit_recipient" value="<?php echo $row['recipient']?>" class="form-control" readonly>
                     </div>
                     <div class="input-group">
                         <label >From Who</label>
-                        <input type="text" name="edit_sender" value="<?php echo $row['sender']?>" class="form-control" >
+                        <input type="text" name="edit_sender" value="<?php echo $row['sender']?>" class="form-control" readonly>
                     </div>
                     <div class="input-group">
                         <label >Celebrity</label>
-                        <input type="text" name="edit_celebrity" value="<?php echo $row['celebrity']?>" class="form-control" >
+                        <input type="text" name="edit_celebrity" value="<?php echo $row['celebrity']?>" class="form-control" readonly>
                     </div>
                     <div class="input-group">
                         <label >What to do?</label>
-                        <input type="hidden"  name="edit_instruction" value="<?php echo $row['instruction']?>" class="form-control" >
+                        <input type="hidden"  name="edit_instruction" value="<?php echo $row['instruction']?>" class="form-control" readonly>
                         <p  allign="justify" ><?php echo nl2br($row['instruction']);?></p>
                     </div>
                     <div class="input-group">
                         <label >What are the Details?</label>
-                        <input type="hidden"  name="edit_details" value="<?php echo $row['details']?>" class="form-control" >
+                        <input type="hidden"  name="edit_details" value="<?php echo $row['details']?>" class="form-control" readonly>
                         <p  allign="justify" ><?php echo nl2br($row['details']);?></p>
                     </div>
                     <div class="input-group">
                         <label >Phone No.</label>
-                        <input type="text" name="edit_phoneNum" value="<?php echo $row['phoneNum']?>" class="form-control" >
+                        <input type="text" name="edit_phoneNum" value="<?php echo $row['phoneNum']?>" class="form-control" readonly>
                     </div>
                     
                     <a href="adminhome.php" class="btn btn-danger"> Cancel </a>

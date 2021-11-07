@@ -11,7 +11,7 @@
   <div class="header">
   	<h2>Register</h2>
   </div>
-  <form method="post" action="userSignup.php">
+  <form method="post" action="server.php" enctype="multipart/form-data">
   	<?php include('errors.php'); ?>
 	  <?php if (isset($_SESSION['success'])) : ?>
       <div class="error success" >
@@ -21,7 +21,7 @@
           ?>
       </div>
   	<?php endif ?>
-  	<div class="input-group">
+  	<div class="input-group" >
   	  <label>Username</label>
   	  <input type="text" name="username" value="<?php echo $username; ?>">
   	</div>
@@ -45,6 +45,10 @@
   	  <label>Confirm password</label>
   	  <input type="password" name="password_2">
   	</div>
+	<div class="input-group">
+		<label >Profile picture</label>
+		<input type="file" name="userimage">
+	</div>
   	<div class="input-group">
   	  <button type="submit" class="btn" name="reg_user">Register</button>
   	</div>

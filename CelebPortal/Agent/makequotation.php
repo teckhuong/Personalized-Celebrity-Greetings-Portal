@@ -82,7 +82,7 @@
                     <!-- username -->
                     <?php
                     if(isset($_SESSION["agentid"])){
-                        echo "<img src='profilepicture/".$_SESSION["agentid"].".png'>"; 
+                        echo "<img src='profilepicture/".$_SESSION["agentid"].".jpg'>"; 
                     }
                       
                     ?>  
@@ -96,7 +96,7 @@
                 <div class="recentOrders">
                     <?php
                         $connection = mysqli_connect("localhost","root","","loginadminsystem");                        
-                        $query = "SELECT * FROM completedorder WHERE celebrity='$celebname' AND agentstatus='Accepted'";
+                        $query = "SELECT * FROM completedorder WHERE celebrity='$celebname' AND agentstatus='Accepted' AND markup='No'";
                         $query_run = mysqli_query($connection, $query);
                     ?>
                     <div class="header">

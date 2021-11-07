@@ -44,6 +44,7 @@
             <?php
                if(isset($_SESSION["username"])){
                   // echo "<li>". $_SESSION["username"] ."</li>";
+                  echo "<li class='admin'><img  src='profilepicture/".$_SESSION["username"].".jpg'></li>"; 
                   echo "<li><a href='index.php?logout='1''>Log out</a></li>";
                }
                else{

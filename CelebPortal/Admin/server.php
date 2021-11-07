@@ -31,8 +31,8 @@ if (isset($_POST['reg_user'])) {
   $fileExt = explode('.', $fileName);
   $fileActualExt = strtolower(end($fileExt));
 
-  $allowed = array('jpg','jpeg','png','pdf');
-
+  $allowed = array('jpg');
+  //profilepic ends here
   
 
   // form validation: ensure that the form is correctly filled ...
@@ -63,19 +63,19 @@ if (isset($_POST['reg_user'])) {
   	$query = "INSERT INTO users (adminid, password, fullname) 
   			  VALUES('$adminid','$password','$fullname')";
   	mysqli_query($db, $query);
-
-    $sql = "SELECT * FROM users WHERE adminid = '$adminid' AND fullname = '$fullname'";
-    $result = mysqli_query($db, $sql);
-    if(mysqli_num_rows($result) > 0){
-      while($row = mysqli_fetch_assoc($result)){
-        $userid = $row['id'];
-        $sql = "INSERT INTO profileimg (userid, status) 
-        VALUES ('$userid', 0)";
-        mysqli_query($db, $sql);
-      }
-    }else{
-      echo "You have error!";
-    }
+    //imagefunction starts here
+    // $sql = "SELECT * FROM users WHERE adminid = '$adminid' AND fullname = '$fullname'";
+    // $result = mysqli_query($db, $sql);
+    // if(mysqli_num_rows($result) > 0){
+    //   while($row = mysqli_fetch_assoc($result)){
+    //     $userid = $row['id'];
+    //     $sql = "INSERT INTO profileimg (userid, status) 
+    //     VALUES ('$userid', 0)";
+    //     mysqli_query($db, $sql);
+    //   }
+    // }else{
+    //   echo "You have error!";
+    // }
     if(in_array($fileActualExt, $allowed)){
       if($fileError === 0){
         if($fileSize < 1000000){
@@ -91,6 +91,7 @@ if (isset($_POST['reg_user'])) {
   }else{
     echo "You cannot upload file of this type!";
   }
+  //imagefunction stops here
   	$_SESSION['success'] = "You have been registered successfully";
   	header('location: adminsignup.php');
   }
@@ -172,13 +173,14 @@ if (isset($_POST['login_user'])) {
     $details = mysqli_real_escape_string($db, $_POST['edit_details']);
     $phoneNo = mysqli_real_escape_string($db, $_POST['edit_phoneNum']);
     $status = mysqli_real_escape_string($db, $_POST['edit_status']);
+    $markup = 'No';
 
     $query = "DELETE FROM businessorder WHERE Old='$id'";
     $query_run = mysqli_query($connection, $query);
 
     if($query_run){
-      $newquery = "INSERT INTO completedorder (username, useremail, purpose, recipient, sender, celebrity, instruction, details, phoneNum, orderid, status) 
-      VALUES('$username', '$useremail', '$purpose', '$recipient', '$sender','$celebrity','$instruction','$details','$phoneNo', '$orderid', '$status')";
+      $newquery = "INSERT INTO completedorder (username, useremail, purpose, recipient, sender, celebrity, instruction, details, phoneNum, orderid, status,markup) 
+      VALUES('$username', '$useremail', '$purpose', '$recipient', '$sender','$celebrity','$instruction','$details','$phoneNo', '$orderid', '$status','$markup')";
       mysqli_query($db,$newquery);
       $_SESSION['success'] = "Order is completed!";
       header('location: completedorder.php');
@@ -203,7 +205,6 @@ if (isset($_POST['login_user'])) {
 
   //register agent
   if(isset($_POST['agentreg'])){
-    
   //initializing variable for agent register
   $agentusername = "";
   $agentpw = "";
@@ -224,6 +225,21 @@ if (isset($_POST['login_user'])) {
   $agentphonenum = mysqli_real_escape_string($db, $_POST['phonenum']);
   $agentdoc = mysqli_real_escape_string($db, $_POST['doc']);
 
+  //profile pic
+	$file = $_FILES['agentimage'];
+
+  $fileName=$file['name'];
+  $fileTmpName = $file['tmp_name'];
+  $fileSize = $file['size'];
+  $fileError = $file['error'];
+  $fileType = $file['type'];
+
+  $fileExt = explode('.', $fileName);
+  $fileActualExt = strtolower(end($fileExt));
+
+  $allowed = array('jpg');
+  //profilepic ends here
+
   //form validation: to check form is filled or not
   if (empty($agentusername)) { array_push($errors, "Username is required"); }
   if (empty($agentpw)) { array_push($errors, "Password is required"); }
@@ -233,18 +249,36 @@ if (isset($_POST['login_user'])) {
   if (empty($agentcelebname)) { array_push($errors, "Celebrity Name is required"); }
   if (empty($agentphonenum)) { array_push($errors, "Agent's Phone Number is required"); }
   if (empty($agentdoc)) { array_push($errors, "Agent's Date of Contract is required"); }
-
+  
+  
   //Register agent into database if no error
   if (count($errors) == 0) {
   	$agentpassword = md5($agentpw);//encrypt the password before saving in the database
   	$insertagent = "INSERT INTO agentprofiledetail (username, password, agentname, email, compname, celebname, phonenum, doc) 
   			  VALUES('$agentusername', '$agentpassword','$agentname', '$agentemail','$agentcompname','$agentcelebname','$agentphonenum','$agentdoc')";
   	mysqli_query($connectagent, $insertagent);
-  	header('location: agentdatabase.php');
+    //imagefunction starts here
+    if(in_array($fileActualExt, $allowed)){
+      if($fileError === 0){
+        if($fileSize < 1000000){
+        $fileNameNew = $agentusername.".".$fileActualExt;
+        $fileDestination = '../Agent/profilepicture/'.$fileNameNew;
+        move_uploaded_file($fileTmpName, $fileDestination);
+        }else{
+          echo "Your file is too big!";
+        }    
+    }else{
+      echo "There was an error uploading your file!";
+    }
+  }else{
+    echo "You cannot upload file of this type!";
+  }
+  //imagefunction stops here
+  	header('location: agentregister.php');
   }else{
     echo mysqli_error();
   }
-  }
+}
 
     //edit agent
     if(isset($_POST['editagent_btn'])){

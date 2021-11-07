@@ -67,6 +67,21 @@ if (isset($_POST['reg_user'])) {
   $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
   $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
 
+//profile pic
+$file = $_FILES['userimage'];
+
+$fileName=$file['name'];
+$fileTmpName = $file['tmp_name'];
+$fileSize = $file['size'];
+$fileError = $file['error'];
+$fileType = $file['type'];
+
+$fileExt = explode('.', $fileName);
+$fileActualExt = strtolower(end($fileExt));
+
+$allowed = array('jpg');
+//profilepic ends here
+
   // form validation: ensure that the form is correctly filled ...
   // by adding (array_push()) corresponding error unto $errors array
   if (empty($username)) { array_push($errors, "Username is required"); }
@@ -100,7 +115,25 @@ if (isset($_POST['reg_user'])) {
     $v_code =bin2hex(random_bytes(16));
   	$query = "INSERT INTO users (username, email, password, fullname, dob, verification_code, is_verified) 
   			  VALUES('$username', '$email', '$password','$fullname','$dob', '$v_code', '0')";
-  	mysqli_query($db, $query) && go($_POST['email'],$v_code);
+  	
+    ///imagefunction starts here
+    if(in_array($fileActualExt, $allowed)){
+      if($fileError === 0){
+        if($fileSize < 1000000){
+        $fileNameNew = $username.".".$fileActualExt;
+        $fileDestination = 'profilepicture/'.$fileNameNew;
+        move_uploaded_file($fileTmpName, $fileDestination);
+        }else{
+          echo "Your file is too big!";
+        }    
+    }else{
+      echo "There was an error uploading your file!";
+    }
+  }else{
+    echo "You cannot upload file of this type!";
+  }
+  //imagefunction stops here
+    mysqli_query($db, $query) && go($_POST['email'],$v_code);
   	$_SESSION['success'] = "You have been registered successfully. 
     Please Verify through the link on your email.";
   	header('location: userSignup.php');

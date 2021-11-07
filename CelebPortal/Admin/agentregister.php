@@ -102,7 +102,7 @@
             <div class="header">
   	<h2>Register Agent</h2>
   </div>
-            <form method="post" action="server.php">
+            <form method="post" action="server.php" enctype="multipart/form-data">
                 <div class="input-group">
                 <label>Username</label>
                 <input type="text" name="username" >
@@ -135,6 +135,10 @@
                 <label>Date of Contract</label>
                 <input type="date" name="doc">
                 </div>
+                <div class="input-group">
+		        <label >Profile picture</label>
+		        <input type="file" name="agentimage">
+	            </div>
                 <div class="input-group">
                 <button type="submit" class="btn" name="agentreg">Register</button>
                 </div>

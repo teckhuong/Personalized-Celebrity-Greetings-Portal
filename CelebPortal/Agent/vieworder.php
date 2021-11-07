@@ -72,7 +72,7 @@
                     <!-- username -->
                     <?php
                     if(isset($_SESSION["agentid"])){
-                        echo "<img src='profilepicture/".$_SESSION["agentid"].".png'>"; 
+                        echo "<img src='profilepicture/".$_SESSION["agentid"].".jpg'>"; 
                     }
                       
                     ?>  
