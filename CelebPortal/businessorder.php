@@ -35,37 +35,75 @@
                 $useremail = $row['email'];
             }
     ?>
-        <section>
+        <section class="orderow">
             <h2>Order page (Business)</h2>
+            <div class="form-container">
             <form action="orderserver.php" method="POST">
                 <?php include('errors.php'); ?>
                 <input type="hidden" name="useremail" value="<?php echo $useremail ?>"/> 
                 <input type="hidden" name="username" value="<?php echo $_SESSION['username']; ?>" />
                 <input type="hidden" name="celebemail" value="<?php echo $celebemail ?>"/> 
                 <input type="hidden" name="celebname" value="<?php echo $celebname ?>"/> 
-                <label for="purpose">Category: </label>
-                <select name="purpose" id="purpose">
-			        <option value="">Choose Category</option>
-			        <option value="Event">Event</option>
-			        <option value="Marketing">Marketing</option>
-                    <option value="Advertising">Advertising</option>
-			        <option value="Internal Comms & HR">Internal Comms & HR</option>
-			        <option value="Sales">Sales</option>
-                    <option value="Birthday">Birthday</option>
-                    <option value="Normal Greetings">Normal Greetings</option>
-			        <option value="Others">Others</option>
-		        </select><br/>
-
-                <label >To Who?: </label><input type="text" name="recipient"/><br/>
-                <label >From Who?: </label><input type="text" name="sender" /><br/>
-                <label >What do you want <?php echo $celebname ?> to do?</label>
-		        <textarea name="instruction" id="instruction" rows="3" cols="70" placeholder="Enter your instruction here."></textarea><br/>
-                <label >What are the details you want <?php echo $celebname ?> to know? (Optional)</label>
-                <textarea name="details" id="details" rows="3" cols="70" placeholder="Write here."></textarea><br/>
-                <label >Phone Number (Optional): </label><input type="text" name="phoneNum" id="phoneNum" placeholder="Phone no of user" /><br/>
-                <button type="submit" class="btn" name="businessorder">Submit</button>
+                <div class="wrapper">
+                    <div class="one">
+                <?php
+                    if(isset($_POST["business"])) {
+                        $type = "Business";
+                        echo "<label for='purpose'>Category: <br/></label>";
+                        echo "<select name='purpose' id='purpose'>";
+			            echo "<option value=''>Choose Category</option>";
+			            echo "<option value='Event'>Event</option>";
+			            echo "<option value='Marketing'>Marketing</option>";
+                        echo "<option value='Advertising'>Advertising</option>";
+			            echo "<option value='Internal Comms & HR'>Internal Comms & HR</option>";
+			            echo "<option value='Sales'>Sales</option>";
+                        echo "<option value='Birthday'>Birthday</option>";
+                        echo "<option value='Normal Greetings'>Normal Greetings</option>";
+			            echo "<option value='Others'>Others</option>";
+		                echo "</select><br/>";
+                    }
+                    if(isset($_POST["personal"])) {
+                        $type = "Personal";
+                        echo "<label for='purpose'>Category: <br/></label>";
+                        echo "<select name='purpose' id='purpose'>";
+			            echo "<option value=''>Choose Category</option>";
+			            echo "<option value='Birthday'>Birthday</option>";
+			            echo "<option value='Father\'s Day'>Father's Day</option>";
+			            echo "<option value='Debut'>Debut</option>";
+			            echo "<option value='Wedding'>Wedding</option>";
+			            echo "<option value='Anniversary'>Anniversary</option>";
+                        echo "<option value='Holiday'>Holiday</option>";
+                        echo "<option value='Others'>Others</option>";
+		                echo "</select><br/>";
+                    }
+                ?>
+                    </div>
+                
+                    <div class="two">
+                    <label>To Who?:<br/> </label><input type="text" name="recipient"/><br/>
+                    </div>
+                    <div class="three">
+                    <label>From Who?:<br/>  </label><input type="text" name="sender" /><br/>
+                    </div>
+                    <div class="four">
+                    <label>What do you want <?php // echo $celebname ?> to do?<br/> </label>
+		            <textarea name="instruction" id="instruction" rows="3" cols="70" placeholder="Enter your instruction here."></textarea><br/>
+                    </div>
+                    <div class="five">
+                    <label >What are the details you want <?php // echo $celebname ?> to know? (Optional)<br/></label>
+                    <textarea name="details" id="details" rows="3" cols="70" placeholder="Write here."></textarea><br/>
+                    </div>
+                    <div class="six">
+                    <label >Phone Number (Optional): <br/></label><input type="text" name="phoneNum" id="phoneNum" placeholder="Phone no of user" /><br/><br/>
+                    </div>
+                    <div class="seven">
+                    <button type="submit" class="businessorder" name="businessorder">Submit</button>
+                    </div>
+                    
+                </div>
                 <!--<input type="submit" name="businessorder" />-->
             </form>
+            </div>
             <?php
                     }
             ?>

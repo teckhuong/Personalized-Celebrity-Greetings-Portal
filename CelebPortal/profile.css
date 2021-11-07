@@ -17,20 +17,21 @@ section {
 }
 
 .profile_pic {
-    width: 450px;
+    width: 550px;
 }
 
 .profile-slider {
     position: relative;
-    width: 450px;
+    width: 550px;
     padding-top: 320px;
-    margin: 100px auto;
+    margin: 60px auto;
+    margin-left: 75px;
     line-height:28px;	
     box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.75);
 }
 
 .profileSlide {
-    width: 100px;
+    width: 125px;
 }
 
 /* Style for image */
@@ -45,7 +46,7 @@ section {
 }
 
 .profile-slider label {
-    margin: 138px 0 0 18px;
+    margin: 238px 0 0 18px;
     border: 3px solid #999;
     float: left;
     cursor: pointer;
@@ -75,20 +76,14 @@ section {
 
 .profilerow{
     background: grey;
-    margin-top: 30px;
-    padding-top: 30px;
-    
+    margin-top: 20px;
+    padding-top: 30px; 
 }
 
-/* show profile picture and details inline
-.profilerow ul {
-    list-style: none;
+.radio-container{
+    background: grey;
+    padding-top: 30px; 
 }
-
-.profilerow ul li {
-    display: inline;
-}
-*/
 
 /* Responsive Grids */
 
@@ -97,13 +92,14 @@ section {
 	padding-left:12px;
 	padding-right:12px;
 }
-.profile-row:before, .profile-row:after {
+
+.profilerow:before, .profilerow:after {
   display: table;
   line-height: 0;
   content: "";
 }
 
-.profile-row:after {
+.profilerow:after {
   clear: both;
 }
 [class^="col-profile-"] {
@@ -115,6 +111,30 @@ section {
   padding: 0 15px;
   min-height: 1px;
   position: relative;
+}
+
+.profile-desc {
+    text-align: center;
+}
+
+.profile-desc span{
+    font-size: 22px;
+}
+.businessclick, .personalclick {
+	color: white;
+	width: 50%;
+	height: 50px;
+	font-size: 20px;
+	background-color: black;
+	-webkit-appearance: none;
+	
+}
+
+.businessclick:hover, .personalclick:hover {
+	color: black;
+	background-color: #90A4AE;
+	transition: 0.5s;
+	cursor: pointer;
 }
 
 @media (min-width: 768px) {
@@ -130,101 +150,126 @@ section {
     }
     
 }
+/*end CelebrityProfile.php css*/
 
-/* radio button */
-/*
-.radio-container {
-    max-width: 850px;
-    width: 100%;
-    margin: 0 auto;
+/* order page css */
+.orderow {
+    margin-top: 20px;
+    padding-top: 15px;
+    margin-left: auto;
+    padding-left: 100px;
+}
+
+.orderow h2 {
+    padding-right: 50px;
+    text-align: center;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(80px, auto);
+    grid-auto-columns: auto;
+    position: relative;
+    padding-top: 20px;
+    padding-left: 30px;
+    text-align: center;
+    -webkit-appearance: none;
+}
+
+.one {
+    padding-left: 10px;
+    grid-column: 5/8;
+    grid-row: 1/1;
+}
+.two {
+    grid-column: 5/7;
+    grid-row: 2/2;
+}
+.three {
+    grid-column: 7/9;
+    grid-row: 2/2;
 }
 
 .four {
-    width: 32.26%;
-    max-width: 32.26%;
+    grid-column: 4/10;
+    grid-row: 3/3;
+}
+.five {
+    grid-column: 4/10;
+    grid-row: 4/4;
+}
+.six {
+    padding-left: 10px;
+    grid-column: 5/8;
+    grid-row: 5/5;
+}
+.seven {
+    grid-column: 4/9;
+    grid-row: 6/6;
 }
 
-.col {
-    display: block;
-    float: left;
-    margin: 1% 0 1% 1.6%;
-}
-
-.col:first-of-type {
-    margin-left: 0;
-}
-
-.cf:before,.cf:after {
-    content: " ";
-    display: table;
-}
-
-.cf:after {
-    clear: both;
-}
-
-.cf {
-    *zoom: 1;
-}
-
-.form .option input {
-    display: none;
-}
-
-.form label {
-    position: relative;
-    color: #fff;
-    background-color: #000;
-    font-size: 26px;
-    text-align: left;
-    height: 50px;
-    line-height: 50px;
-    display: block;
-    cursor: pointer;
-    border: 3px solod transparent;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.form .option input:checked + label {
-    border: 3px solid #2fcc71;
-    background-color: #2fcc71;
-}
-
-.form .option input:checked + label:after {
-    content: "\2713";
-    width: 30px;
+select {
+    width: 100%;
     height: 30px;
-    line-height: 30px;
-    border-radius: 100%;
-    border: 2px solid #333;
-    background-color: #2fcc71;
-    z-index: 999;
-    position: absolute;
-    top: -10px;
-    left: -10px;
+    border: 1px solid #aed6f1;
+    font-weight: bold;
 }
 
-.book {
-    padding: 15px 60px;
-    display: inline-block;
-    border: none;
-    margin: 20px 0;
-    background-color: #2fcc71;
-    color: #fff;
-    border: 2px solid #333;
+select:focus {
+	background-color: #c1d5e0;
+	transition: 0.5s;
+}
+
+.form-container {
     font-size: 18px;
-    -webkit-transition: transform 0.3 ease-in-out;
-    -o-transition: transform 0.3 ease-in-out;
-    transition:  transform 0.3 ease-in-out;
 }
 
-.book:hover {
-    cursor: pointer;
-    transform: rotateY(360deg);
+.form-container input {
+    width: 100%;
+	height: 30px;
+	border: 1px solid #aed6f1;
+	-webkit-appearance: none;
 }
-*/
+
+.form-container input[type=text]:focus {
+	transition: 0.5s;
+	background-color: #c1d5e0;
+	-webkit-appearance: none;
+	color: black;
+}	
+
+textarea {
+	width: 100%;
+	-webkit-appearance: none;
+	height: 100px;
+	border: 1px solid #aed6f1;
+}
+
+textarea:focus {
+	background-color: #c1d5e0;
+	-webkit-appearance: none;
+	transition: 0.5s;
+}
+
+.businessorder{
+	color: white;
+	width: 100%;
+	height: 50px;
+	font-size: 20px;
+	background-color: black;
+	-webkit-appearance: none;
+	
+}
+
+.businessorder:hover {
+	color: black;
+	background-color: #90A4AE;
+	transition: 0.5s;
+	cursor: pointer;
+}
+
 /* footer css */
 .d-flex-c {
     display: flex;
@@ -330,23 +375,3 @@ p{
     box-shadow: 0 0 5px#33ffff,
                 0 0 5px#66ffff;
 }
-
-.error {
-    width: 92%; 
-    margin: 0px auto; 
-    padding: 10px; 
-    border: 1px solid #a94442; 
-    color: #a94442; 
-    background: #f2dede;  
-    border-radius: 5px; 
-    text-align: left; 
-}
-
-.success {
-    color: #3c763d; 
-    background: #dff0d8; 
-    border: 1px solid #3c763d;
-    margin-bottom: 20px;
-}
-
-/*end CelebrityProfile.php css*/

@@ -7,20 +7,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
         <link rel="stylesheet" type="text/css" href="profile.css">
-        <script type="text/javascript">
-            function OnSubmitForm()
-            {
-                if(document.bookform.radio1[0].checked == true)
-                {
-                    document.bookform.action = "businessorder.php";
-                }
-                if(document.bookform.radio1[1].checked == true)
-                {
-                    document.bookform.action = "personalorder.php";
-                }
-                return true;
-            }
-        </script>
+        <!--<script type="text/javascript">
+            function businessOrder() {
+		        window.location.replace("businessorder.php");
+		        return false;
+	        }
+
+	        function personalOrder() {
+		        window.location.replace("personalorder.php");
+		        return false;
+	        }
+        </script>-->
     </head>
      <body> 
         
@@ -49,30 +46,27 @@
                         </label>
                         <img src="youtuberimage/laowu/laowu.png" alt="LAO WU" class="profile_pic" />
                     </div>
-                </div>
-                <div class="profile-desc">
-                    <div class="radio-container">
-                        <section class="option cf">
-                        <span class="celeb-name" >LAO WU</span><br/>
-                        <span class="celeb-categ">Gamer - Youtube</span><br/>
-                        <span class="celeb-desc">124567</span>
-                        <h2>Choose an option</h2>
-                        <form method="POST" class="form cf" name="bookform">
-                            <input type="radio" name="radio1" id="business" value="Business" checked="checked" /><label class="business-label four col" for="business">Business</label><br/>
-                            <input type="radio" name="radio1" id="personal" value="Personal" /><label class="personal-label four col" for="personal">Personal</label><br/>
-                            <input type="submit" name="book" class="book" value="Next" onclick="return OnSubmitForm();" />
-                        </form>
-                        <form action="businessorder.php" method="POST">
-                                        <input  type="hidden" name="celebemail" value="laowu@gmail.com"/>
-                                        <input  type="hidden" name="celebname" value="Lao Wu"/>
-                                        
-                                        <input type = "submit" name="business" class="businessclick" value="Business">
-                                    </form>
-                        </section>
-                    </div>
                 </div>   
             </div>
         </section>
+        <div class="profile-desc">
+                <section class="radio-container">
+                    <span class="celeb-name" >LAO WU</span><br/>
+                    <span class="celeb-categ">Gamer - Youtube</span><br/>
+                    <span class="celeb-desc">124567</span>
+                    <h2>Choose an option</h2>
+                    <form action="businessorder.php" method="POST">
+                        <input  type="hidden" name="celebemail" value="laowu@gmail.com"/>
+                        <input  type="hidden" name="celebname" value="Lao Wu"/>
+                                        
+                        <input type = "submit" name="business" class="businessclick" value="Business" onclick="return businessOrder();"/><br/>
+                        <input type = "submit" name="personal" class="personalclick" value="Personal" onclick="return personalOrder();"/>
+                    </form>
+                </section>
+        </div>
+        
+
+        
                 
              <!-- footer -->
             <section class="d-flex-r justify-content-space-around p-1 bg-grey" id="social">
