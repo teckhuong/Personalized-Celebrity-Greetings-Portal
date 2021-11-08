@@ -1,6 +1,5 @@
 <?php 
-  session_start();
-  include_once 'dbh.php'; 
+  include('server.php');
 
   if (!isset($_SESSION['adminid'])) {
   	$_SESSION['msg'] = "You must log in first";
@@ -98,11 +97,20 @@
                     ?>  
                 </div>
             </div>
-            <link rel="stylesheet" type="text/css" href="styleagent.css">
+            <link rel="stylesheet" type="text/css" href="form.css">
             <div class="header">
   	<h2>Register Agent</h2>
   </div>
-            <form method="post" action="server.php" enctype="multipart/form-data">
+            <form method="post" action="agentregister.php" enctype="multipart/form-data">
+            <?php include('errors.php'); ?>
+            <?php if (isset($_SESSION['success'])) : ?>
+            <div class="error success" >
+                <?php 
+                    echo $_SESSION['success']; 
+                    // unset($_SESSION['success']);
+                ?>
+            </div>
+            <?php endif ?>
                 <div class="input-group">
                 <label>Username</label>
                 <input type="text" name="username" >

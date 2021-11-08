@@ -4,7 +4,7 @@
     box-sizing: border-box;
   } 
   .header {
-    width: 100%;
+    width: 50%;
     margin: 50px auto 0px;
     color: white;
     background: #287bff;
@@ -15,7 +15,7 @@
     padding: 20px;
   }
   form, .content {
-    width: 100%;
+    width: 50%;
     margin: 0px auto;
     padding: 20px;
     border: 1px solid #B0C4DE;
@@ -32,7 +32,7 @@
   }
   .input-group input {
     height: 30px;
-    width: 93%;
+    width: auto;
     padding: 5px 10px;
     font-size: 16px;
     border-radius: 5px;

@@ -57,13 +57,7 @@ if (isset($_POST['reg_user'])) {
   }
 
   // Finally, register user if there are no errors in the form
-  if (count($errors) == 0) {
-  	$password = md5($password_1);//encrypt the password before saving in the database
-
-  	$query = "INSERT INTO users (adminid, password, fullname) 
-  			  VALUES('$adminid','$password','$fullname')";
-  	mysqli_query($db, $query);
-    //imagefunction starts here
+  if (count($errors) == 0) {  	
     // $sql = "SELECT * FROM users WHERE adminid = '$adminid' AND fullname = '$fullname'";
     // $result = mysqli_query($db, $sql);
     // if(mysqli_num_rows($result) > 0){
@@ -76,23 +70,27 @@ if (isset($_POST['reg_user'])) {
     // }else{
     //   echo "You have error!";
     // }
-    if(in_array($fileActualExt, $allowed)){
-      if($fileError === 0){
-        if($fileSize < 1000000){
-        $fileNameNew = $adminid.".".$fileActualExt;
-        $fileDestination = 'profilepicture/'.$fileNameNew;
-        move_uploaded_file($fileTmpName, $fileDestination);
-        }else{
-          echo "Your file is too big!";
-        }    
-    }else{
-      echo "There was an error uploading your file!";
-    }
-  }else{
-    echo "You cannot upload file of this type!";
-  }
+    //Register admin only when image is correct
+    if(!in_array($fileActualExt, $allowed)){
+      $_SESSION['success'] ="You cannot upload file of this type!";
+    }elseif($fileSize > 5*1024*1024){
+      $_SESSION['success'] ="Your file is too big!";
+      }else{
+         $fileNameNew = $adminid.".".$fileActualExt;
+         $fileDestination = 'profilepicture/'.$fileNameNew;
+         move_uploaded_file($fileTmpName, $fileDestination);
+         //Register agent into database if no error
+          if (count($errors) == 0) {
+            $password = md5($password_1);//encrypt the password before saving in the database
+            $query = "INSERT INTO users (adminid, password, fullname) 
+  			    VALUES('$adminid','$password','$fullname')";
+          	mysqli_query($db, $query);            
+  	        $_SESSION['success'] = "You have been registered successfully";
+          }else{
+            echo mysqli_error();
+          }
+        }  
   //imagefunction stops here
-  	$_SESSION['success'] = "You have been registered successfully";
   	header('location: adminsignup.php');
   }
 }
@@ -115,7 +113,6 @@ if (isset($_POST['login_user'])) {
         $results = mysqli_query($db, $query);
         if (mysqli_num_rows($results) == 1) {
           $_SESSION['adminid'] = $adminid;
-          $_SESSION['success'] = "You are now logged in";
           header('location: adminhome.php');
         }else {
             array_push($errors, "Wrong username/password combination");
@@ -203,6 +200,28 @@ if (isset($_POST['login_user'])) {
     }
   }
 
+  
+  //upload testin
+//   if(isset($_FILES['agentimage'])){
+  
+//   echo '<pre>';
+//   var_dump($_FILES);
+//   echo '</pre>';
+//   $file=$_FILES['agentimage'];
+//   $ext = pathinfo($file['name'],PATHINFO_EXTENSION);
+  
+
+  
+//   if($file['size']>5*1024*1024){
+//     echo "You can not upload more than 5 MB files";  
+//   }elseif(!in_array($ext,['jpeg','svg','jpg'])){
+//     echo "You can only upload images";
+//   }else{
+//     move_uploaded_file($_FILES['agentimage']['tmp_name'], $_FILES['agentimage']['name']);
+//   }
+
+// }
+
   //register agent
   if(isset($_POST['agentreg'])){
   //initializing variable for agent register
@@ -226,18 +245,17 @@ if (isset($_POST['login_user'])) {
   $agentdoc = mysqli_real_escape_string($db, $_POST['doc']);
 
   //profile pic
-	$file = $_FILES['agentimage'];
+	 $file = $_FILES['agentimage'];
 
-  $fileName=$file['name'];
-  $fileTmpName = $file['tmp_name'];
-  $fileSize = $file['size'];
-  $fileError = $file['error'];
-  $fileType = $file['type'];
+   $fileName=$file['name'];
+   $fileTmpName = $file['tmp_name'];
+   $fileSize = $file['size'];
+   $fileError = $file['error'];
+   $fileType = $file['type'];
 
-  $fileExt = explode('.', $fileName);
-  $fileActualExt = strtolower(end($fileExt));
-
-  $allowed = array('jpg');
+   $fileExt = explode('.', $fileName);
+   $fileActualExt = strtolower(end($fileExt));
+   $allowed = array('jpg');
   //profilepic ends here
 
   //form validation: to check form is filled or not
@@ -250,34 +268,27 @@ if (isset($_POST['login_user'])) {
   if (empty($agentphonenum)) { array_push($errors, "Agent's Phone Number is required"); }
   if (empty($agentdoc)) { array_push($errors, "Agent's Date of Contract is required"); }
   
-  
-  //Register agent into database if no error
-  if (count($errors) == 0) {
-  	$agentpassword = md5($agentpw);//encrypt the password before saving in the database
-  	$insertagent = "INSERT INTO agentprofiledetail (username, password, agentname, email, compname, celebname, phonenum, doc) 
-  			  VALUES('$agentusername', '$agentpassword','$agentname', '$agentemail','$agentcompname','$agentcelebname','$agentphonenum','$agentdoc')";
-  	mysqli_query($connectagent, $insertagent);
-    //imagefunction starts here
-    if(in_array($fileActualExt, $allowed)){
-      if($fileError === 0){
-        if($fileSize < 1000000){
-        $fileNameNew = $agentusername.".".$fileActualExt;
-        $fileDestination = '../Agent/profilepicture/'.$fileNameNew;
-        move_uploaded_file($fileTmpName, $fileDestination);
-        }else{
-          echo "Your file is too big!";
-        }    
+//   //imagefunction starts here
+   if(!in_array($fileActualExt, $allowed)){
+    $_SESSION['success'] ="You cannot upload file of this type!";
+  }elseif($fileSize > 5*1024*1024){
+    $_SESSION['success'] ="Your file is too big!";
     }else{
-      echo "There was an error uploading your file!";
-    }
-  }else{
-    echo "You cannot upload file of this type!";
-  }
-  //imagefunction stops here
-  	header('location: agentregister.php');
-  }else{
-    echo mysqli_error();
-  }
+       $fileNameNew = $agentusername.".".$fileActualExt;
+       $fileDestination = '../Agent/profilepicture/'.$fileNameNew;
+       move_uploaded_file($fileTmpName, $fileDestination);
+       //Register agent into database if no error
+        if (count($errors) == 0) {
+          $agentpassword = md5($agentpw);//encrypt the password before saving in the database
+          $insertagent = "INSERT INTO agentprofiledetail (username, password, agentname, email, compname, celebname, phonenum, doc) 
+                VALUES('$agentusername', '$agentpassword','$agentname', '$agentemail','$agentcompname','$agentcelebname','$agentphonenum','$agentdoc')";
+          mysqli_query($connectagent, $insertagent);
+          
+          header('location: agentregister.php');
+        }else{
+          echo mysqli_error();
+        }
+      }  
 }
 
     //edit agent
@@ -308,8 +319,7 @@ if (isset($_POST['login_user'])) {
     if(isset($_POST['delete_btn'])){
       $id = $_POST['delete_id'];
       $query = "DELETE FROM agentprofiledetail WHERE id='$id'";
-      $query_run=mysqli_query($connectagent, $query);
-  
+      $query_run=mysqli_query($connectagent, $query);  
       if($query_run){
         $_SESSION['success'] = "Your Data is deleted";
         header('location: agentdatabase.php');

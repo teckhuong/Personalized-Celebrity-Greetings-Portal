@@ -9,7 +9,7 @@
         <link rel="stylesheet" type="text/css" href="categorypage.css">
         </head>
         <body >
-                <section class="secondrow">        
+        <section class="secondrow">        
         <div class="pagetitle">
                     <h1><span class="fab fa-tiktok"></span> Tik Tok Stars</h1>
             </div>

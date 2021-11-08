@@ -111,31 +111,30 @@ $allowed = array('jpg');
 
   // Finally, register user if there are no errors in the form
   if (count($errors) == 0) {
-  	$password = md5($password_1);//encrypt the password before saving in the database
-    $v_code =bin2hex(random_bytes(16));
-  	$query = "INSERT INTO users (username, email, password, fullname, dob, verification_code, is_verified) 
-  			  VALUES('$username', '$email', '$password','$fullname','$dob', '$v_code', '0')";
   	
-    ///imagefunction starts here
-    if(in_array($fileActualExt, $allowed)){
-      if($fileError === 0){
-        if($fileSize < 1000000){
-        $fileNameNew = $username.".".$fileActualExt;
-        $fileDestination = 'profilepicture/'.$fileNameNew;
-        move_uploaded_file($fileTmpName, $fileDestination);
-        }else{
-          echo "Your file is too big!";
-        }    
-    }else{
-      echo "There was an error uploading your file!";
-    }
-  }else{
-    echo "You cannot upload file of this type!";
-  }
-  //imagefunction stops here
-    mysqli_query($db, $query) && go($_POST['email'],$v_code);
-  	$_SESSION['success'] = "You have been registered successfully. 
-    Please Verify through the link on your email.";
+    //Register admin only when image is correct
+    if(!in_array($fileActualExt, $allowed)){
+      $_SESSION['success'] ="You cannot upload file of this type!";
+    }elseif($fileSize > 5*1024*1024){
+      $_SESSION['success'] ="Your file is too big!";
+      }else{
+         $fileNameNew = $username.".".$fileActualExt;
+         $fileDestination = 'profilepicture/'.$fileNameNew;
+         move_uploaded_file($fileTmpName, $fileDestination);
+         //Register agent into database if no error
+          if (count($errors) == 0) {
+            $password = md5($password_1);//encrypt the password before saving in the database
+            $v_code =bin2hex(random_bytes(16));
+            $query = "INSERT INTO users (username, email, password, fullname, dob, verification_code, is_verified) 
+                  VALUES('$username', '$email', '$password','$fullname','$dob', '$v_code', '0')"; 
+            mysqli_query($db, $query) ;        
+  	        $_SESSION['success'] = "You have been registered successfully. 
+            Please Verify through the link on your email.";
+          }else{
+            echo mysqli_error();
+          }
+        }  
+    //imagefunction stops here 	
   	header('location: userSignup.php');
   }
 }
@@ -161,7 +160,7 @@ if (isset($_POST['login_user'])) {
         if($result_fetch['is_verified']== 1){
           if (mysqli_num_rows($results) == 1) {
             $_SESSION['username'] = $username;
-            $_SESSION['success'] = "You are now logged in";
+            // $_SESSION['success'] = "You are now logged in";
             header('location: homepage.php');
           }else {
               array_push($errors, "Wrong username/password combination");
@@ -238,4 +237,31 @@ if (isset($_POST['new_password'])) {
   }
 } 
 
+//upload image in userprofile
+if(isset($_FILES['profilepic'])){
+  $username = 'badphilip';
+  $file = $_FILES['profilepic'];
+
+  $fileName=$file['name'];
+  $fileTmpName = $file['tmp_name'];
+  $fileSize = $file['size'];
+  $fileError = $file['error'];
+  $fileType = $file['type'];
+
+  $fileExt = explode('.', $fileName);
+  $fileActualExt = strtolower(end($fileExt));
+
+  $allowed = array('jpg');
+
+  if(!in_array($fileActualExt, $allowed)){
+    $_SESSION['success'] ="You cannot upload file of this type!";
+  }elseif($fileSize > 5*1024*1024){
+    $_SESSION['success'] ="Your file is too big!";
+    }else{
+       $fileNameNew = $username.".".$fileActualExt;
+       $fileDestination = 'profilepicture/'.$fileNameNew;
+       move_uploaded_file($fileTmpName, $fileDestination);
+      } 
+      header('location: userprofile.php');
+}
 ?>

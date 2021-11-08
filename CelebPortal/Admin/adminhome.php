@@ -105,8 +105,16 @@
             <!-- cards -->
             <div class="cardBox">
                 <div class="card">
+                <?php
+                        $connection = mysqli_connect("localhost","root","","LoginAdminSystem");
+
+                        $sql = "SELECT count(id) AS total FROM completedorder";
+                        $result=mysqli_query($connection, $sql);
+                        $values = mysqli_fetch_assoc($result);
+                        $num_rows=$values['total'];                        
+                    ?>
                     <div>
-                        <div class="numbers">1,504</div>
+                        <div class="numbers"><?php echo $num_rows; ?></div>
                         <div class="cardName">Total Order</div>
                     </div>
                     <div class="iconBx">
@@ -117,7 +125,7 @@
                 <?php
                         $connection = mysqli_connect("localhost","root","","LoginAdminSystem");
 
-                        $sql = "SELECT count(id) AS total FROM completedorder WHERE status='Completed'";
+                        $sql = "SELECT count(id) AS total FROM completedorder WHERE status='Completed' AND agentstatus='Accepted'";
                         $result=mysqli_query($connection, $sql);
                         $values = mysqli_fetch_assoc($result);
                         $num_rows=$values['total'];                        
@@ -132,7 +140,7 @@
                 </div>
                 <div class="card">
                     <div>
-                        <div class="numbers">284</div>
+                        <div class="numbers">0</div>
                         <div class="cardName">Order Fully Completed</div>
                     </div>
                     <div class="iconBx">
@@ -140,9 +148,17 @@
                     </div>
                 </div>
                 <div class="card">
+                <?php
+                        $connection = mysqli_connect("localhost","root","","LoginAdminSystem");
+
+                        $sql = "SELECT count(id) AS total FROM completedorder WHERE status='Dummy' OR agentstatus='Decline'";
+                        $result=mysqli_query($connection, $sql);
+                        $values = mysqli_fetch_assoc($result);
+                        $num_rows=$values['total'];                        
+                    ?>
                     <div>
-                        <div class="numbers">$7,842</div>
-                        <div class="cardName">Earnings</div>
+                        <div class="numbers"><?php echo $num_rows; ?></div>
+                        <div class="cardName">Failed Order</div>
                     </div>
                     <div class="iconBx">
                         <ion-icon name="cash-outline"></ionicon>
