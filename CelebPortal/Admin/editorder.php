@@ -94,8 +94,53 @@
                     if(isset($_SESSION["adminid"])){
                         echo "<img src='profilepicture/".$_SESSION["adminid"].".jpg'>"; 
                     }
+
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Execption;
+
+if (function_exists("go") === FALSE){
+function go($email)
+{
+require_once 'phpmailer/Exception.php';
+require_once 'phpmailer/PHPMailer.php';
+require_once 'phpmailer/SMTP.php';
+
+  $mail1 = new PHPMailer(true);
+
+  try {
+
+    $mail1->isSMTP();                                            
+    $mail1->Host       = 'smtp.gmail.com';                     
+    $mail1->SMTPAuth   = true;                                   
+    $mail1->Username   = 'phptesting2@gmail.com';                     
+    $mail1->Password   = 'Qwerty@111';                               
+    $mail1->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail1->Port = '587';                            
+
+
+    $mail1->setFrom('phptesting2@gmail.com', 'Mailer');
+    $mail1->addAddress($email);     
+  
+  
+    $mail1->isHTML(true);                                  
+    $mail1->Subject = 'Payment Form From Celebrity Portal';
+    $mail1->Body    = "Your Order is being processed
+    please pay your full amount through the link.
+    <a href='https://localhost/Personalized-Celebrity-Greetings-Portal/CelebPortal/Payment/payment.php'>Payment</a>";
+
+    $mail1->send();
+    return true;
+  } 
+    catch (Exception $e) {
+    return false;
+  }
+
+  }
+}
                       
-                    ?>  
+?>  
                 </div>
             </div>
             <link rel="stylesheet" type="text/css" href="form.css">
@@ -110,6 +155,7 @@
                     $connection = mysqli_connect("localhost","root","","LoginSystem");
                     if(isset($_POST['editorder_btn'])){
                             $id = $_POST['edit_id'];
+                           
                             
                             $query = "SELECT * FROM businessorder WHERE Old ='$id'";
                             $query_run = mysqli_query($connection, $query); 
@@ -170,7 +216,11 @@
                     </div>
                     
                     <a href="adminhome.php" class="btn btn-danger"> Cancel </a>
-                    <button type="submit" name="editorder_btn" class="btn btn-primary">Update</button>
+                    
+                    <button type="submit" name="editorder_btn" class="btn btn-primary">Update<?php 
+                    go($row['useremail']);?></button>
+                   
+                    
 
                     </form>
 
