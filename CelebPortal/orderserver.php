@@ -52,7 +52,7 @@ if (isset($_POST['businessorder'])) {
         header('location: Payment/payment.php');
     }
   }
-  
+  //hereisit?
   // PERSONAL ORDER PAGE
   if (isset($_POST['personalorder'])) {
       $username = mysqli_real_escape_string($db, $_POST['username']);
