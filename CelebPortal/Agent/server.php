@@ -58,13 +58,14 @@ if (isset($_POST['login_agent'])) {
   if(isset($_POST['quotsub'])){
     $celebname =  $_POST['celebname'];
     $orderid = $_POST['orderid'];
+    $useremail = $_POST['useremail'];
     $dtd = $_POST['dtd'];
     $message = $_POST['message'];
     $price = $_POST['price'];
     $status = 'Not Paid';
     $markup = 'No';
     
-    $insertquot = "INSERT INTO quotation (orderid, celebrity, dtd, message, price, status, markup) VALUES ('$orderid','$celebname','$dtd','$message','$price','$status','$markup')";
+    $insertquot = "INSERT INTO quotation (orderid, useremail, celebrity, dtd, message, price, status, markup) VALUES ('$orderid','$useremail','$celebname','$dtd','$message','$price','$status','$markup')";
     $query_run=mysqli_query($db,$insertquot);    
     if($query_run){
     header('location: agenthome.php');
