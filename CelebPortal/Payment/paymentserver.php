@@ -81,21 +81,16 @@ if (isset($_POST['reg_user'])) {
   //By recording paid section into table, also changes the status of that order to done to prevent repeated
   //order that is paid to appear.
   if (count($errors) == 0) {
-  	$query = "INSERT INTO orders (name, cnumber, expmonth, expyear, cvv, email, verfication_code) 
+  	$query = "INSERT INTO orders (name, cnumber, expmonth, expyear, cvv, email, verification_code) 
   			  VALUES('$name', '$cnumber', '$expmonth','$expyear','$cvv', '$email', '$v_code')";
-  	if(mysqli_query($db, $query)){
+          $_SESSION['success'] = "You money has been deposited sucessfully. A receipt has been sent to your email address";
+          mysqli_query($db, $query);
+          
     $changepayment = "UPDATE businessorder SET payment = '$payment' WHERE verification_code='$v_code'";
-    $query_run = mysqli_query($connection, $changepayment);
-  	if($query_run){
-    $_SESSION['success'] = "You money has been deposited sucessfully. A receipt has been sent to your email address";
-  	go($_POST['email'],$v_code);
+    mysqli_query($connection, $changepayment);
+    go($_POST['email'],$v_code);
     header('location: success.php');
-  }else{
-    echo mysqli_error();
-  }
-  }else{
-    echo mysqli_error();
-  }
+ 
 }
 }
 ?>
