@@ -369,10 +369,10 @@ h2{
     margin-top: 10px;
     margin-left: 43%;    
     margin-bottom: 10px;
-    display: block;
+    display: none;
 }
 .editimage.active{
-    display: none;
+    display: block;
 }
 .image{
     margin-left: 43%;
@@ -393,6 +393,7 @@ h2{
 }
 .toggle{
     margin-top: 10px;
+    margin-bottom: 10px;
     margin-left: 45.3%;
     width: fit-content;
 }
@@ -428,7 +429,8 @@ h2{
 }
 .error {
     width: fit-content; 
-    margin-left: 42%;
+    margin-left: 33%;
+    margin-right: 33%;
     margin-bottom: 10px; 
     padding: 10px; 
     border: 1px solid #a94442; 
@@ -438,3 +440,84 @@ h2{
     text-align: left; 
   }
 
+/* User profile Css Secondlayer */
+.videotitle{
+    border-radius: 15px 15px 0 0;
+    padding:10px;
+    background-color: rgb(49, 47, 47);
+}
+h1,h2,table tr td {
+    text-align: center;
+    color: rgb(187, 187, 187);
+}
+.secondlayer{
+    border-radius: 15px;
+    width: auto;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    background-color: rgb(72, 73, 73);
+    border:2px solid #393a3a;
+}
+.leftside{
+    overflow: hidden;
+    padding:10px;
+    border-radius: 15px;
+    background-color: rgb(51, 49, 48);
+    width: 33%;
+    margin: 0 auto;
+    height:200px;
+}
+.midside{    
+    overflow: hidden;
+    padding:10px;
+    border-radius: 15px;
+    background-color: rgb(51, 49, 48);
+    float: left;
+    width: 33%;
+    height:200px;
+}
+.rightside{
+    overflow: hidden;
+    padding:10px;
+    border-radius: 15px;
+    width: 33%;
+    background-color: rgb(51, 49, 48);        
+    float: right;
+    height:200px;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+table thead td{
+    font-weight: 600;
+}
+table tr{
+    color: white;
+    border-top: 2.5px solid rgba(189, 184, 184, 0.733);
+}
+table tr:last-child{
+    border-bottom: none;
+}
+table tbody tr:hover{
+    background: rgb(102, 100, 99);
+    color: white;
+}
+table tr td{
+    padding:10px;    
+}
+.pbtn{
+    font-size: 20px;
+    color: rgba(189, 184, 184, 0.733);
+    background-color: transparent;
+    border: transparent;
+    cursor: pointer;
+}
+.pbtn:hover{
+    color: white;
+}

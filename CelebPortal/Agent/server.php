@@ -64,6 +64,8 @@ if (isset($_POST['login_agent'])) {
     $price = $_POST['price'];
     $status = 'Not Paid';
     $markup = 'No';
+    $updatecompletedorder="UPDATE completedorder SET markup='No' WHERE orderid='$orderid'";
+    mysqli_query($db,$updatecompletedorder);
     
     $insertquot = "INSERT INTO quotation (orderid, useremail, celebrity, dtd, message, price, status, markup) VALUES ('$orderid','$useremail','$celebname','$dtd','$message','$price','$status','$markup')";
     $query_run=mysqli_query($db,$insertquot);    

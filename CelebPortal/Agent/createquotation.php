@@ -36,7 +36,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="makequotation.php">
+                    <a href="createquotation.php">
                         <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                         <span class="title">Quotation Form</span>
                     </a>
@@ -95,7 +95,7 @@
                     <?php
                         $connection = mysqli_connect("localhost","root","","loginadminsystem");
 
-                        $query = "SELECT * FROM completedorder WHERE celebrity='$celebname' AND agentstatus='Accepted'";
+                        $query = "SELECT * FROM completedorder WHERE celebrity='$celebname' AND agentstatus='Accepted' AND markup=''";
                         $query_run = mysqli_query($connection, $query);
                     ?>
                     <div class="cardHeader">

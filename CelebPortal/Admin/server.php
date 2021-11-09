@@ -3,6 +3,16 @@ if(!isset($_SESSION)) {
   session_start(); 
 } 
 
+use PHPMailer\PHPMailer\PHPMailer;
+
+require_once 'phpmailer/Exception.php';
+require_once 'phpmailer/PHPMailer.php';
+require_once 'phpmailer/SMTP.php';
+
+$mail = new PHPMailer(true);
+
+$alert = '';
+
 // initializing variables
 $adminid = "";
 $fullname = "";
@@ -170,7 +180,7 @@ if (isset($_POST['login_user'])) {
     $details = mysqli_real_escape_string($db, $_POST['edit_details']);
     $phoneNo = mysqli_real_escape_string($db, $_POST['edit_phoneNum']);
     $status = mysqli_real_escape_string($db, $_POST['edit_status']);
-    $markup = 'No';
+    $markup = '';
 
     $query = "DELETE FROM businessorder WHERE Old='$id'";
     $query_run = mysqli_query($connection, $query);
@@ -340,13 +350,47 @@ if (isset($_POST['login_user'])) {
       $price = $_POST['price'];
       $status = $_POST['status'];
       $markup = 'Yes';
-  
+      //Update markup status in completedorder table
+      $updatecompletedorder="UPDATE completedorder SET markup='$markup' WHERE orderid='$quotid'";
+      mysqli_query($db, $updatecompletedorder); 
+      //Insert into final quotation to take record this order is being sent to user
       $insertquot = "INSERT INTO finalquotation (orderid, useremail,celebrity,dtd,message,price,status,markup) VALUES ('$quotid','$useremail','$celebrity','$dtd','$message','$price','$status','$markup')";
       mysqli_query($db, $insertquot);  
-     
+      //Update on agent side to prevent agent from sending twice same order id
       $updatequot = "UPDATE quotation SET markup='$markup' WHERE orderid='$quotid'";
       mysqli_query($db,$updatequot);
-      $_SESSION['success'] = "Your Data is Updated!";
+      try{
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'phptesting2@gmail.com'; // Gmail address which you want to use as SMTP server
+        $mail->Password = 'Qwerty@111'; // Gmail address Password
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port = '465';
+
+        $mail->setFrom('phptesting2@gmail.com'); // Gmail address which you used as SMTP server
+        $mail->addAddress($useremail); 
+
+        $mail->isHTML(true);                                  
+        $mail->Subject = 'Quotation';
+        $mail->Body    = nl2br("This is the Quotation from the Celebrity.\n
+        Your Order ID is $quotid.\n
+        Celebrity that you have choose is $celebrity.\n
+        Date to Deliver is $dtd.\n
+        Message from Celebrity is $message.\n
+        The full price for this Quotation is $price.\n
+        Kindly visit your profile page for making full payment.\n
+        Quotation will only be available within 1 week time. If not made, the quotation shall be naught.\n
+        If Payment is not made, even the $dtd is within 7 days, the video will not be available to you.");
+
+        $mail->send();
+        
+      $_SESSION['success'] = "Final Quotation Made";
+      } catch (Exception $e){
+        $alert = '<div class="alert-error">
+                    <span>Something Went wrong</span>
+                  </div>';
+      }
       header('location: viewquotation.php');
       
     }

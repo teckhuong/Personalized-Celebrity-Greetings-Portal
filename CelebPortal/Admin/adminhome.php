@@ -139,8 +139,16 @@
                     </div>
                 </div>
                 <div class="card">
+                <?php
+                        $connection = mysqli_connect("localhost","root","","LoginAdminSystem");
+
+                        $sql = "SELECT count(id) AS total FROM finalquotation WHERE status='Paid'";
+                        $result=mysqli_query($connection, $sql);
+                        $values = mysqli_fetch_assoc($result);
+                        $num_rows=$values['total'];                        
+                    ?>
                     <div>
-                        <div class="numbers">0</div>
+                        <div class="numbers"><?php echo $num_rows; ?></div>
                         <div class="cardName">Order Fully Completed</div>
                     </div>
                     <div class="iconBx">

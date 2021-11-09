@@ -28,23 +28,23 @@
                         <!-- Image 1 -->
                         <input type="radio" name="slide_switch" id="img1" checked="checked" />
                         <label for="img1">
-                            <img class="profileSlide" src="youtuberimage/laowu/laowu.png" alt="LAO WU" />
+                            <img class="profileSlide" src="youtuberimage/laowu/laowu.jpg" alt="LAO WU" />
                         </label>
-                        <img src="youtuberimage/laowu/laowu.png" alt="LAO WU" class="profile_pic" />
+                        <img src="youtuberimage/laowu/laowu.jpg" alt="LAO WU" class="profile_pic" />
 
                         <!-- Image 2 -->
                         <input type="radio" name="slide_switch" id="img2" />
                         <label for="img2">
-                            <img class="profileSlide" src="youtuberimage/laowu/laowu.png" alt="LAO WU" />
+                            <img class="profileSlide" src="youtuberimage/laowu/laowu.jpg" alt="LAO WU" />
                         </label>
-                        <img src="youtuberimage/laowu/laowu.png" alt="LAO WU" class="profile_pic" />
+                        <img src="youtuberimage/laowu/laowu.jpg" alt="LAO WU" class="profile_pic" />
 
                         <!-- Image 3 -->
                         <input type="radio" name="slide_switch" id="img3" />
                         <label for="img3">
-                            <img class="profileSlide" src="youtuberimage/laowu/laowu.png" alt="LAO WU" />
+                            <img class="profileSlide" src="youtuberimage/laowu/laowu.jpg" alt="LAO WU" />
                         </label>
-                        <img src="youtuberimage/laowu/laowu.png" alt="LAO WU" class="profile_pic" />
+                        <img src="youtuberimage/laowu/laowu.jpg" alt="LAO WU" class="profile_pic" />
                     </div>
                 </div>   
             </div>

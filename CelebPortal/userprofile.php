@@ -1,3 +1,17 @@
+<!-- Prevent User to come in without log in -->
+<?php include('orderserver.php');
+    if (!isset($_SESSION['username'])) {
+        $_SESSION['msg'] = "You must log in first";
+        header('location: userlogin.php');
+    }
+    if (isset($_GET['logout'])) {
+        session_destroy();
+        unset($_SESSION['username']);
+        header("location: userlogin.php");
+    } 
+
+    $usernameOrder = $_SESSION['username'];
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -9,18 +23,20 @@
     <link rel="stylesheet" type="text/css" href="homepage.css">
 </head>
 <body>
+    <!-- To take out username -->
+<?php
+    $temp = $_SESSION['username'];
+    $connect = mysqli_connect("localhost","root","","LoginSystem");
+    $getcelebname = "SELECT * FROM users WHERE username='$temp'";
+    $query_run= mysqli_query($connect,$getcelebname);
+                
+    foreach($query_run as $row){
+        $useremail = $row['email'];
+    }
+?>
 <!-- Start Avatar -->
 <div class="wrapper">
     <div class="avatar">
-        <?php include('errors.php'); ?>
-        <?php if (isset($_SESSION['success'])) : ?>
-        <div class="error success" >
-            <?php 
-                echo $_SESSION['success']; 
-                // unset($_SESSION['success']);
-            ?>
-        </div>
-        <?php endif ?>
         <div class="image">
             <?php
                 if(isset($_SESSION["username"])){
@@ -38,10 +54,124 @@
             </form>
         </div>
     </div>
-        <!-- Start Video Showing -->
+    <!-- Show Order status -->
+    <div class="secondlayer">
+    <div class="secondtitle">
+        <H1>Your Orders Details & Status</H1>
+    </div>
+    <?php
+        $connection = mysqli_connect("localhost","root","","loginadminsystem");
+
+        $query = "SELECT * FROM finalquotation WHERE markup='Yes' AND useremail='$useremail'";
+        $query_run = mysqli_query($connection, $query);
+        $getorder = "SELECT * FROM completedorder WHERE useremail='$useremail' AND agentstatus='Accepted' AND markup='No'";
+        $query_runsec = mysqli_query($connection,$getorder);
+        $getcompletedquot = "SELECT * FROM finalquotation WHERE useremail='$useremail' AND status='Paid'";
+        $query_runthir = mysqli_query($connection,$getcompletedquot);
+    ?>
+        <div class="rightside">            
+            <div class="quottitle">
+                <h2>Your Quotations</h2>            
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Order ID</td>
+                        <td>Price</td>
+                        <td>Pay?</td>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                    if(mysqli_num_rows($query_run) > 0)
+                    {
+                        while($row = mysqli_fetch_assoc($query_run))
+                        {
+                ?>
+                    <tr>
+                        <td><?php echo $row['orderid']; ?></td>
+                        <td><?php echo $row['price']; ?></td>
+                        <td>
+                        <form action="Payment/fullpayment.php" method="POST">
+                                <input type="hidden" name="orderid" value="<?php echo $row['orderid']; ?>">
+                                <button type = "submit" name="fpay" class="pbtn">Go</button>
+                        </form>
+                        </td>
+                    </tr>   
+                    <?php
+                        }
+                    }else{
+                            echo "No Record Found!";
+                        }
+                    ?>                          
+                </tbody>
+            </table>
+        </div>
+        <div class="midside">
+            <div class="pordertitle">
+                <h2>Your Pending Orders Status</h2>            
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Order ID</td>
+                        <td>Status</td>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                    if(mysqli_num_rows($query_runsec) > 0)
+                    {
+                        while($row = mysqli_fetch_assoc($query_runsec))
+                        {
+                ?>
+                    <tr>
+                        <td><?php echo $row['orderid']; ?></td>
+                        <td><?php echo $row['agentstatus']; ?></td>
+                    </tr>   
+                    <?php
+                        }
+                    }else{
+                            echo "No Record Found!";
+                        }
+                    ?>                          
+                </tbody>
+            </table>
+        </div>
+        <div class="leftside">
+            <div class="totalordertitle">
+                <h2>Your Completed Orders</h2>            
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Order ID</td>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                    if(mysqli_num_rows($query_runthir) > 0)
+                    {
+                        while($row = mysqli_fetch_assoc($query_runthir))
+                        {
+                ?>
+                    <tr>
+                        <td><?php echo $row['orderid']; ?></td>
+                    </tr>   
+                    <?php
+                        }
+                    }else{
+                            echo "No Record Found!";
+                        }
+                    ?>                          
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Start Video Showing -->
     <div class="videocontainer">
         <div class="videotitle">
-                <h2>Your Videos</h2>
+                <H1>Your Videos</H1>
         </div>
         <div class="videocontent">
                 

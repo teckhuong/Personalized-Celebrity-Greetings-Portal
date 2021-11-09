@@ -2,50 +2,56 @@
 if(!isset($_SESSION)) { 
   session_start(); 
 } 
-
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Execption;
 
-if (function_exists("go") === FALSE){
-function go($email,$v_code)
-{
 require_once 'phpmailer/Exception.php';
 require_once 'phpmailer/PHPMailer.php';
 require_once 'phpmailer/SMTP.php';
 
-  $mail1 = new PHPMailer(true);
+$mail = new PHPMailer(true);
 
-  try {
+$alert = '';
+// use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\SMTP;
+// use PHPMailer\PHPMailer\Execption;
 
-    $mail1->isSMTP();                                            
-    $mail1->Host       = 'smtp.gmail.com';                     
-    $mail1->SMTPAuth   = true;                                   
-    $mail1->Username   = 'phptesting2@gmail.com';                     
-    $mail1->Password   = 'Qwerty@111';                               
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port = '587';                            
+// if (function_exists("go") === FALSE){
+// function go($email,$v_code)
+// {
+// require_once 'phpmailer/Exception.php';
+// require_once 'phpmailer/PHPMailer.php';
+// require_once 'phpmailer/SMTP.php';
+
+//   $mail1 = new PHPMailer(true);
+
+//   try {
+
+//     $mail1->isSMTP();                                            
+//     $mail1->Host       = 'smtp.gmail.com';                     
+//     $mail1->SMTPAuth   = true;                                   
+//     $mail1->Username   = 'phptesting2@gmail.com';                     
+//     $mail1->Password   = 'Qwerty@111';                            
 
 
-    $mail1->setFrom('phptesting2@gmail.com', 'Mailer');
-    $mail1->addAddress($email);     
+//     $mail1->setFrom('phptesting2@gmail.com', 'Mailer');
+//     $mail1->addAddress($email);     
   
   
-    $mail1->isHTML(true);                                  
-    $mail1->Subject = 'Email Verification from Celebrity Portal';
-    $mail1->Body    = "Thanks for registration! 
-    Click the link below to verify the email address
-    <a href='http://localhost/CelebPortalNEWW/verify.php?email=$email&v_code=$v_code'>Verify</a>";
+//     $mail1->isHTML(true);                                  
+//     $mail1->Subject = 'Email Verification from Celebrity Portal';
+//     $mail1->Body    = "Thanks for registration! 
+//     Click the link below to verify the email address
+//     <a href='http://localhost/CelebPortalNEWW/verify.php?email=$email&v_code=$v_code'>Verify</a>";
 
-    $mail1->send();
-    return true;
-  } 
-    catch (Exception $e) {
-    return false;
-  }
+//     $mail1->send();
+//     return true;
+//   } 
+//     catch (Exception $e) {
+//     return false;
+//   }
 
-  }
-}
+//   }
+// }
 
 // initializing variables
 $username = "";
@@ -127,9 +133,35 @@ $allowed = array('jpg');
             $v_code =bin2hex(random_bytes(16));
             $query = "INSERT INTO users (username, email, password, fullname, dob, verification_code, is_verified) 
                   VALUES('$username', '$email', '$password','$fullname','$dob', '$v_code', '0')"; 
-            mysqli_query($db, $query) ;        
+            mysqli_query($db, $query) ; 
+            // go($_POST['email'],$v_code);       
+            try{
+              $mail->isSMTP();
+              $mail->Host = 'smtp.gmail.com';
+              $mail->SMTPAuth = true;
+              $mail->Username = 'phptesting2@gmail.com'; // Gmail address which you want to use as SMTP server
+              $mail->Password = 'Qwerty@111'; // Gmail address Password
+              $mail->SMTPSecure = 'ssl';
+              $mail->Port = '465';
+
+              $mail->setFrom('phptesting2@gmail.com'); // Gmail address which you used as SMTP server
+              $mail->addAddress($email); 
+
+              $mail->isHTML(true);                                  
+              $mail->Subject = 'Email Verification from Celebrity Portal';
+              $mail->Body    = "Thanks for registration! 
+              Click the link below to verify the email address
+              <a href='http://localhost/CelebPortalNEWW/verify.php?email=$email&v_code=$v_code'>Verify</a>";
+
+              $mail->send();
+              
   	        $_SESSION['success'] = "You have been registered successfully. 
             Please Verify through the link on your email.";
+            } catch (Exception $e){
+              $alert = '<div class="alert-error">
+                          <span>Something Went wrong</span>
+                        </div>';
+            }
           }else{
             echo mysqli_error();
           }
