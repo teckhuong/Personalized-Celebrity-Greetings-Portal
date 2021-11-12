@@ -75,4 +75,35 @@ if (isset($_POST['login_agent'])) {
       echo mysqli_error();
     }
   }
+  //upload video with orderid as video name
+  if(isset($_POST['vidupload'])){
+    $orderid = $_POST['orderid'];
+    $useremail = $_POST['useremail'];
+    $file = $_FILES['video'];
+
+    $fileName=$file['name'];
+    $fileTmpName = $file['tmp_name'];
+    $fileSize = $file['size'];
+    $fileError = $file['error'];
+    $fileType = $file['type'];
+
+    $fileExt = explode('.', $fileName);
+    $fileActualExt = strtolower(end($fileExt));
+    $allowed = array('mp4');
+
+    if(!in_array($fileActualExt, $allowed)){
+      $_SESSION['success'] ="You cannot upload file of this type!";
+    }else{
+        
+        $fileNameNew = $orderid.".".$fileActualExt;
+        $databasename = 'Agent/video/'.$fileNameNew;
+        $fileDestination = 'video/'.$fileNameNew;
+        move_uploaded_file($fileTmpName, $fileDestination);
+        $query="INSERT INTO ordervideo (videoowner,videoname, location) VALUES ('$useremail','$orderid','$databasename')";
+        mysqli_query($db,$query);
+        $query_run = "UPDATE finalquotation SET vidstatus='Done' WHERE orderid='$orderid'";
+        mysqli_query($db,$query_run);
+        header('location: agenthome.php');          
+        }
+  }
 ?>

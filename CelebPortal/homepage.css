@@ -195,6 +195,11 @@ h2{
     padding: 50px;
 }
 /* social icon */
+#social{
+    float: left;
+    width: 100%;
+    margin-top: 5%;
+}
 #social.bg-grey{
     background-color: black;
 }
@@ -407,11 +412,7 @@ h2{
 .toggle button:hover{
     color: cyan;
 }
-.videocontainer{
-    background-color: rgb(72, 73, 73);
-    border:2px solid #393a3a;
-}
-/* ^^ Profile css ends here ^^*/
+/* ^^ Profile image css ends here ^^*/
 
 @media (max-width: 1080px){
     .cimage{
@@ -441,11 +442,6 @@ h2{
   }
 
 /* User profile Css Secondlayer */
-.videotitle{
-    border-radius: 15px 15px 0 0;
-    padding:10px;
-    background-color: rgb(49, 47, 47);
-}
 h1,h2,table tr td {
     text-align: center;
     color: rgb(187, 187, 187);
@@ -520,4 +516,37 @@ table tr td{
 }
 .pbtn:hover{
     color: white;
+}
+video{
+    margin-top: -30px;
+    width:250px;
+    height:250px;
+}
+.videoid{
+    color: rgb(187, 187, 187);
+    padding-top: 15px;
+    text-align: center;
+    font-size: 20px;
+}
+.videocontent{
+    float: left;
+    overflow:hidden;
+    border-radius: 15px;
+    background-color: rgb(51, 49, 48);
+    margin: 15px;
+    width:250px;
+    height:250px;
+}
+.thirdlayer{    
+    border-radius: 15px;
+    width: auto;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 20%;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    background-color: rgb(72, 73, 73);
+    border:2px solid #393a3a;
 }

@@ -68,6 +68,8 @@
         $query_runsec = mysqli_query($connection,$getorder);
         $getcompletedquot = "SELECT * FROM finalquotation WHERE useremail='$useremail' AND status='Paid'";
         $query_runthir = mysqli_query($connection,$getcompletedquot);
+        $getvideo = "SELECT * FROM ordervideo WHERE videoowner='$useremail'";
+        $query_runvid = mysqli_query($connection,$getvideo) or die( mysqli_error($connection));
     ?>
         <div class="rightside">            
             <div class="quottitle">
@@ -169,17 +171,35 @@
         </div>
     </div>
     <!-- Start Video Showing -->
-    <div class="videocontainer">
+    <div class="thirdlayer">
         <div class="videotitle">
                 <H1>Your Videos</H1>
+                <h2>You can rightclick on video or click on the 3 dot in the video to download the video.</H2>
         </div>
+            <?php
+                if(mysqli_num_rows($query_runvid) > 0)
+                {
+                    while($row = mysqli_fetch_assoc($query_runvid))
+                    {
+            ?>
         <div class="videocontent">
-                
+            <div class="videoid">
+                <h9>Order ID: <?php echo $row['videoname']?></h9>
+            </div>
+            <video class="videos" controls>
+					<source src="<?php echo $row['location']?>">
+			</video>              
         </div>
+            <?php
+                    }
+                }else{
+                        echo "No Record Found!";
+                    }
+            ?> 
     </div>
 </div>
 <!-- Footer -->
-<section class="d-flex-r justify-content-space-around p-1 bg-grey" id="social">
+<div class="caution d-flex-r justify-content-space-around p-1 bg-grey" id="social">
     <ul class="footerforhome d-flex-c" id="footer">
             <p class="wsnc">For more: </p>
             <li class="rnc"><a href="RequestCeleb/requestceleb.php" >Request New Celebrity</a></li>
@@ -199,7 +219,7 @@
                 <a href="you"><i class="fab fa-youtube"></i></a>
             </li>            
         </ul>        
-    </section>
+                </div>
     <script>
         
             let toggle = document.querySelector('.toggle');

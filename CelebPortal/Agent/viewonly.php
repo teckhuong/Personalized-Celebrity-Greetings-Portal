@@ -48,7 +48,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="agentupload.php">
                         <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                         <span class="title">Upload Video</span>
                     </a>
