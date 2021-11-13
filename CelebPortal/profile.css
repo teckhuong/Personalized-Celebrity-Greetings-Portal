@@ -234,6 +234,7 @@ select:focus {
 	-webkit-appearance: none;
     background-color: rgb(156, 156, 156);
     border-radius: 25px;
+    padding: 15px;
 }
 
 .form-container input[type=text]:focus {

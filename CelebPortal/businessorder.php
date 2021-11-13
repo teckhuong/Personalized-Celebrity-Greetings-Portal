@@ -26,7 +26,6 @@
         $temp=$_SESSION['username'];
          $connection = mysqli_connect("localhost","root","","LoginSystem");
         if(isset($_POST['business'])){
-            $celebemail = $_POST['celebemail'];
             $celebname = $_POST['celebname'];
 
             $getemail = "SELECT * FROM users WHERE username='$temp'";
@@ -39,7 +38,6 @@
             <h2>Order Form</h2>
             <div class="form-container">
             <form action="orderserver.php" method="POST">
-                <?php include('errors.php'); ?>
                 <input type="hidden" name="useremail" value="<?php echo $useremail ?>"/> 
                 <input type="hidden" name="username" value="<?php echo $_SESSION['username']; ?>" />
                 <input type="hidden" name="celebname" value="<?php echo $celebname ?>"/> 
@@ -79,7 +77,7 @@
                     <textarea name="details" id="details" rows="3" cols="70" placeholder="Write here."></textarea><br/>
                     </div>
                     <div class="six">
-                    <label >Phone Number (Optional): <br/></label><input type="text" name="phoneNum" id="phoneNum" placeholder="Phone no of user" /><br/><br/>
+                    <label >Phone Number (Optional): <br/></label><input type="number" name="phoneNum" id="phoneNum" placeholder="Phone no of user" /><br/><br/>
                     </div>
                     <div class="seven">
                     <button type="submit" class="businessorder" name="businessorder">Submit</button>

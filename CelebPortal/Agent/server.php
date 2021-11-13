@@ -93,8 +93,7 @@ if (isset($_POST['login_agent'])) {
 
     if(!in_array($fileActualExt, $allowed)){
       $_SESSION['success'] ="You cannot upload file of this type!";
-    }else{
-        
+    }else{        
         $fileNameNew = $orderid.".".$fileActualExt;
         $databasename = 'Agent/video/'.$fileNameNew;
         $fileDestination = 'video/'.$fileNameNew;

@@ -14,6 +14,14 @@
 	 
   <form method="post" action="userlogin.php">
   	<?php include('errors.php'); ?>
+	  	<?php if (isset($_SESSION['userloginalert'])) : ?>
+            <div class="error success" >
+                <?php 
+                    echo $_SESSION['userloginalert']; 
+                    // unset($_SESSION['success']);
+                ?>
+            </div>
+        <?php endif ?>
   	<div class="input-group">
   		<label>Username</label>
   		<input type="text" name="username" >

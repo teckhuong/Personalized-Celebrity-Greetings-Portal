@@ -73,6 +73,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="viewproduct.php">
+                        <span class="icon"><ion-icon name="person-add-outline"></ion-icon></span>
+                        <span class="title">Edit Product</span>
+                    </a>
+                </li>
+                <li>
                     <a href="editwhatsnew.php">
                         <span class="icon"><ion-icon name="person-add-outline"></ion-icon></span>
                         <span class="title">Edit Whats New</span>

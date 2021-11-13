@@ -48,44 +48,14 @@ if (isset($_POST['businessorder'])) {
         $query = "INSERT INTO businessorder (username, useremail, purpose, recipient, sender, celebrity, instruction, details, phoneNum, verification_code, payment) 
                   VALUES('$username','$useremail', '$purpose','$recipient','$sender','$celebrity','$instruction','$details','$phoneNo','$v_code', '$payment')";
         mysqli_query($db, $query);
-        //$_SESSION['received'] = "Your order has received successfully";
         header('location: Payment/payment.php');
+    }else{
+        echo"
+                    <script>
+                    alert('Please Fill in Correctly');
+                    window.location.href='homepage.php';
+                    </script>
+                    ";
     }
   }
-  //hereisit?
-  // PERSONAL ORDER PAGE
-  if (isset($_POST['personalorder'])) {
-      $username = mysqli_real_escape_string($db, $_POST['username']);
-      $recipient = mysqli_real_escape_string($db, $_POST['recipient']);
-      $celebrity = mysqli_real_escape_string($db, $_POST['celebrity']);
-      $occassion = mysqli_real_escape_string($db, $_POST['occassion']);
-      $instruction = mysqli_real_escape_string($db, $_POST['instruct']);
-      $actionReq = mysqli_real_escape_string($db, $_POST['actionReq']);
-      $phoneNo = mysqli_real_escape_string($db, $_POST['phoneNum']);
-    
-  
-    // form validation: ensure that the form is correctly filled ...
-    // by adding (array_push()) corresponding error unto $errors array
-      if (empty($recipient)) {
-          array_push($errors, "Name of recipient is required");
-      }
-      if (empty($celebrity)) {
-          array_push($errors, "Name of Celebrity is required");
-      }
-      if (empty($occassion)) {
-        array_push($errors, "Occassion is required");
-      }
-      if (empty($instruction)) {
-        array_push($errors, "Instruction is required");
-      }
-  
-    
-      if (count($errors) == 0) {
-        $query = "INSERT INTO personalorder (username, recipient, celebrity, occassion, instruction, actionReq, phoneNum) 
-        VALUES('$username','$recipient','$celebrity','$occassion','$instruction','$actionReq' ,'$phoneNo')";
-        mysqli_query($db, $query);
-        $_SESSION['received'] = "Your order has received successfully";
-        header('location: Payment/payment.php');
-      }
-    }
-    ?>
+?>

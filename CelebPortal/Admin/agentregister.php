@@ -72,6 +72,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="viewproduct.php">
+                        <span class="icon"><ion-icon name="person-add-outline"></ion-icon></span>
+                        <span class="title">Edit Product</span>
+                    </a>
+                </li>
+                <li>
                     <a href="editwhatsnew.php">
                         <span class="icon"><ion-icon name="person-add-outline"></ion-icon></span>
                         <span class="title">Edit Whats New</span>
@@ -109,11 +115,11 @@
   </div>
             <form method="post" action="agentregister.php" enctype="multipart/form-data">
             <?php include('errors.php'); ?>
-            <?php if (isset($_SESSION['success'])) : ?>
+            <?php if (isset($_SESSION['agentregisteralert'])) : ?>
             <div class="error success" >
                 <?php 
-                    echo $_SESSION['success']; 
-                    // unset($_SESSION['success']);
+                    echo $_SESSION['agentregisteralert']; 
+                     unset($_SESSION['agentregisteralert']);
                 ?>
             </div>
             <?php endif ?>
@@ -143,7 +149,7 @@
                 </div>
                 <div class="input-group">
                 <label>Phone Number</label>
-                <input type="text" name="phonenum">
+                <input type="number" name="phonenum">
                 </div>
                 <div class="input-group">
                 <label>Date of Contract</label>

@@ -17,7 +17,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agent database</title>
+    <title>View Product Page</title>
     <link rel="stylesheet" type="text/css" href="adminhome.css">
 </head>
 <body>
@@ -110,65 +110,45 @@
                     ?>  
                 </div>
             </div>
-
-            <!-- order details list -->
-            <div class="details">
+            
+        <!-- order details list -->
+        <div class="details">
                 <div class="recentOrders">
                     <?php
-                        $connection = mysqli_connect("localhost","root","","agentdatabase");
+                        $connection = mysqli_connect("localhost","root","","LoginAdminSystem");
 
-                        $query = "SELECT * FROM agentprofiledetail";
+                        $query = "SELECT * FROM wholeceleb ";
                         $query_run = mysqli_query($connection, $query);
                     ?>
                     <div class="cardHeader">
-                        <h2>Agent Database</h2>
-                        <a href="#" class="btn">View All</a>
+                        <h2>Products</h2>                        
                     </div>
                     <table>
                         <thead>
                             <tr>
-                                <td>ID</td>
-                                <td>Username</td>
-                                <td>Password</td>
-                                <td>Agent Name</td>
-                                <td>Email</td>
-                                <td>Company Name</td>
                                 <td>Celebrity Name</td>
-                                <td>Phone Number</td>
-                                <td>Date Of Contract</td>
-                                <td>EDIT</td>
-                                <td>Delete</td>
+                                <td>Celebrity Description</td>
+                                <td>Tag</td>
+                                <td></td>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
+                        <?php
                                 if(mysqli_num_rows($query_run) > 0)
                                 {
                                     while($row = mysqli_fetch_assoc($query_run))
                                     {
                                         ?>
-                                        
                             <tr>
-                                <td><?php echo $row['id']; ?></td>
-                                <td><?php echo $row['username']; ?></td>
-                                <td><?php echo $row['password']; ?></td>
-                                <td><?php echo $row['agentname']; ?></td>
-                                <td><?php echo $row['email']; ?></td>
-                                <td><?php echo $row['compname']; ?></td>
                                 <td><?php echo $row['celebname']; ?></td>
-                                <td><?php echo $row['phonenum']; ?></td>
-                                <td><?php echo $row['doc']; ?></td>
+                                <td><?php echo $row['celebdescrip']; ?></td>
+                                <td><?php echo $row['tag']; ?></td>
                                 <td>
-                                    <form action="editagent.php" method="POST">
+                                <form action="editproduct.php" method="POST">
                                         <input type="hidden" name="edit_id" value="<?php echo $row['id']; ?>">
-                                        <button type = "submit" name="editagent_btn" class="ebtn btn-success">EDIT</button>
+                                        <button type = "submit" name="editprod_btn" class="ebtn btn-success">Edit</button>
                                     </form>
                                 </td>
-                                <td>
-                                <form action="server.php" method="post">
-                                    <input type="hidden" name="delete_id" value="<?php echo $row['id'];?>">
-                                <button type = "submit" name="delete_btn" class="dbtn btn-danger">DELETE</button></td>
-                                </form>    
                             </tr>   
                             <?php
                                     }
@@ -176,17 +156,15 @@
                                     echo "No Record Found!";
                                 }
 
-                            ?>                         
+                            ?>                          
                         </tbody>
                     </table>
                 </div>
             </div>
+            
+
 
         </div>
-
-       
-
-    </div>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script>

@@ -37,6 +37,15 @@
 <!-- Start Avatar -->
 <div class="wrapper">
     <div class="avatar">
+                <?php include('errors.php'); ?>
+                <?php if (isset($_SESSION['profilealert'])) : ?>
+                <div class="error success" >
+                    <?php 
+                        echo $_SESSION['profilealert']; 
+                        // unset($_SESSION['success']);
+                    ?>
+                </div>
+                <?php endif ?>
         <div class="image">
             <?php
                 if(isset($_SESSION["username"])){
@@ -48,7 +57,8 @@
             <button >Edit Picture</button>
         </div>
         <div class="editimage">
-            <form action="userprofile.php" method="post" enctype="multipart/form-data">
+            <form action="userprofile.php" method="post" enctype="multipart/form-data">                
+                <input type="hidden" name="username" value="<?php echo $temp?>"/>
                 <input type="file" name="profilepic" onchange="this.form.submit();"/>
                 <!-- <button type="submit" class="btn" name="changeimage" >Upload</button> -->
             </form>

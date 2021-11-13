@@ -42,8 +42,7 @@ if (isset($_POST['reg_user'])) {
   $fileActualExt = strtolower(end($fileExt));
 
   $allowed = array('jpg');
-  //profilepic ends here
-  
+  //profilepic ends here  
 
   // form validation: ensure that the form is correctly filled ...
   // by adding (array_push()) corresponding error unto $errors array
@@ -67,20 +66,7 @@ if (isset($_POST['reg_user'])) {
   }
 
   // Finally, register user if there are no errors in the form
-  if (count($errors) == 0) {  	
-    // $sql = "SELECT * FROM users WHERE adminid = '$adminid' AND fullname = '$fullname'";
-    // $result = mysqli_query($db, $sql);
-    // if(mysqli_num_rows($result) > 0){
-    //   while($row = mysqli_fetch_assoc($result)){
-    //     $userid = $row['id'];
-    //     $sql = "INSERT INTO profileimg (userid, status) 
-    //     VALUES ('$userid', 0)";
-    //     mysqli_query($db, $sql);
-    //   }
-    // }else{
-    //   echo "You have error!";
-    // }
-    //Register admin only when image is correct
+  if (count($errors) == 0) { 
     if(!in_array($fileActualExt, $allowed)){
       $_SESSION['success'] ="You cannot upload file of this type!";
     }elseif($fileSize > 5*1024*1024){
@@ -210,28 +196,6 @@ if (isset($_POST['login_user'])) {
     }
   }
 
-  
-  //upload testin
-//   if(isset($_FILES['agentimage'])){
-  
-//   echo '<pre>';
-//   var_dump($_FILES);
-//   echo '</pre>';
-//   $file=$_FILES['agentimage'];
-//   $ext = pathinfo($file['name'],PATHINFO_EXTENSION);
-  
-
-  
-//   if($file['size']>5*1024*1024){
-//     echo "You can not upload more than 5 MB files";  
-//   }elseif(!in_array($ext,['jpeg','svg','jpg'])){
-//     echo "You can only upload images";
-//   }else{
-//     move_uploaded_file($_FILES['agentimage']['tmp_name'], $_FILES['agentimage']['name']);
-//   }
-
-// }
-
   //register agent
   if(isset($_POST['agentreg'])){
   //initializing variable for agent register
@@ -280,15 +244,16 @@ if (isset($_POST['login_user'])) {
   
 //   //imagefunction starts here
   if(!in_array($fileActualExt, $allowed)){
-    $_SESSION['success'] ="You cannot upload file of this type!";
+    $_SESSION['agentregisteralert'] ="You cannot upload file of this type!";
   }elseif($fileSize > 5*1024*1024){
-    $_SESSION['success'] ="Your file is too big!";
+    $_SESSION['agentregisteralert'] ="Your file is too big!";
     }else{
+      if (count($errors) == 0) {
        $fileNameNew = $agentusername.".".$fileActualExt;
        $fileDestination = '../Agent/profilepicture/'.$fileNameNew;
        move_uploaded_file($fileTmpName, $fileDestination);
        //Register agent into database if no error
-        if (count($errors) == 0) {
+        
           $agentpassword = md5($agentpw);//encrypt the password before saving in the database
           $insertagent = "INSERT INTO agentprofiledetail (username, password, agentname, email, compname, celebname, phonenum, doc) 
                 VALUES('$agentusername', '$agentpassword','$agentname', '$agentemail','$agentcompname','$agentcelebname','$agentphonenum','$agentdoc')";
@@ -296,6 +261,12 @@ if (isset($_POST['login_user'])) {
           
           header('location: agentregister.php');
         }else{
+          echo"
+                    <script>
+                    alert('Please Fill in Correctly');
+                    window.location.href='agentregister.php';
+                    </script>
+                    ";
           echo mysqli_error();
         }
       }  
@@ -359,6 +330,7 @@ if (isset($_POST['login_user'])) {
       //Update on agent side to prevent agent from sending twice same order id
       $updatequot = "UPDATE quotation SET markup='$markup' WHERE orderid='$quotid'";
       mysqli_query($db,$updatequot);
+      //email generate and send
       try{
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
@@ -412,25 +384,87 @@ if (isset($_POST['login_user'])) {
     $fileActualExt = strtolower(end($fileExt));
     $allowed = array('jpg');
 
+    
+    //validate empty
+    if (empty($celebname)) { array_push($errors, "Celebrity Name is required"); }
+    if (empty($celebdescrip)) { array_push($errors, "Celebrity Description is required"); }
+    if (empty($tag)) { array_push($errors, "Category is required"); }
+    
+    
     if(!in_array($fileActualExt, $allowed)){
-      $_SESSION['success'] ="You cannot upload file of this type!";
+      $_SESSION['addcelebalert'] ="You cannot upload file of this type!";
     }elseif($fileSize > 5*1024*1024){
-      $_SESSION['success'] ="Your file is too big!";
-      }else{
+      $_SESSION['addcelebalert'] ="Your file is too big!";
+      }else{         
+        //Register agent into database if no error 
+        if (count($errors) == 0) {
          $fileNameNew = $celebname.".".$fileActualExt;
          $fileDestination = 'categorypic/'.$fileNameNew;
-         move_uploaded_file($fileTmpName, $fileDestination);
-         //Register agent into database if no error
-          if (count($errors) == 0) {
+         move_uploaded_file($fileTmpName, $fileDestination);        
             $insertceleb = "INSERT INTO wholeceleb (celebname,celebdescrip,celebpicture,tag) 
                   VALUES('$celebname','$celebdescrip','$fileDestination','$tag')";
-            mysqli_query($db, $insertceleb);
-            
+            mysqli_query($db, $insertceleb);            
             header('location: addceleb.php');
           }else{
+            echo"
+                    <script>
+                    alert('Please Fill in Correctly');
+                    window.location.href='addceleb.php';
+                    </script>
+                    ";
             echo mysqli_error();
           }
-        } 
+      } 
+  }
+
+  //edit product
+  if(isset($_POST['editprod'])){
+    $id=$_POST['edit_id'];
+    $celebname=$_POST['celebname'];
+    $celebdescrip=$_POST['celebdescrip'];
+    $tag=$_POST['tag'];
+     $file = $_FILES['celebpic'];
+
+     $fileName=$file['name'];
+     $fileTmpName = $file['tmp_name'];
+     $fileSize = $file['size'];
+     $fileError = $file['error'];
+     $fileType = $file['type'];
+
+     $fileExt = explode('.', $fileName);
+     $fileActualExt = strtolower(end($fileExt));
+     $allowed = array('jpg');
+
+    
+    //validate empty
+    if (empty($celebname)) { array_push($errors, "Celebrity Name is required"); }
+    if (empty($celebdescrip)) { array_push($errors, "Celebrity Description is required"); }
+    if (empty($tag)) { array_push($errors, "Category is required"); }
+    
+    
+     if(!in_array($fileActualExt, $allowed)){
+       $_SESSION['addcelebalert'] ="You cannot upload file of this type!";
+     }elseif($fileSize > 5*1024*1024){
+       $_SESSION['addcelebalert'] ="Your file is too big!";
+       }else{         
+        //update agent into database if no error 
+        if (count($errors) == 0) {
+         $fileNameNew = $celebname.".".$fileActualExt;
+         $fileDestination = 'categorypic/'.$fileNameNew;
+         move_uploaded_file($fileTmpName, $fileDestination);        
+            $insertceleb = "UPDATE wholeceleb SET celebname='$celebname',celebdescrip='$celebdescrip',celebpicture='$fileDestination',tag='$tag' WHERE id='$id'";
+            mysqli_query($db, $insertceleb);            
+            header('location: viewproduct.php');
+          }else{
+            echo"
+                    <script>
+                    alert('Please Fill in Correctly');
+                    window.location.href='viewproduct.php';
+                    </script>
+                    ";
+            echo mysqli_error();
+          }
+       } 
   }
 
   //Edit whats new slide picture

@@ -17,7 +17,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agent database</title>
+    <title>Edit Product Page</title>
     <link rel="stylesheet" type="text/css" href="adminhome.css">
 </head>
 <body>
@@ -110,83 +110,59 @@
                     ?>  
                 </div>
             </div>
-
+            <link rel="stylesheet" type="text/css" href="form.css">
             <!-- order details list -->
             <div class="details">
                 <div class="recentOrders">
-                    <?php
-                        $connection = mysqli_connect("localhost","root","","agentdatabase");
-
-                        $query = "SELECT * FROM agentprofiledetail";
-                        $query_run = mysqli_query($connection, $query);
-                    ?>
-                    <div class="cardHeader">
-                        <h2>Agent Database</h2>
-                        <a href="#" class="btn">View All</a>
+                    <div class="header">
+                        <h2>Edit Product Page</h2>
                     </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <td>ID</td>
-                                <td>Username</td>
-                                <td>Password</td>
-                                <td>Agent Name</td>
-                                <td>Email</td>
-                                <td>Company Name</td>
-                                <td>Celebrity Name</td>
-                                <td>Phone Number</td>
-                                <td>Date Of Contract</td>
-                                <td>EDIT</td>
-                                <td>Delete</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                                if(mysqli_num_rows($query_run) > 0)
-                                {
-                                    while($row = mysqli_fetch_assoc($query_run))
-                                    {
-                                        ?>
-                                        
-                            <tr>
-                                <td><?php echo $row['id']; ?></td>
-                                <td><?php echo $row['username']; ?></td>
-                                <td><?php echo $row['password']; ?></td>
-                                <td><?php echo $row['agentname']; ?></td>
-                                <td><?php echo $row['email']; ?></td>
-                                <td><?php echo $row['compname']; ?></td>
-                                <td><?php echo $row['celebname']; ?></td>
-                                <td><?php echo $row['phonenum']; ?></td>
-                                <td><?php echo $row['doc']; ?></td>
-                                <td>
-                                    <form action="editagent.php" method="POST">
-                                        <input type="hidden" name="edit_id" value="<?php echo $row['id']; ?>">
-                                        <button type = "submit" name="editagent_btn" class="ebtn btn-success">EDIT</button>
-                                    </form>
-                                </td>
-                                <td>
-                                <form action="server.php" method="post">
-                                    <input type="hidden" name="delete_id" value="<?php echo $row['id'];?>">
-                                <button type = "submit" name="delete_btn" class="dbtn btn-danger">DELETE</button></td>
-                                </form>    
-                            </tr>   
-                            <?php
-                                    }
-                                }else{
-                                    echo "No Record Found!";
-                                }
+                    <!-- Edit User -->
+                    <?php
+                    $connection = mysqli_connect("localhost","root","","LoginAdminSystem");
+                    if(isset($_POST['editprod_btn'])){
+                            $id = $_POST['edit_id'];
+                            
+                            $query = "SELECT * FROM wholeceleb WHERE id ='$id'";
+                            $query_run = mysqli_query($connection, $query); 
+                            
+                     foreach($query_run as $row){
+                    ?>
+                    <form  action="server.php" method="POST" enctype="multipart/form-data">   
+                        <input type="text" name="edit_id" value="<?php echo $row['id']?>">       
+                    <div class="input-group">
+                        <label >Celebrity Name</label>
+                        <input type="text" name="celebname" value="<?php echo $row['celebname']?>" class="form-control" >
+                    </div>
+                    <div class="input-group">
+                        <label >Celebrity Description</label>
+                        <input type="text" name="celebdescrip" value="<?php echo $row['celebdescrip']?>" class="form-control" >
+                    </div>
+                    <div class="input-group">
+                        <label >Category</label>
+                        <input type="text" name="tag" value="<?php echo $row['tag']?>" class="form-control" >
+                    </div>
+                    <div class="input-group">
+                        <label >Picture (Only Jpg format)</label>
+                        <input type="file" name="celebpic">
+                    </div>
+                    <a href="adminhome.php" class="btn btn-danger"> Cancel </a>
+                    <button type="submit" name="editprod" class="btn btn-primary">Update</button>
 
-                            ?>                         
-                        </tbody>
-                    </table>
+                    </form>
+
+                    <?php
+
+                            }
+                        }
+                    ?>
+
                 </div>
             </div>
 
+
+
         </div>
-
-       
-
-    </div>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script>

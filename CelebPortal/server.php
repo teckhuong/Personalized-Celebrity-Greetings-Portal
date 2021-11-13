@@ -11,47 +11,6 @@ require_once 'phpmailer/SMTP.php';
 $mail = new PHPMailer(true);
 
 $alert = '';
-// use PHPMailer\PHPMailer\PHPMailer;
-// use PHPMailer\PHPMailer\SMTP;
-// use PHPMailer\PHPMailer\Execption;
-
-// if (function_exists("go") === FALSE){
-// function go($email,$v_code)
-// {
-// require_once 'phpmailer/Exception.php';
-// require_once 'phpmailer/PHPMailer.php';
-// require_once 'phpmailer/SMTP.php';
-
-//   $mail1 = new PHPMailer(true);
-
-//   try {
-
-//     $mail1->isSMTP();                                            
-//     $mail1->Host       = 'smtp.gmail.com';                     
-//     $mail1->SMTPAuth   = true;                                   
-//     $mail1->Username   = 'phptesting2@gmail.com';                     
-//     $mail1->Password   = 'Qwerty@111';                            
-
-
-//     $mail1->setFrom('phptesting2@gmail.com', 'Mailer');
-//     $mail1->addAddress($email);     
-  
-  
-//     $mail1->isHTML(true);                                  
-//     $mail1->Subject = 'Email Verification from Celebrity Portal';
-//     $mail1->Body    = "Thanks for registration! 
-//     Click the link below to verify the email address
-//     <a href='http://localhost/CelebPortalNEWW/verify.php?email=$email&v_code=$v_code'>Verify</a>";
-
-//     $mail1->send();
-//     return true;
-//   } 
-//     catch (Exception $e) {
-//     return false;
-//   }
-
-//   }
-// }
 
 // initializing variables
 $username = "";
@@ -185,35 +144,24 @@ if (isset($_POST['login_user'])) {
   
     if (count($errors) == 0) {
         $password = md5($password);
-        $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+        $query = "SELECT * FROM users WHERE username='$username' AND password='$password' AND is_verified='1'";
         $results = mysqli_query($db, $query);
-
-        $result_fetch=mysqli_fetch_assoc($results);
-        if($result_fetch['is_verified']== 1){
+       
           if (mysqli_num_rows($results) == 1) {
             $_SESSION['username'] = $username;
-            // $_SESSION['success'] = "You are now logged in";
+            $_SESSION['userloginalert'] = "You are now logged in";
             header('location: homepage.php');
           }else {
-              array_push($errors, "Wrong username/password combination");
-          }
-        }
-        else{
-          echo"
-                    <script>
-                    alert('Email not verified');
-                    window.location.href='userlogin.php';
-                    </script>
-                    ";
-        }
-      
-    }
+              array_push($errors, "Wrong Username/Password Combination/Email Not Verified");
+            }
+        }      
+    
   }
 
   /*
   Accept email of user whose password is to be reset
   Send email to user to reset their password
-*/
+  */
 
 if (isset($_POST['reset-password'])) {
   $email = mysqli_real_escape_string($db, $_POST['email']);
@@ -233,15 +181,39 @@ if (isset($_POST['reset-password'])) {
     // store token in the password-reset database table against the user's email
     $sql = "INSERT INTO password_resets(email, token) VALUES ('$email', '$token')";
     $results = mysqli_query($db, $sql);
-
     // Send email to user with the token in a link they can click on
-    $to = $email;
-    $subject = "Reset your password on examplesite.com";
-    $msg = "Hi there, click on this <a href=\"new_password.php?token=" . $token . "\">link</a> to reset your password on our site";
-    $msg = wordwrap($msg,70);
-    $headers = "From: phptesting2@gmail.com";
-    mail($to, $subject, $msg, $headers);
+    try{
+      $mail->isSMTP();
+      $mail->Host = 'smtp.gmail.com';
+      $mail->SMTPAuth = true;
+      $mail->Username = 'phptesting2@gmail.com'; // Gmail address which you want to use as SMTP server
+      $mail->Password = 'Qwerty@111'; // Gmail address Password
+      $mail->SMTPSecure = 'ssl';
+      $mail->Port = '465';
+
+      $mail->setFrom('phptesting2@gmail.com'); // Gmail address which you used as SMTP server
+      $mail->addAddress($email); 
+
+      $mail->isHTML(true);                                  
+      $mail->Subject = 'Reset your password on examplesite.com';
+      $mail->Body    = "Hi there, click on this <a href=\"new_pass.php?token=" . $token . "\">link</a> to reset your password on our site";
+
+      $mail->send();      
+    
     header('location: pending.php?email=' . $email);
+    } catch (Exception $e){
+      $alert = '<div class="alert-error">
+                  <span>Something Went wrong</span>
+                </div>';
+    }
+    // Send email to user with the token in a link they can click on
+    // $to = $email;
+    // $subject = "Reset your password on examplesite.com";
+    // $msg = "Hi there, click on this <a href=\"new_password.php?token=" . $token . "\">link</a> to reset your password on our site";
+    // $msg = wordwrap($msg,70);
+    // $headers = "From: phptesting2@gmail.com";
+    // mail($to, $subject, $msg, $headers);
+    // header('location: pending.php?email=' . $email);
   }
 }
 
@@ -271,7 +243,7 @@ if (isset($_POST['new_password'])) {
 
 //upload image in userprofile
 if(isset($_FILES['profilepic'])){
-  $username = 'badphilip';
+  $username = $_POST['username'];
   $file = $_FILES['profilepic'];
 
   $fileName=$file['name'];
@@ -286,9 +258,9 @@ if(isset($_FILES['profilepic'])){
   $allowed = array('jpg');
 
   if(!in_array($fileActualExt, $allowed)){
-    $_SESSION['success'] ="You cannot upload file of this type!";
+    $_SESSION['profilealert'] ="You cannot upload file of this type!";
   }elseif($fileSize > 5*1024*1024){
-    $_SESSION['success'] ="Your file is too big!";
+    $_SESSION['profilealert'] ="Your file is too big!";
     }else{
        $fileNameNew = $username.".".$fileActualExt;
        $fileDestination = 'profilepicture/'.$fileNameNew;

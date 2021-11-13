@@ -34,7 +34,7 @@
                             $num_per_page=03;
                             $start_from = ($page-1)*03;
                         $con = mysqli_connect("localhost","root","","loginadminsystem");
-                        $getactor = "SELECT * FROM wholeceleb WHERE tag='Action' LIMIT $start_from,$num_per_page";
+                        $getactor = "SELECT * FROM wholeceleb WHERE tag='Actor' LIMIT $start_from,$num_per_page";
                         if(isset($_POST['celebname'])){
                                 $category=$_POST['celebname'];                            
                                 $getactor="SELECT * FROM wholeceleb WHERE celebname='$category'";
@@ -72,7 +72,7 @@
                 <div class="paging"> 
                     <label >Page: </label>
                     <?php
-                        $pr_query = "SELECT * FROM wholeceleb WHERE tag='Action'";
+                        $pr_query = "SELECT * FROM wholeceleb WHERE tag='Actor'";
                         $pr_result = mysqli_query($con,$pr_query);
                         $total_record=mysqli_num_rows($pr_result);
 

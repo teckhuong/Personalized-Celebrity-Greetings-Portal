@@ -72,6 +72,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="viewproduct.php">
+                        <span class="icon"><ion-icon name="person-add-outline"></ion-icon></span>
+                        <span class="title">Edit Product</span>
+                    </a>
+                </li>
+                <li>
                     <a href="editwhatsnew.php">
                         <span class="icon"><ion-icon name="person-add-outline"></ion-icon></span>
                         <span class="title">Edit Whats New</span>
@@ -107,13 +113,13 @@
             <div class="header">
   	<h2>Add New Celebrity</h2>
   </div>
-            <form method="post" action="server.php" enctype="multipart/form-data">
+            <form method="post" action="addceleb.php" enctype="multipart/form-data">
             <?php include('errors.php'); ?>
-            <?php if (isset($_SESSION['success'])) : ?>
+            <?php if (isset($_SESSION['addcelebalert'])) : ?>
             <div class="error success" >
                 <?php 
-                    echo $_SESSION['success']; 
-                    // unset($_SESSION['success']);
+                    echo $_SESSION['addcelebalert']; 
+                     unset($_SESSION['addcelebalert']);
                 ?>
             </div>
             <?php endif ?>
