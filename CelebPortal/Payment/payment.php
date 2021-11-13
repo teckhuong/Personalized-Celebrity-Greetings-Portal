@@ -29,7 +29,7 @@
 <body>
 <br><br>
   <div class="header">
-  	<h2>Payment</h2>
+  	<h2>Deposit Payment</h2>
   </div>
   <?php
 	$username = $_SESSION['username'];

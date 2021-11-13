@@ -1,6 +1,5 @@
 <?php 
-  session_start();
-  include_once 'dbh.php'; 
+  include('server.php');
 
   if (!isset($_SESSION['adminid'])) {
   	$_SESSION['msg'] = "You must log in first";
@@ -17,7 +16,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit User Details Page</title>
+    <title>Add New Celebrity</title>
     <link rel="stylesheet" type="text/css" href="adminhome.css">
 </head>
 <body>
@@ -105,64 +104,42 @@
                 </div>
             </div>
             <link rel="stylesheet" type="text/css" href="form.css">
-            <!-- order details list -->
-            <div class="details">
-                <div class="recentOrders">
-                    <div class="header">
-                        <h2>Edit User Details Page</h2>
-                    </div>
-                    <!-- Edit User -->
-                    <?php
-                    $connection = mysqli_connect("localhost","root","","LoginSystem");
-                    if(isset($_POST['edit_btn'])){
-                            $id = $_POST['edit_id'];
-                            
-                            $query = "SELECT * FROM users WHERE id ='$id'";
-                            $query_run = mysqli_query($connection, $query); 
-                            
-                     foreach($query_run as $row){
-                                ?>
-
-                    <form  action="server.php" method="post">   
-                        <input type="hidden" name="edit_id" value="<?php echo $row['id']?>">         
-                    <div class="input-group">
-                        <label >Username</label>
-                        <input type="text" name="edit_username" value="<?php echo $row['username']?>" class="form-control" placeholder ="Enter Username">
-                    </div>
-                    <div class="input-group">
-                        <label >Email</label>
-                        <input type="email" name="edit_email" value="<?php echo $row['email']?>" class="form-control" placeholder ="Enter Username">
-                    </div>
-                    <div class="input-group">
-                        <label >Password</label>
-                        <input type="password" name="edit_password" value="<?php echo $row['password']?>" class="form-control" placeholder ="Enter Username">
-                    </div>
-                    <div class="input-group">
-                        <label >Fullname</label>
-                        <input type="text" name="edit_fullname" value="<?php echo $row['fullname']?>" class="form-control" placeholder ="Enter Username">
-                    </div>
-                    <div class="input-group">
-                        <label >Date Of Birth</label>
-                        <input type="date" name="edit_dob" value="<?php echo $row['dob']?>" class="form-control" placeholder ="Enter Username">
-                    </div>
-                    <br>
-                    <a href="userdatabase.php" class="btn btn-danger"> Cancel </a>
-                    <button type="submit" name="updatebtn" class="btn btn-primary">Update</button>
-
-                    </form>
-
-                    <?php
-
-                            }
-                        }
-                    ?>
-
-                </div>
+            <div class="header">
+  	<h2>Add New Celebrity</h2>
+  </div>
+            <form method="post" action="server.php" enctype="multipart/form-data">
+            <?php include('errors.php'); ?>
+            <?php if (isset($_SESSION['success'])) : ?>
+            <div class="error success" >
+                <?php 
+                    echo $_SESSION['success']; 
+                    // unset($_SESSION['success']);
+                ?>
             </div>
+            <?php endif ?>
+                <div class="input-group">
+                <label>Celebrity Name</label>
+                <input type="text" name="celebname" >
+                </div>
+                <div class="input-group">
+                <label>Celebrity Description</label>
+                <input type="text" name="celebdescrip">
+                </div>
+                <div class="input-group">
+		        <label >Celebrity Picture(Only Jpg format)</label>
+		        <input type="file" name="celebpic">
+	            </div>
+                <div class="input-group">
+                <label>Category</label>
+                <input type="text" name="tag">
+                </div>
+                <div class="input-group">
+                <button type="submit" class="btn" name="celebreg">Register</button>
+                </div>
+            </form>
 
 
-
-        </div>
+            </div>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script>

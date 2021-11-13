@@ -279,7 +279,7 @@ if (isset($_POST['login_user'])) {
   if (empty($agentdoc)) { array_push($errors, "Agent's Date of Contract is required"); }
   
 //   //imagefunction starts here
-   if(!in_array($fileActualExt, $allowed)){
+  if(!in_array($fileActualExt, $allowed)){
     $_SESSION['success'] ="You cannot upload file of this type!";
   }elseif($fileSize > 5*1024*1024){
     $_SESSION['success'] ="Your file is too big!";
@@ -394,4 +394,77 @@ if (isset($_POST['login_user'])) {
       header('location: viewquotation.php');
       
     }
+
+  //Add new Celebrity to all celeb page
+  if(isset($_POST['celebreg'])){
+    $celebname=$_POST['celebname'];
+    $celebdescrip=$_POST['celebdescrip'];
+    $tag=$_POST['tag'];
+    $file = $_FILES['celebpic'];
+
+    $fileName=$file['name'];
+    $fileTmpName = $file['tmp_name'];
+    $fileSize = $file['size'];
+    $fileError = $file['error'];
+    $fileType = $file['type'];
+
+    $fileExt = explode('.', $fileName);
+    $fileActualExt = strtolower(end($fileExt));
+    $allowed = array('jpg');
+
+    if(!in_array($fileActualExt, $allowed)){
+      $_SESSION['success'] ="You cannot upload file of this type!";
+    }elseif($fileSize > 5*1024*1024){
+      $_SESSION['success'] ="Your file is too big!";
+      }else{
+         $fileNameNew = $celebname.".".$fileActualExt;
+         $fileDestination = 'categorypic/'.$fileNameNew;
+         move_uploaded_file($fileTmpName, $fileDestination);
+         //Register agent into database if no error
+          if (count($errors) == 0) {
+            $insertceleb = "INSERT INTO wholeceleb (celebname,celebdescrip,celebpicture,tag) 
+                  VALUES('$celebname','$celebdescrip','$fileDestination','$tag')";
+            mysqli_query($db, $insertceleb);
+            
+            header('location: addceleb.php');
+          }else{
+            echo mysqli_error();
+          }
+        } 
+  }
+
+  //Edit whats new slide picture
+  if(isset($_POST['newsreg'])){
+    $picname = $_POST['picname'];
+    $file = $_FILES['newpic'];
+
+    $fileName=$file['name'];
+    $fileTmpName = $file['tmp_name'];
+    $fileSize = $file['size'];
+    $fileError = $file['error'];
+    $fileType = $file['type'];
+
+    $fileExt = explode('.', $fileName);
+    $fileActualExt = strtolower(end($fileExt));
+    $allowed = array('jpg');
+
+    if(!in_array($fileActualExt, $allowed)){
+      $_SESSION['success'] ="You cannot upload file of this type!";
+    }elseif($fileSize > 5*1024*1024){
+      $_SESSION['success'] ="Your file is too big!";
+      }else{
+         $fileNameNew = $picname.".".$fileActualExt;
+         $fileDestination = 'whatsnew/'.$fileNameNew;
+         move_uploaded_file($fileTmpName, $fileDestination);
+         //Register agent into database if no error
+          if (count($errors) == 0) {
+            $insertnews = "UPDATE whatsnew SET slidename='$picname',slidepicture='$fileDestination'"; 
+            mysqli_query($db, $insertnews);
+            
+            header('location: editwhatsnew.php');
+          }else{
+            echo mysqli_error();
+          }
+        } 
+  }
   ?>

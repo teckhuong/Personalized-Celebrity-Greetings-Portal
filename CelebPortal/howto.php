@@ -20,7 +20,7 @@
                   Celebrity
                </h2>
                <p>
-                  Pick your favourite celebrity from our roster
+                  Pick your favourite celebrity from our Celebrity Categories
                </p>
             </div>
             <div class="content content-2">
@@ -29,16 +29,16 @@
                   Order Form
                </h2>
                <p>
-               Fill in the form correctly which is available next to celebrity
+               Fill in the form with correct information
                </p>
             </div>
             <div class="content content-3">
                <div class="fas fa-envelope"></div>
                <h2>
-                Order Done
+                Order Set
                </h2>
                <p>
-               After ordering please wait for celebrity script acceptance
+               After ordering please wait for quotation from our Admin
                </p>
             </div>
          </div>
@@ -49,7 +49,7 @@
                   Payment
                </h2>
                <p>
-               If confirmed an email will be received with payment link
+               An email quotation will be sent for you to make full payment
                </p>
             </div>
             <div class="content content-5">
@@ -58,7 +58,7 @@
                  Sorry
                </h2>
                <p>
-                If not confirmed an email will be received stating the reason
+                If declined, refund will be given and reason will be stated
                </p>
             </div>
             <div class="content content-6">
@@ -67,7 +67,7 @@
                   Video
                </h2>
                <p>
-               After transaction is confirmed you will receive your video
+               If payment done, video will be available within the given date
                </p>
             </div>
          </div>

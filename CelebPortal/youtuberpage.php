@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
-        <title>TikTokStars</title>
+        <title>Youtuber</title>
         <?php include "header.php";?>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,92 +11,83 @@
         <body>
             <section  class="secondrow">
         <div class="pagetitle">
-                    <h1><span class="fab fa-youtube"></span> Youtubers</h1>
+                    <h1><span class="fab fa-youtube"></span> Youtuber</h1>
             </div>
             <div class="container">
+            <div class="filtercontainer">
+                <form action="" method="POST">            
+                <div class="filter">
+                        <input type="text" name="celebname" placeholder="Type Celebrity Name here">
+                        <button type="submit">Apply</button>
+                </div>
+                </form>
+                </div>
                 <!-- image row start -->
                 <div class="row">
+                        <?php
+                        if(isset($_GET['page'])){
+                                $page=$_GET['page'];
+                            }
+                            else{
+                                $page = 1;
+                            }
+                            $num_per_page=03;
+                            $start_from = ($page-1)*03;
+                        $con = mysqli_connect("localhost","root","","loginadminsystem");
+                        $getyoutuber = "SELECT * FROM wholeceleb WHERE tag='Youtuber' LIMIT $start_from,$num_per_page";
+                        if(isset($_POST['celebname'])){
+                                $category=$_POST['celebname'];                            
+                                $getyoutuber="SELECT * FROM wholeceleb WHERE celebname='$category'";
+                        }
+                        $result = mysqli_query($con,$getyoutuber);
+                        if(mysqli_num_rows($result)>0){
+                                while($row=mysqli_fetch_assoc($result)){
+                        ?>
                     <!-- image start -->
                     <div class="cimage">
-                            <img src="youtuberimage/laowu/laowu.png" alt="">
+                            <img src="Admin/<?php echo $row['celebpicture']?>" alt="">
                             <div class="details">
-                                <h2>LAO WU</h2>
-                                <p>Youtuber who has been around for 10 years. mjor on streaming video games</p>
+                                <h2><?php echo $row['celebname']?></h2>
+                                <p><?php echo $row['celebdescrip']?></p>
                                 <div class="more">
-                                        <a href="#" class="read-more">Bring me there</a>
+                                    <form action="celebprofile.php" method="POST">
+                                    <input type="hidden" name="celebname" value="<?php echo $row['celebname']?>">
+                                    <button name="bring">Bring me there</button>
+                                        <!-- <a href="#" class="read-more">Bring me there</a> -->
+                                    </form>
                                 </div>
                                 <div class="icon-links">
                                         <a href="#"></a>
                                 </div>
                             </div>
                     </div>
-                    <!-- image end -->
-                    <!-- image start -->
-                    <div class="cimage">
-                            <img src="youtuberimage/laowu/laowu.png" alt="">
-                            <div class="details">
-                                <h2>LAO WU</h2>
-                                <p>Youtuber who has been around for 10 years. mjor on streaming video games</p>
-                                <div class="more">
-                                        <a href="#" class="read-more">Bring me there</a>
-                                </div>
-                                <div class="icon-links">
-                                        <a href="#"></a>
-                                </div>
-                            </div>
-                    </div>
-                    <!-- image end -->
-                    <!-- image start -->
-                    <div class="cimage">
-                            <img src="youtuberimage/laowu/laowu.png" alt="">
-                            <div class="details">
-                                <h2>LAO WU</h2>
-                                <p>Youtuber who has been around for 10 years. mjor on streaming video games</p>
-                                <div class="more">
-                                        <a href="#" class="read-more">Bring me there</a>
-                                </div>
-                                <div class="icon-links">
-                                        <a href="#"></a>
-                                </div>
-                            </div>
-                    </div>
-                    <!-- image end -->
-                    <!-- image start -->
-                    <div class="cimage">
-                            <img src="youtuberimage/laowu/laowu.png" alt="">
-                            <div class="details">
-                                <h2>LAO WU</h2>
-                                <p>Youtuber who has been around for 10 years. mjor on streaming video games</p>
-                                <div class="more">
-                                        <a href="#" class="read-more">Bring me there</a>
-                                </div>
-                                <div class="icon-links">
-                                        <a href="#"></a>
-                                </div>
-                            </div>
-                    </div>
-                    <!-- image end -->
-                    <!-- image start -->
-                    <div class="cimage">
-                            <img src="youtuberimage/laowu/laowu.png" alt="">
-                            <div class="details">
-                                <h2>LAO WU</h2>
-                                <p>Youtuber who has been around for 10 years. mjor on streaming video games</p>
-                                <div class="more">
-                                        <a href="#" class="read-more">Bring me there</a>
-                                </div>
-                                <div class="icon-links">
-                                        <a href="#"></a>
-                                </div>
-                            </div>
-                    </div>
-                    <!-- image end -->
+                    <?php 
+                    }
+                        }else{
+			        echo "<h4>No Result Found</h4>"; 
+                            } 
+                    ?>
+                    <!-- image end -->                    
+                </div>
+                <div class="paging"> 
+                    <label >Page: </label>
+                    <?php
+                        $pr_query = "SELECT * FROM wholeceleb WHERE tag='Youtuber'";
+                        $pr_result = mysqli_query($con,$pr_query);
+                        $total_record=mysqli_num_rows($pr_result);
+
+                        $total_page = ceil($total_record/$num_per_page+1);
+
+                        for($i=1;$i<$total_page;$i++){
+                            echo "<a href='youtuberpage.php?page=".$i."'class='number'>$i</a>";
+                        }
+                    ?>
                 </div>
 
             </div>
             </section>
             <!-- footer -->
-            <section class="d-flex-r justify-content-space-around p-1 bg-grey" id="social">
+        <section class="d-flex-r justify-content-space-around p-1 bg-grey" id="social">
         <ul class="footerforhome d-flex-c" id="footer">
             <p class="wsnc">For more: </p>
             <li class="rnc"><a href="#" >Request New Celebrity</a></li>

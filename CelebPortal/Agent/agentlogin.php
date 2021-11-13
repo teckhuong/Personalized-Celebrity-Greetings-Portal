@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login Page</title>
+  <title>Agent Login Page</title>
   <link rel="stylesheet" type="text/css" href="styleadmin.css">
 </head>
 <body>
   <div class="header">
-  	<h2>Login</h2>
+  	<h2>Agent Login</h2>
   </div>
             <form method="post" action="server.php">                
                 <div class="input-group">

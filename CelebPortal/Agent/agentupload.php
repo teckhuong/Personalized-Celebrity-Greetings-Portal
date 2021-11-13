@@ -16,7 +16,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agent Homepage</title>
+    <title>Choose Quotation</title>
     <link rel="stylesheet" type="text/css" href="agenthome.css">
 </head>
 <body>    
@@ -98,7 +98,7 @@
             <div class="details">
                 <div class="recentOrders">
                     <div class="cardHeader">
-                        <h2>Quotation Form</h2>
+                        <h2>Choose Quotation to Upload Video</h2>
                     </div>
                     <table>
                         <thead>

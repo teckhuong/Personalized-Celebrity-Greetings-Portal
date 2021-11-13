@@ -81,12 +81,28 @@
             <!-- Show notification -->
             <div class="cardBox">
                 <div class="card">
+                <?php
+                        $temp = $_SESSION['agentid'];
+                        $connectagent = mysqli_connect("localhost","root","","agentdatabase");
+                        $getcelebname = "SELECT * FROM agentprofiledetail WHERE username='$temp'";
+                        $query_run= mysqli_query($connectagent,$getcelebname);
+                        
+                        foreach($query_run as $row){
+                            $celebname = $row['celebname'];
+                            $connection = mysqli_connect("localhost","root","","loginadminsystem");
+
+                            $sql = "SELECT count(id) AS total FROM completedorder WHERE status='Completed' AND celebrity='$celebname' AND agentstatus='Accepted'";
+                            $result=mysqli_query($connection, $sql);
+                            $values = mysqli_fetch_assoc($result);
+                            $num_rows=$values['total'];  
+                        }                        
+                    ?>
                     <div>
-                        <div class="numbers">1,504</div>
-                        <div class="cardName">Daily Views</div>
+                        <div class="numbers"><?php echo $num_rows; ?></div>
+                        <div class="cardName">Total Order</div>
                     </div>
                     <div class="iconBx">
-                        <ion-icon name="eye-outline"></ionicon>
+                        <ion-icon name="document-outline"></ionicon>
                     </div>
                 </div>
                 <div class="card">
@@ -116,23 +132,32 @@
                     </div>
                 </div>
                 <div class="card">
+                <?php
+                        $temp = $_SESSION['agentid'];
+                        $connectagent = mysqli_connect("localhost","root","","agentdatabase");
+                        $getcelebname = "SELECT * FROM agentprofiledetail WHERE username='$temp'";
+                        $query_run= mysqli_query($connectagent,$getcelebname);
+                        
+                        foreach($query_run as $row){
+                            $celebname = $row['celebname'];
+                            $connection = mysqli_connect("localhost","root","","loginadminsystem");
+
+                            $sql = "SELECT count(id) AS total FROM finalquotation WHERE status='Paid' AND celebrity='$celebname' AND vidstatus='Done'";
+                            $result=mysqli_query($connection, $sql);
+                            $values = mysqli_fetch_assoc($result);
+                            $num_rows=$values['total'];  
+                        }
+                                               
+                    ?>
                     <div>
-                        <div class="numbers">284</div>
-                        <div class="cardName">Comments</div>
+                        <div class="numbers"><?php echo $num_rows; ?></div>
+                        <div class="cardName">Order Fully Completed</div>
                     </div>
                     <div class="iconBx">
-                        <ion-icon name="chatbubbles-outline"></ionicon>
+                        <ion-icon name="document-outline"></ionicon>
                     </div>
                 </div>
-                <div class="card">
-                    <div>
-                        <div class="numbers">$7,842</div>
-                        <div class="cardName">Earnings</div>
-                    </div>
-                    <div class="iconBx">
-                        <ion-icon name="cash-outline"></ionicon>
-                    </div>
-                </div>
+                
                 
             </div>
                             

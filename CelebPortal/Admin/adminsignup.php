@@ -7,7 +7,7 @@
 </head>
 <body>
   <div class="header">
-  	<h2>Register</h2>
+  	<h2>Admin Register</h2>
   </div>
   <form method="post" action="adminsignup.php" enctype="multipart/form-data">
   	<?php include('errors.php'); ?>

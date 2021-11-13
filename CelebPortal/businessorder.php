@@ -14,7 +14,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
-        <title>Business Order page</title>
+        <title>Order page</title>
         <?php include "header.php";?>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,13 +36,12 @@
             }
     ?>
         <section class="orderow">
-            <h2>Order page (Business)</h2>
+            <h2>Order Form</h2>
             <div class="form-container">
             <form action="orderserver.php" method="POST">
                 <?php include('errors.php'); ?>
                 <input type="hidden" name="useremail" value="<?php echo $useremail ?>"/> 
                 <input type="hidden" name="username" value="<?php echo $_SESSION['username']; ?>" />
-                <input type="hidden" name="celebemail" value="<?php echo $celebemail ?>"/> 
                 <input type="hidden" name="celebname" value="<?php echo $celebname ?>"/> 
                 <div class="wrapper">
                     <div class="one">
@@ -62,20 +61,6 @@
 			            echo "<option value='Others'>Others</option>";
 		                echo "</select><br/>";
                     }
-                    if(isset($_POST["personal"])) {
-                        $type = "Personal";
-                        echo "<label for='purpose'>Category: <br/></label>";
-                        echo "<select name='purpose' id='purpose'>";
-			            echo "<option value=''>Choose Category</option>";
-			            echo "<option value='Birthday'>Birthday</option>";
-			            echo "<option value='Father\'s Day'>Father's Day</option>";
-			            echo "<option value='Debut'>Debut</option>";
-			            echo "<option value='Wedding'>Wedding</option>";
-			            echo "<option value='Anniversary'>Anniversary</option>";
-                        echo "<option value='Holiday'>Holiday</option>";
-                        echo "<option value='Others'>Others</option>";
-		                echo "</select><br/>";
-                    }
                 ?>
                     </div>
                 
@@ -86,11 +71,11 @@
                     <label>From Who?:<br/>  </label><input type="text" name="sender" /><br/>
                     </div>
                     <div class="four">
-                    <label>What do you want <?php // echo $celebname ?> to do?<br/> </label>
+                    <label>What do you want <?php  echo $celebname ?> to do?<br/> </label>
 		            <textarea name="instruction" id="instruction" rows="3" cols="70" placeholder="Enter your instruction here."></textarea><br/>
                     </div>
                     <div class="five">
-                    <label >What are the details you want <?php // echo $celebname ?> to know? (Optional)<br/></label>
+                    <label >What are the details you want <?php  echo $celebname ?> to know? (Optional)<br/></label>
                     <textarea name="details" id="details" rows="3" cols="70" placeholder="Write here."></textarea><br/>
                     </div>
                     <div class="six">

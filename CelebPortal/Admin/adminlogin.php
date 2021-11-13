@@ -7,7 +7,7 @@
 </head>
 <body>
   <div class="header">
-  	<h2>Login</h2>
+  	<h2>Admin Login</h2>
   </div>
   <form method="post" action="adminlogin.php">
   	<?php include('errors.php'); ?>

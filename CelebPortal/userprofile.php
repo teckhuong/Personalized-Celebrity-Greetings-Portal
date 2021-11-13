@@ -15,7 +15,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <title>CelebPortalHomepage</title>
+    <title>User Profile Page</title>
     <?php include "header.php";?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

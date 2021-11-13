@@ -16,7 +16,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Homepage</title>
+    <title>Agent Register</title>
     <link rel="stylesheet" type="text/css" href="adminhome.css">
 </head>
 <body>
@@ -60,7 +60,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="addceleb.php">
                         <span class="icon"><ion-icon name="document-outline"></ion-icon></span>
                         <span class="title">Add New Product</span>
                     </a>
@@ -69,6 +69,12 @@
                     <a href="agentregister.php">
                         <span class="icon"><ion-icon name="person-add-outline"></ion-icon></span>
                         <span class="title">Add New Agent</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="editwhatsnew.php">
+                        <span class="icon"><ion-icon name="person-add-outline"></ion-icon></span>
+                        <span class="title">Edit Whats New</span>
                     </a>
                 </li>
                 <li>

@@ -1,6 +1,7 @@
 /*start CelebrityProfile.php css */
 html,body{
     overflow:auto;
+    background-color: grey;
 }
 
 *{
@@ -161,7 +162,6 @@ section {
 }
 
 .orderow h2 {
-    padding-right: 50px;
     text-align: center;
 }
 
@@ -172,15 +172,14 @@ section {
     grid-auto-rows: minmax(80px, auto);
     grid-auto-columns: auto;
     position: relative;
-    padding-top: 20px;
-    padding-left: 30px;
+    padding:30px;
     text-align: center;
     -webkit-appearance: none;
 }
 
 .one {
-    padding-left: 10px;
-    grid-column: 5/8;
+    /* padding-left: 10px; */
+    grid-column: 5/9;
     grid-row: 1/1;
 }
 .two {
@@ -201,20 +200,22 @@ section {
     grid-row: 4/4;
 }
 .six {
-    padding-left: 10px;
-    grid-column: 5/8;
+    /* padding-left: 10px; */
+    grid-column: 5/9;
     grid-row: 5/5;
 }
 .seven {
-    grid-column: 4/9;
+    grid-column: 6/8;
     grid-row: 6/6;
 }
 
 select {
     width: 100%;
     height: 30px;
-    border: 1px solid #aed6f1;
+    border: 1px solid #5b5b5c;
     font-weight: bold;
+    background-color: rgb(156, 156, 156);
+    border-radius: 25px;
 }
 
 select:focus {
@@ -229,8 +230,10 @@ select:focus {
 .form-container input {
     width: 100%;
 	height: 30px;
-	border: 1px solid #aed6f1;
+	border: 1px solid #5b5b5c;
 	-webkit-appearance: none;
+    background-color: rgb(156, 156, 156);
+    border-radius: 25px;
 }
 
 .form-container input[type=text]:focus {
@@ -238,13 +241,19 @@ select:focus {
 	background-color: #c1d5e0;
 	-webkit-appearance: none;
 	color: black;
+    background-color: rgb(156, 156, 156);
+    border-radius: 25px;
 }	
 
 textarea {
 	width: 100%;
 	-webkit-appearance: none;
 	height: 100px;
-	border: 1px solid #aed6f1;
+	border: 1px solid #5b5b5c;
+    background-color: rgb(156, 156, 156);
+    border-radius: 25px;
+    padding: 10px;
+    font-size: 1rem;
 }
 
 textarea:focus {
@@ -259,8 +268,8 @@ textarea:focus {
 	height: 50px;
 	font-size: 20px;
 	background-color: black;
-	-webkit-appearance: none;
-	
+	-webkit-appearance: none;	
+    border-radius: 25px;
 }
 
 .businessorder:hover {

@@ -10,7 +10,7 @@ html,body{
 .pagetitle{
     margin-left: 25%;
     text-align: center;
-    height: 120px;
+    height: 70px;
     width: 50%;
     margin-top: 30px;
     border-radius: 5px;
@@ -24,14 +24,44 @@ html,body{
     font-weight: 800;
     letter-spacing: 2px;
     line-height: 60px;
-    margin-top: 30px;
-    padding-top: 30px;
+}
+.filtercontainer{
+    margin-left: 25%;
+    margin-top: 20px;
+    width: 50%;
+    text-align: center;
+    border-radius: 5px;
+    padding: 15px;
+}
+.filter input{    
+    background-color: whitesmoke;
+    box-shadow: 0 0 5px black,
+                0 0 5px black;
+    border-radius: 10px;
+    padding-left: 5px;
+    font-size: 20px;
+}
+.filter button{
+    padding: 5px;
+    margin-left: 10px;
+    font-size: 13px;
+    border-radius: 10px;
+}
+.paging{
+    text-align: center;
+    background-color: rgb(88, 86, 86);
+    height: 30px;
+    padding: 10px;
+    width: auto;
+    color: whitesmoke;
+}
+.number{
+    margin-right: 20px;
 }
 .secondrow{
     background: grey;
-    margin-top: 30px;
+    margin-top: 1.75%;
     padding-top: 30px;
-    
 }
 .container{
     margin: 0px;
@@ -242,4 +272,17 @@ p{
     border-radius: 5px;
     box-shadow: 0 0 5px#33ffff,
                 0 0 5px#66ffff;
+}
+/* youtuberpage/singer/action css */
+.more button{
+    color: black;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: center;
+    margin-left: 115px;
+    border: transparent;
+    cursor: pointer;
+    background-color: transparent;
 }

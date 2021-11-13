@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <title>CelebPortalHomepage</title>
+    <title>Homepage</title>
     <?php include "header.php";?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,19 +38,19 @@
                             <input type="radio" name="radio-btn" id="radio3">
                             <input type="radio" name="radio-btn" id="radio4">
                         <!-- End of radio button -->
-                        <!-- Start of images -->
+                        <!-- Start of images -->                        
                         <div class="slide first">
-                            <img src="youtuberimage/laowu/News.png">
+                            <img src="Admin/whatsnew/slide1.jpg">
                         </div>
                         <div class="slide">
-                            <img src="youtuberimage/laowu/News.png" alt="">
+                            <img src="Admin/whatsnew/slide2.jpg" >
                         </div>
                         <div class="slide">
-                            <img src="youtuberimage/laowu/News.png" alt="">
+                            <img src="Admin/whatsnew/slide3.jpg" >
                         </div>
                         <div class="slide">
-                            <img src="youtuberimage/laowu/News.png" alt="">
-                        </div>
+                            <img src="Admin/whatsnew/slide4.jpg" >
+                        </div>                       
                         <!-- End of Image -->
                         <!-- Auto Nav -->
                         <div class="navigation-auto">
@@ -92,51 +92,38 @@
         <div class="container">
             <!-- image row start -->
             <div class="row">
+                <?php
+                    $con = mysqli_connect("localhost","root","","loginadminsystem");
+                    $getlatest = "SELECT * FROM wholeceleb ORDER BY id DESC LIMIT 3";
+                    $result = mysqli_query($con,$getlatest);
+                        if(mysqli_num_rows($result)>0){
+                                while($row=mysqli_fetch_assoc($result)){                        
+                ?>
                 <!-- image start -->
                 <div class="cimage">
-                        <img src="youtuberimage/laowu/laowu.png" alt="">
+                        <img src="Admin/<?php echo $row['celebpicture']?>" alt="">
                         <div class="details">
-                            <h2>LAO WU</h2>
-                            <p>Youtuber who has been around for 10 years. mjor on streaming video games</p>
+                            <h2><?php echo $row['celebname']?></h2>
+                            <p><?php echo $row['celebdescrip']?></p>
                             <div class="more">
-                                    <a href="#" class="read-more">Bring me there</a>
+                                <form action="celebprofile.php" method="POST">
+                                    <input type="hidden" name="celebname" value="<?php echo $row['celebname']?>">
+                                    <button name="bring">Bring me there</button>
+                                        <!-- <a href="#" class="read-more">Bring me there</a> -->
+                                </form>
                             </div>
                             <div class="icon-links">
                                     <a href="#"></a>
                             </div>
                         </div>
                 </div>
-                <!-- image end -->
-                <!-- image start -->
-                <div class="cimage">
-                        <img src="youtuberimage/laowu/laowu.png" alt="">
-                        <div class="details">
-                            <h2>LAO WU</h2>
-                            <p>Youtuber who has been around for 10 years. mjor on streaming video games</p>
-                            <div class="more">
-                                    <a href="#" class="read-more">Bring me there</a>
-                            </div>
-                            <div class="icon-links">
-                                    <a href="#"></a>
-                            </div>
-                        </div>
-                </div>
-                <!-- image end -->
-                <!-- image start -->
-                <div class="cimage">
-                        <img src="youtuberimage/laowu/laowu.png" alt="">
-                        <div class="details">
-                            <h2>LAO WU</h2>
-                            <p>Youtuber who has been around for 10 years. mjor on streaming video games</p>
-                            <div class="more">
-                                    <a href="#" class="read-more">Bring me there</a>
-                            </div>
-                            <div class="icon-links">
-                                    <a href="#"></a>
-                            </div>
-                        </div>
-                </div>
-                <!-- image end -->
+                <?php 
+                    }
+                        }else{
+			        echo "<h4>No Result Found</h4>"; 
+                            } 
+                    ?>
+                <!-- image end -->                
             </div>
 
         </div>

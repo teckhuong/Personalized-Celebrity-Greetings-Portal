@@ -16,7 +16,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agent Homepage</title>
+    <title>View Accepted Orders</title>
     <link rel="stylesheet" type="text/css" href="agenthome.css">
 </head>
 <body>    
@@ -85,7 +85,7 @@
             <div class="details">
                 <div class="recentOrders">
                     <div class="header">
-                        <h2>Order Details Page</h2>
+                        <h2>Order Details</h2>
                     </div>
                     <!-- Edit User -->
                     <?php
@@ -100,31 +100,31 @@
                                 ?>
 
                     <form  action="server.php" method="post">   
-                        <input type="hidden" name="edit_id" value="<?php echo $row['id']?>">         
+                        <input type="hidden" name="edit_id" value="<?php echo $row['id']?>" readonly>          
                     <div class="input-group">
                         <label >Order ID</label>
-                        <input type="text" name="edit_orderid" value="<?php echo $row['orderid']?>" class="form-control" placeholder ="Enter Username">
+                        <input type="text" name="edit_orderid" value="<?php echo $row['orderid']?>" class="form-control" placeholder ="Enter Username" readonly>
                     </div>
                     <div class="input-group">
                         <label >Category</label>
-                        <input type="text" name="edit_purpose" value="<?php echo $row['purpose']?>" class="form-control" placeholder ="Enter Username">
+                        <input type="text" name="edit_purpose" value="<?php echo $row['purpose']?>" class="form-control" placeholder ="Enter Username" readonly>
                     </div>
                     <div class="input-group">
                         <label >To Who</label>
-                        <input type="text" name="edit_recipient" value="<?php echo $row['recipient']?>" class="form-control" placeholder ="Enter Username">
+                        <input type="text" name="edit_recipient" value="<?php echo $row['recipient']?>" class="form-control" placeholder ="Enter Username" readonly>
                     </div>
                     <div class="input-group">
                         <label >From Who</label>
-                        <input type="text" name="edit_sender" value="<?php echo $row['sender']?>" class="form-control" placeholder ="Enter Username">
+                        <input type="text" name="edit_sender" value="<?php echo $row['sender']?>" class="form-control" placeholder ="Enter Username" readonly>
                     </div>                    
                     <div class="input-group">
                         <label >What to do?</label>
-                        <input type="hidden"  name="edit_instruction" value="<?php echo $row['instruction']?>" class="form-control" >
+                        <input type="hidden"  name="edit_instruction" value="<?php echo $row['instruction']?>" class="form-control" readonly>
                         <p  allign="justify" ><?php echo nl2br($row['instruction']);?></p>
                     </div>
                     <div class="input-group">
                         <label >What are the Details?</label>
-                        <input type="hidden"  name="edit_details" value="<?php echo $row['details']?>" class="form-control" >
+                        <input type="hidden"  name="edit_details" value="<?php echo $row['details']?>" class="form-control" readonly>
                         <p  allign="justify" ><?php echo nl2br($row['details']);?></p>
                     </div>
                     </form>
