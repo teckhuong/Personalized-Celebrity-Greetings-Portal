@@ -22,6 +22,8 @@
   	<div class="input-group">
   		<button type="submit" class="btn" name="login_user">Login</button>
   	</div>
+		<br>
+	<div style="font-size: 0.8em; text-align: center;"><a href="forgetpassword.php">Forgot Password?</a></div>
   	<!-- <p>
   		Not yet a member? <a href="adminsignup.php">Sign up</a>
   	</p> -->

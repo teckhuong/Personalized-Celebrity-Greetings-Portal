@@ -158,88 +158,91 @@ if (isset($_POST['login_user'])) {
     
   }
 
-  /*
-  Accept email of user whose password is to be reset
-  Send email to user to reset their password
-  */
-
-if (isset($_POST['reset-password'])) {
+                //RESET PASSWORD STARTS HERE
+//Check email exist or not then send code to user input email
+if (isset($_POST['check-email'])) {
   $email = mysqli_real_escape_string($db, $_POST['email']);
-  // ensure that the user exists on our system
-  $query = "SELECT email FROM users WHERE email='$email'";
-  $results = mysqli_query($db, $query);
-
-  if (empty($email)) {
-    array_push($errors, "Your email is required");
-  }else if(mysqli_num_rows($results) <= 0) {
-    array_push($errors, "Sorry, no user exists on our system with that email");
-  }
-  // generate a unique random token of length 100
-  $token = bin2hex(random_bytes(50));
-
-  if (count($errors) == 0) {
-    // store token in the password-reset database table against the user's email
-    $sql = "INSERT INTO password_resets(email, token) VALUES ('$email', '$token')";
-    $results = mysqli_query($db, $sql);
-    // Send email to user with the token in a link they can click on
-    try{
-      $mail->isSMTP();
-      $mail->Host = 'smtp.gmail.com';
-      $mail->SMTPAuth = true;
-      $mail->Username = 'phptesting2@gmail.com'; // Gmail address which you want to use as SMTP server
-      $mail->Password = 'Qwerty@111'; // Gmail address Password
-      $mail->SMTPSecure = 'ssl';
-      $mail->Port = '465';
-
-      $mail->setFrom('phptesting2@gmail.com'); // Gmail address which you used as SMTP server
-      $mail->addAddress($email); 
-
-      $mail->isHTML(true);                                  
-      $mail->Subject = 'Reset your password on examplesite.com';
-      $mail->Body    = "Hi there, click on this <a href=\"new_pass.php?token=" . $token . "\">link</a> to reset your password on our site";
-
-      $mail->send();      
+  $check_email = "SELECT * FROM users WHERE email='$email'";
+  $run_sql = mysqli_query($db, $check_email);
+  if(mysqli_num_rows($run_sql) > 0){
+  $code = rand(999999, 111111);
+  $insert_code = "UPDATE users SET code = $code WHERE email = '$email'";
+  $run_query =  mysqli_query($db, $insert_code);
+      if($run_query){
+        try{
+          $mail->isSMTP();
+          $mail->Host = 'smtp.gmail.com';
+          $mail->SMTPAuth = true;
+          $mail->Username = 'phptesting2@gmail.com'; // Gmail address which you want to use as SMTP server
+          $mail->Password = 'Qwerty@111'; // Gmail address Password
+          $mail->SMTPSecure = 'ssl';
+          $mail->Port = '465';
     
-    header('location: pending.php?email=' . $email);
-    } catch (Exception $e){
-      $alert = '<div class="alert-error">
-                  <span>Something Went wrong</span>
-                </div>';
-    }
-    // Send email to user with the token in a link they can click on
-    // $to = $email;
-    // $subject = "Reset your password on examplesite.com";
-    // $msg = "Hi there, click on this <a href=\"new_password.php?token=" . $token . "\">link</a> to reset your password on our site";
-    // $msg = wordwrap($msg,70);
-    // $headers = "From: phptesting2@gmail.com";
-    // mail($to, $subject, $msg, $headers);
-    // header('location: pending.php?email=' . $email);
+          $mail->setFrom('phptesting2@gmail.com'); // Gmail address which you used as SMTP server
+          $mail->addAddress($email); 
+    
+          $mail->isHTML(true);                                  
+          $mail->Subject = 'Password Reset Code';
+          $mail->Body    = "Your password reset code is $code";
+          $info = "We've sent a password reset otp to your email - $email";
+          $_SESSION['info'] = $info;
+          $_SESSION['email'] = $email;
+          $mail->send();      
+        
+          header('location: reset-code.php');
+        } catch (Exception $e){
+          $alert = '<div class="alert-error">
+                      <span>Something Went wrong</span>
+                    </div>';
+        }
+          }else{
+              $errors['db-error'] = "Something went wrong!";
+            }
+    }else{
+        $errors['email'] = "This email address does not exist!";
+      }
+}
+//check whether the otp that sent is matching with the database otp
+if (isset($_POST['check-reset-otp'])) {
+  $_SESSION['info'] = "";
+        $otp_code = mysqli_real_escape_string($db, $_POST['otp']);
+        $check_code = "SELECT * FROM users WHERE code = $otp_code";
+        $code_res = mysqli_query($db, $check_code);
+        if(mysqli_num_rows($code_res) > 0){
+            $fetch_data = mysqli_fetch_assoc($code_res);
+            $email = $fetch_data['email'];
+            $_SESSION['email'] = $email;
+            $info = "Please create a new password that you don't use on any other site.";
+            $_SESSION['info'] = $info;
+            header('location: new-password.php');
+            exit();
+        }else{
+            $errors['otp-error'] = "You've entered incorrect code!";
+        }
+}
+//check both password that was input is matched or not then insert to database and reset code to 0
+if(isset($_POST['change-password'])){
+  $_SESSION['info'] = "";
+  $password = mysqli_real_escape_string($db, $_POST['password']);
+  $cpassword = mysqli_real_escape_string($db, $_POST['cpassword']);
+  if($password !== $cpassword){
+      $errors['password'] = "Confirm password not matched!";
+  }else{
+      $code = 0;
+      $email = $_SESSION['email']; //getting this email using session
+      $encpass = md5($password);
+      $update_pass = "UPDATE users SET code = $code, password = '$encpass' WHERE email = '$email'";
+      $run_query = mysqli_query($db, $update_pass);
+      if($run_query){
+          $info = "Your password changed. Now you can login with your new password.";
+          $_SESSION['info'] = $info;
+          header('Location: password-changed.php');
+      }else{
+          $errors['db-error'] = "Failed to change your password!";
+      }
   }
 }
-
-// ENTER A NEW PASSWORD
-if (isset($_POST['new_password'])) {
-  $new_pass = mysqli_real_escape_string($db, $_POST['new_pass']);
-  $new_pass_c = mysqli_real_escape_string($db, $_POST['new_pass_c']);
-
-  // Grab to token that came from the email link
-  $token = $_SESSION['token'];
-  if (empty($new_pass) || empty($new_pass_c)) array_push($errors, "Password is required");
-  if ($new_pass !== $new_pass_c) array_push($errors, "Password do not match");
-  if (count($errors) == 0) {
-    // select email address of user from the password_reset table 
-    $sql = "SELECT email FROM password_reset WHERE token='$token' LIMIT 1";
-    $results = mysqli_query($db, $sql);
-    $email = mysqli_fetch_assoc($results)['email'];
-
-    if ($email) {
-      $new_pass = md5($new_pass);
-      $sql = "UPDATE users SET password='$new_pass' WHERE email='$email'";
-      $results = mysqli_query($db, $sql);
-      header('location: homepage.php');
-    }
-  }
-} 
+                //^^ RESET PASSWORD ENDS HERE ^^
 
 //upload image in userprofile
 if(isset($_FILES['profilepic'])){

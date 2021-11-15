@@ -37,7 +37,7 @@
   		Not yet a member? <a href="userSignup.php">Sign up</a>
   	</p>
 	  <br>
-	  <div style="font-size: 0.8em; text-align: center;"><a href="enter_email.php">Forgot Password?</a></div>
+	  <div style="font-size: 0.8em; text-align: center;"><a href="forgetpassword.php">Forgot Password?</a></div>
   </form>
 </body>
 </html>

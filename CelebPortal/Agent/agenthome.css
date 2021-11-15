@@ -292,3 +292,56 @@ body{
     font-size: 14px;
     font-weight: 500;
 }
+
+/* forget password css */
+
+.fpcontainer{
+    text-align: center;
+    margin-top: 10%;
+    margin-left: 30%;
+    margin-right: 30%;
+  }
+  .fpcontainer .fpform{
+    padding: 20px;
+    background: var(--blue);
+    border-radius: 5px;
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .fpcontainer .fpform input{
+    width: 90%;
+  }
+  .fpcontainer .fpform form .fpform-control{
+    height: 40px;
+    font-size: 15px;
+  }
+  .fpcontainer .fpform form .forget-pass{
+    margin: -15px 0 15px 0;
+  }
+  .fpcontainer .fpform form .forget-pass a{
+   font-size: 15px;
+  }
+  .fpcontainer .fpform form .button{
+    margin: 5px;
+    background: var(--black1);
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    width: 50%;
+  }
+  .fpcontainer .fpform form .button:hover{
+    background: rgb(122, 121, 121);
+  }
+  .fpcontainer .fpform form .link{
+    padding: 5px 0;
+  }
+  .fpcontainer .fpform form .link a{
+    color: #6665ee;
+  }
+  .fpcontainer .login-form form p{
+    font-size: 14px;
+  }
+  .fpcontainer .fprow .alert{
+    font-size: 14px;
+  }

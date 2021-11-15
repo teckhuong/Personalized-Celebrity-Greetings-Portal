@@ -27,6 +27,10 @@
   	  <label>Full Name</label>
   	  <input type="text" name="fullname">
   	</div>
+	<div class="input-group">
+  	  <label>Email</label>
+  	  <input type="email" name="email" value="<?php echo $email; ?>">
+  	</div>
   	<div class="input-group">
   	  <label>Password</label>
   	  <input type="password" name="password_1">
