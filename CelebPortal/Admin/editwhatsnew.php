@@ -115,10 +115,10 @@
   </div>
             <form method="post" action="server.php" enctype="multipart/form-data">
             <?php include('errors.php'); ?>
-            <?php if (isset($_SESSION['success'])) : ?>
+            <?php if (isset($_SESSION['slide'])) : ?>
             <div class="error success" >
                 <?php 
-                    echo $_SESSION['success']; 
+                    echo $_SESSION['slide']; 
                     // unset($_SESSION['success']);
                 ?>
             </div>

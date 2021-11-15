@@ -74,7 +74,7 @@
 
         $query = "SELECT * FROM finalquotation WHERE markup='Yes' AND useremail='$useremail'";
         $query_run = mysqli_query($connection, $query);
-        $getorder = "SELECT * FROM completedorder WHERE useremail='$useremail' AND agentstatus='Accepted' AND markup=''";
+        $getorder = "SELECT * FROM completedorder WHERE useremail='$useremail' AND agentstatus='Accepted'";
         $query_runsec = mysqli_query($connection,$getorder);
         $getcompletedquot = "SELECT * FROM finalquotation WHERE useremail='$useremail' AND status='Paid'";
         $query_runthir = mysqli_query($connection,$getcompletedquot);
@@ -121,7 +121,7 @@
         </div>
         <div class="midside">
             <div class="pordertitle">
-                <h2>Your Pending Orders Status</h2>            
+                <h2>Order Status(Accepted/Decline)</h2>            
             </div>
             <table>
                 <thead>
