@@ -17,7 +17,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Order page</title>
+    <title>Fliter Order page</title>
     <link rel="stylesheet" type="text/css" href="adminhome.css">
 </head>
 <body>
@@ -114,7 +114,7 @@
             <div class="details">
                 <div class="recentOrders">
                     <div class="header">
-                        <h2>Edit Order Details Page</h2>
+                        <h2>Fliter Order Page</h2>
                     </div>
                     <!-- Edit User -->
                     <?php
@@ -129,7 +129,7 @@
                     <form  action="server.php" method="post">   
                         <input type="hidden" name="edit_id" value="<?php echo $row['Old']?>">
                     <div class="input-group">
-                        <label >Order Status</label>
+                        <label >Fliter Order</label>
                             <select name="edit_status" id="purpose">
                                 <option value="Completed">Completed</option>
                                 <option value="Dummy">Dummy Message</option>

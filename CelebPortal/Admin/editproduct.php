@@ -129,7 +129,7 @@
                      foreach($query_run as $row){
                     ?>
                     <form  action="server.php" method="POST" enctype="multipart/form-data">   
-                        <input type="text" name="edit_id" value="<?php echo $row['id']?>">       
+                        <input type="hidden" name="edit_id" value="<?php echo $row['id']?>">       
                     <div class="input-group">
                         <label >Celebrity Name</label>
                         <input type="text" name="celebname" value="<?php echo $row['celebname']?>" class="form-control" >
@@ -143,8 +143,9 @@
                         <input type="text" name="tag" value="<?php echo $row['tag']?>" class="form-control" >
                     </div>
                     <div class="input-group">
-                        <label >Picture (Only Jpg format, Not over 5MB)</label>
+                        <label >Picture* (Only Jpg format, Not over 5MB)</label>                        
                         <input type="file" name="celebpic">
+                        <h6 style="color: red">*Alway put in the picture no matter you update its new photo or not*</h6>
                     </div>
                     <a href="adminhome.php" class="btn btn-danger"> Cancel </a>
                     <button type="submit" name="editprod" class="btn btn-primary">Update</button>

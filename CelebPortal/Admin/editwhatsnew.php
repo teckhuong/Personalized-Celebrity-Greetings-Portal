@@ -119,7 +119,7 @@
             <div class="error success" >
                 <?php 
                     echo $_SESSION['slide']; 
-                    // unset($_SESSION['success']);
+                    unset($_SESSION['slide']);
                 ?>
             </div>
             <?php endif ?>
@@ -133,11 +133,11 @@
                 </select>
                 </div>
                 <div class="input-group">
-		        <label >Celebrity Picture(Only Jpg format)</label>
+		        <label >Celebrity Picture* (Only Jpg format and below 5 MB)</label>
 		        <input type="file" name="newpic">
 	            </div>
                 <div class="input-group">
-                <button type="submit" class="btn" name="newsreg">Register</button>
+                <button type="submit" class="btn" name="newsreg">Upload</button>
                 </div>
             </form>
 

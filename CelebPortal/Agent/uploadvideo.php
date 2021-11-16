@@ -107,6 +107,15 @@
                     </div>
                     <!-- Read Order Id from Accepted Order -->
                     <form  action="server.php" method="post" enctype="multipart/form-data">   
+                    <?php include('errors.php'); ?>
+                    <?php if (isset($_SESSION['uploadvideo'])) : ?>
+                    <div class="error success" >
+                        <?php 
+                            echo $_SESSION['uploadvideo']; 
+                            unset($_SESSION['uploadvideo']);
+                        ?>
+                    </div>
+                    <?php endif ?>
                     <input type="hidden" name="celebname" value="<?php echo $celebname ?>"/>
                     <div class="input-group">
                         <label >Order ID</label>                            
@@ -114,7 +123,7 @@
                         <input type="hidden" name="useremail" value="<?php echo $row['useremail']?>">
                     </div>
                     <div class="input-group">
-                        <label >Video (Only mp4)</label>
+                        <label >Video* (Only MP4 format, Not more than 400MB)</label>
                         <input type="file" name="video">
                     </div>
                     <div class="input-group">

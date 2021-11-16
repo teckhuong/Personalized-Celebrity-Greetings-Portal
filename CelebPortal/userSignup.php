@@ -3,7 +3,7 @@
 <html>
 <head>
 <?php include "header.php";?>
-  <title>Registration system PHP and MySQL</title>
+  <title>User Registration</title>
   <link rel="stylesheet" type="text/css" href="styleuser.css">
 </head>
 <body>
@@ -13,11 +13,11 @@
   </div>
   <form method="post" action="server.php" enctype="multipart/form-data">
   	<?php include('errors.php'); ?>
-	  <?php if (isset($_SESSION['success'])) : ?>
+	  <?php if (isset($_SESSION['usersignup'])) : ?>
       <div class="error success" >
           <?php 
-          	echo $_SESSION['success']; 
-          	// unset($_SESSION['success']);
+          	echo $_SESSION['usersignup']; 
+          	unset($_SESSION['usersignup']);
           ?>
       </div>
   	<?php endif ?>
@@ -29,7 +29,7 @@
   	  <label>Full Name</label>
   	  <input type="text" name="fullname">
   	</div>
-	  <div class="input-group">
+	<div class="input-group">
   	  <label>Date of Birth</label>
   	  <input type="date" name="dob">
   	</div>

@@ -108,7 +108,8 @@
                         <h2>Quotation Form</h2>
                     </div>
                     <!-- Read Order Id from Accepted Order -->
-                    <form  action="server.php" method="post">   
+                    <form  action="server.php" method="post">
+                    <?php include('errors.php'); ?>
                     <input type="hidden" name="celebname" value="<?php echo $celebname ?>"/>
                     <div class="input-group">
                         <label >Order ID</label>                            
@@ -116,16 +117,17 @@
                         <input type="hidden" name="useremail" value="<?php echo $row['useremail']?>">
                     </div>
                     <div class="input-group">
-                        <label >Date to Deliver</label>
+                        <label >Date to Deliver*</label>
                         <input type="Date" name="dtd" />
                     </div>
                     <div class="input-group">
-                        <label >Message From Celebrity</label>
+                        <label >Message From Celebrity*</label>
                         <textarea name="message" class="textarea" placeholder="Write here."></textarea>
+                        <h6 style="color:red">*Things to say to your Customer*</h6>
                     </div>
                     <div class="input-group">
-                        <label >Total Price:</label>
-                        <input type="price" name="price"/>                        
+                        <label >Total Price: (RM)*</label>
+                        <input type="number" name="price"/>                        
                     </div>
                     <div class="input-group">
                         <button type="submit" name="quotsub" class="btn btn-primary">Submit</button>                       

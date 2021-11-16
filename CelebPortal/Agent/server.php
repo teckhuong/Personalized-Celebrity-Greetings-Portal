@@ -161,6 +161,14 @@ if (isset($_POST['login_agent'])) {
     $price = $_POST['price'];
     $status = 'Not Paid';
     $markup = 'No';
+
+    // form validation: ensure that the form is correctly filled ...
+  // by adding (array_push()) corresponding error unto $errors array
+  if (empty($dtd)) { array_push($errors, "Date to deliver is required"); }
+  if (empty($price)) { array_push($errors, "Price is required"); }
+  if (empty($message)) { array_push($errors, "Message is required"); }
+ 
+  if (count($errors) == 0) {
     $updatecompletedorder="UPDATE completedorder SET markup='No' WHERE orderid='$orderid'";
     mysqli_query($db,$updatecompletedorder);
     
@@ -171,7 +179,17 @@ if (isset($_POST['login_agent'])) {
     }else{
       echo mysqli_error();
     }
+  }else{
+      echo"
+                <script>
+                alert('Please Fill in Correctly');
+                window.location.href='createquotation.php';
+                </script>
+                ";
+      echo mysqli_error();
+    }
   }
+
   //upload video with orderid as video name
   if(isset($_POST['vidupload'])){
     $orderid = $_POST['orderid'];
@@ -189,7 +207,7 @@ if (isset($_POST['login_agent'])) {
     $allowed = array('mp4');
 
     if(!in_array($fileActualExt, $allowed)){
-      $_SESSION['success'] ="You cannot upload file of this type!";
+      $_SESSION['uploadvideo'] ="You cannot upload file of this type!";
     }else{        
         $fileNameNew = $orderid.".".$fileActualExt;
         $databasename = 'Agent/video/'.$fileNameNew;

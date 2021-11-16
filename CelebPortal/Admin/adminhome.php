@@ -130,7 +130,7 @@
                         <div class="cardName">Total Order</div>
                     </div>
                     <div class="iconBx">
-                        <ion-icon name="eye-outline"></ionicon>
+                        <ion-icon name="document-outline"></ionicon>
                     </div>
                 </div>
                 <div class="card">
@@ -147,7 +147,7 @@
                         <div class="cardName">Order in progress</div>
                     </div>
                     <div class="iconBx">
-                        <ion-icon name="cart-outline"></ionicon>
+                        <ion-icon name="document-outline"></ionicon>
                     </div>
                 </div>
                 <div class="card">
@@ -164,7 +164,7 @@
                         <div class="cardName">Order Fully Completed</div>
                     </div>
                     <div class="iconBx">
-                        <ion-icon name="chatbubbles-outline"></ionicon>
+                        <ion-icon name="document-outline"></ionicon>
                     </div>
                 </div>
                 <div class="card">
@@ -181,7 +181,7 @@
                         <div class="cardName">Failed Order</div>
                     </div>
                     <div class="iconBx">
-                        <ion-icon name="cash-outline"></ionicon>
+                        <ion-icon name="document-outline"></ionicon>
                     </div>
                 </div>
                 

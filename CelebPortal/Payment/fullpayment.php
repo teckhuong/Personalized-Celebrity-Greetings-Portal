@@ -41,9 +41,10 @@
 	foreach($query_run as $row){
   ?>
   <form method="post" action="payment.php">
-	<div class="col-50">        <label for="fname">Total Price: RM <?php echo $row['price']?></label><br>
-        
-		<label for="fname">We accept below Cards for payment.</label><br>
+  <?php include('errors.php'); ?>
+	<div class="col-50">        
+		<label for="fname">Total Price: RM <?php echo $row['price']?></label><br>
+        <label for="fname">We accept below Cards for payment.</label><br>
 	</div>
 	<div class="icon-container">
     <i class="fa fa-cc-visa" style="color:navy;"></i>

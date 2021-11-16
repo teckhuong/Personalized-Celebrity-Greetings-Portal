@@ -33,7 +33,7 @@
       <div class="error success" >
           <?php 
           	echo $_SESSION['success'] = "You money has been deposited sucessfully.\nA receipt has been sent to your email address\n You will be directed to the homepage in 5 Sec...";
-          	// unset($_SESSION['success']);
+          	unset($_SESSION['success']);
           ?>
       </div>
   	<?php endif ?>

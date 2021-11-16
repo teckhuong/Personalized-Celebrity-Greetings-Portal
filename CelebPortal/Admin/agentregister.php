@@ -124,40 +124,41 @@
             </div>
             <?php endif ?>
                 <div class="input-group">
-                <label>Username</label>
+                <label>Username*</label>
                 <input type="text" name="username" >
                 </div>
                 <div class="input-group">
-                <label>Password</label>
+                <label>Password*</label>
                 <input type="text" name="password">
                 </div>
                 <div class="input-group">
-                <label>Agent Name</label>
+                <label>Agent Name*</label>
                 <input type="text" name="agentname">
                 </div>
                 <div class="input-group">
-                <label>Email</label>
+                <label>Email*</label>
                 <input type="email" name="email" >
                 </div>
                 <div class="input-group">
-                <label>Company Name</label>
+                <label>Company Name*</label>
                 <input type="text" name="compname">
                 </div>
                 <div class="input-group">
-                <label>Celebrity Name</label>
+                <label>Celebrity Name*</label>
                 <input type="text" name="celebname">
                 </div>
                 <div class="input-group">
-                <label>Phone Number</label>
+                <label>Phone Number*</label>
                 <input type="number" name="phonenum">
                 </div>
                 <div class="input-group">
-                <label>Date of Contract</label>
+                <label>Date of Contract*</label>
                 <input type="date" name="doc">
                 </div>
                 <div class="input-group">
-		        <label >Profile picture</label>
+		        <label >Profile picture* (Only jpg, Not more than 5 MB)</label>
 		        <input type="file" name="agentimage">
+                <h6 style="color:red">*Picture is compulsory*</h6>
 	            </div>
                 <div class="input-group">
                 <button type="submit" class="btn" name="agentreg">Register</button>

@@ -2,48 +2,7 @@
 if(!isset($_SESSION)) { 
   session_start(); 
 } 
-// use PHPMailer\PHPMailer\PHPMailer;
-// use PHPMailer\PHPMailer\SMTP;
-// use PHPMailer\PHPMailer\Execption;
 
-// if (function_exists("go") === FALSE){
-// function go($email,$v_code)
-// {
-// require_once 'phpmailer/Exception.php';
-// require_once 'phpmailer/PHPMailer.php';
-// require_once 'phpmailer/SMTP.php';
-
-//   $mail1 = new PHPMailer(true);
-
-//   try {
-
-//     $mail1->isSMTP();                                            
-//     $mail1->Host       = 'smtp.gmail.com';                     
-//     $mail1->SMTPAuth   = true;                                   
-//     $mail1->Username   = 'phptesting2@gmail.com';                     
-//     $mail1->Password   = 'Qwerty@111';                               
-//     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-//     $mail->Port = '587';                            
-
-
-//     $mail1->setFrom('phptesting2@gmail.com', 'Mailer');
-//     $mail1->addAddress($email);     
-//     $mail1->AddCC('trendytiger72@gmail.com');
-  
-  
-//     $mail1->isHTML(true);                                  
-//     $mail1->Subject = 'Order Receipt';
-//     $mail1->Body    = "Order Sucessful <br>Email: $email <br>OrderID : $v_code ";
-
-//     $mail1->send();
-//     return true;
-//   } 
-//     catch (Exception $e) {
-//     return false;
-//   }
-
-//   }
-// }
 
 use PHPMailer\PHPMailer\PHPMailer;
 
@@ -181,9 +140,6 @@ if (isset($_POST['fpayment'])) {
             Kindly see your profile page in the website for the video when the day of delivery has come.");
 
             $mail->send();
-            
-          $_SESSION['success'] = "You have been registered successfully. 
-          Please Verify through the link on your email.";
           } catch (Exception $e){
             $alert = '<div class="alert-error">
                         <span>Something Went wrong</span>

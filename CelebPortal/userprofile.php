@@ -42,7 +42,7 @@
                 <div class="error success" >
                     <?php 
                         echo $_SESSION['profilealert']; 
-                        // unset($_SESSION['success']);
+                        unset($_SESSION['profilealert']);
                     ?>
                 </div>
                 <?php endif ?>
@@ -72,7 +72,7 @@
     <?php
         $connection = mysqli_connect("localhost","root","","loginadminsystem");
 
-        $query = "SELECT * FROM finalquotation WHERE markup='Yes' AND useremail='$useremail'";
+        $query = "SELECT * FROM finalquotation WHERE markup='Yes' AND useremail='$useremail' AND status='Not Paid'";
         $query_run = mysqli_query($connection, $query);
         $getorder = "SELECT * FROM completedorder WHERE useremail='$useremail' AND agentstatus='Accepted'";
         $query_runsec = mysqli_query($connection,$getorder);
@@ -113,7 +113,7 @@
                     <?php
                         }
                     }else{
-                            echo "No Record Found!";
+                            echo "You have no quotation yet";
                         }
                     ?>                          
                 </tbody>
@@ -121,7 +121,7 @@
         </div>
         <div class="midside">
             <div class="pordertitle">
-                <h2>Order Status(Accepted/Decline)</h2>            
+                <h2>Order Status<br>(Accepted/Decline)</h2>            
             </div>
             <table>
                 <thead>
@@ -144,7 +144,7 @@
                     <?php
                         }
                     }else{
-                            echo "No Record Found!";
+                            echo "Your order has not been approved Yet";
                         }
                     ?>                          
                 </tbody>
@@ -173,7 +173,7 @@
                     <?php
                         }
                     }else{
-                            echo "No Record Found!";
+                            echo "You have not completely purchase our service yet";
                         }
                     ?>                          
                 </tbody>
@@ -203,7 +203,7 @@
             <?php
                     }
                 }else{
-                        echo "No Record Found!";
+                        echo "Your Videos are not available, Please Wait";
                     }
             ?> 
     </div>
@@ -212,9 +212,9 @@
 <div class="caution d-flex-r justify-content-space-around p-1 bg-grey" id="social">
     <ul class="footerforhome d-flex-c" id="footer">
             <p class="wsnc">For more: </p>
-            <li class="rnc"><a href="RequestCeleb/requestceleb.php" >Request New Celebrity</a></li>
-            <li class="rnc"><a href="#" >How to Order?</a></li>
-            <li class="rnc"><a href="#" >Contact Us</a></li>
+            <li class="rnc"><a href="requestceleb.php" >Request New Celebrity</a></li>
+            <li class="rnc"><a href="howto.php" >How to Order?</a></li>
+            <li class="rnc"><a href="Contact.php" >Contact Us</a></li>
                     </br>
             <p>&copy; celebportal.com | Designed by Farmer Team</p>
         </ul>
@@ -223,10 +223,10 @@
             <li>
             <p>Follow us for more!</p>
             <p>Our Social Media Platform:</p>
-                <a href="face"><i class="fab fa-facebook"></i></a>
-                <a href="twi"><i class="fab fa-twitter"></i></a>
-                <a href="ins"><i class="fab fa-instagram"></i></a>
-                <a href="you"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
             </li>            
         </ul>        
                 </div>

@@ -49,7 +49,7 @@
                   Payment
                </h2>
                <p>
-               An email quotation will be sent for you to make full payment
+               Email quotation will be sent & do payment via profilepage
                </p>
             </div>
             <div class="content content-5">

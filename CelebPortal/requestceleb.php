@@ -3,7 +3,8 @@
 <html>
 <head>
   <title>Request Form</title>
-  <link rel="stylesheet" type="text/css" href="stylerequest.css">
+  <?php include "header.php";?>
+  <link rel="stylesheet" type="text/css" href="styleuser.css">
 </head>
 <body>
 <br><br>
@@ -37,7 +38,7 @@
   	  <input type="message" name="comments">
   	</div>
   	<div class="input-group">
-  	  <button type="submit" class="btn" name="reg_user">Request</button>
+  	  <button type="submit" class="btn" name="reqceleb">Request</button>
   	</div>
   </form>
 </body>

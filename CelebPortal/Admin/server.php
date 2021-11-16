@@ -46,6 +46,22 @@ if (isset($_POST['reg_user'])) {
   $allowed = array('jpg');
   //profilepic ends here  
 
+  // first check the database to make sure 
+  // a user does not already exist with the same username and/or email
+  $user_check_query = "SELECT * FROM users WHERE adminid='$adminid' OR email='$email' LIMIT 1";
+  $result = mysqli_query($db, $user_check_query);
+  $user = mysqli_fetch_assoc($result);
+  
+  if ($user) { // if user exists
+    if ($user['adminid'] === $adminid) {
+      array_push($errors, "Username already exists");
+    }
+
+    if ($user['email'] === $email) {
+      array_push($errors, "email already exists");
+    }
+  }
+
   // form validation: ensure that the form is correctly filled ...
   // by adding (array_push()) corresponding error unto $errors array
   if (empty($adminid)) { array_push($errors, "Admin ID is required"); }
@@ -84,7 +100,7 @@ if (isset($_POST['reg_user'])) {
             $query = "INSERT INTO users (adminid, fullname, email, password) 
   			    VALUES('$adminid','$fullname','$email','$password')";
           	mysqli_query($db, $query);            
-  	        $_SESSION['success'] = "You have been registered successfully";
+  	        $_SESSION['adminregis'] = "You have been registered successfully";
           }else{
             echo mysqli_error();
           }
@@ -489,12 +505,10 @@ if (isset($_POST['login_user'])) {
         if (count($errors) == 0) {
          $fileNameNew = $celebname.".".$fileActualExt;
          $fileDestination = 'categorypic/'.$fileNameNew;
-         move_uploaded_file($fileTmpName, $fileDestination);
-         $_SESSION['addcelebalert'] ="Sucess";        
+         move_uploaded_file($fileTmpName, $fileDestination);        
             $insertceleb = "INSERT INTO wholeceleb (celebname,celebdescrip,celebpicture,tag) 
                   VALUES('$celebname','$celebdescrip','$fileDestination','$tag')";
-            mysqli_query($db, $insertceleb); 
-            $_SESSION['addcelebalert'] ="Sucess";           
+            mysqli_query($db, $insertceleb);            
             header('location: addceleb.php');
           }else{
             echo"

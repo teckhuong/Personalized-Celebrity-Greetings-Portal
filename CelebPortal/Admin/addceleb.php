@@ -113,7 +113,7 @@
             <div class="header">
   	<h2>Add New Celebrity</h2>
   </div>
-            <form method="post" action="addceleb.php" enctype="multipart/form-data">
+            <form method="POST" action="addceleb.php" enctype="multipart/form-data">
             <?php include('errors.php'); ?>
             <?php if (isset($_SESSION['addcelebalert'])) : ?>
             <div class="error success" >
@@ -137,7 +137,12 @@
 	            </div>
                 <div class="input-group">
                 <label>Category</label>
-                <input type="text" name="tag">
+                <select name="tag">
+                    <option value="Youtuber">Youtuber</option>
+                    <option value="Actor">Actor</option>
+                    <option value="Singer">Singer</option>
+                    <option value="Other">Other</option>
+                </select>
                 </div>
                 <div class="input-group">
                 <button type="submit" class="btn" name="celebreg">Register</button>

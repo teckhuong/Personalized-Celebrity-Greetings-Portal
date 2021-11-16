@@ -21,6 +21,7 @@ $errors = array();
 
 // connect to the database
 $db = mysqli_connect('localhost', 'root', '', 'LoginSystem');
+$req = mysqli_connect('localhost', 'root', '', 'requestceleb');
 
 // REGISTER USER
 if (isset($_POST['reg_user'])) {
@@ -79,9 +80,9 @@ $allowed = array('jpg');
   	
     //Register admin only when image is correct
     if(!in_array($fileActualExt, $allowed)){
-      $_SESSION['success'] ="You cannot upload file of this type!";
+      $_SESSION['usersignup'] ="You cannot upload file of this type!";
     }elseif($fileSize > 5*1024*1024){
-      $_SESSION['success'] ="Your file is too big!";
+      $_SESSION['usersignup'] ="Your file is too big!";
       }else{
          $fileNameNew = $username.".".$fileActualExt;
          $fileDestination = 'profilepicture/'.$fileNameNew;
@@ -114,7 +115,7 @@ $allowed = array('jpg');
 
               $mail->send();
               
-  	        $_SESSION['success'] = "You have been registered successfully. 
+  	        $_SESSION['usersignup'] = "You have been registered successfully. 
             Please Verify through the link on your email.";
             } catch (Exception $e){
               $alert = '<div class="alert-error">
@@ -270,5 +271,38 @@ if(isset($_FILES['profilepic'])){
        move_uploaded_file($fileTmpName, $fileDestination);
       } 
       header('location: userprofile.php');
+}
+
+//Request NeW Celeb
+if (isset($_POST['reqceleb'])) {
+  // receive all input values from the form
+  $email = mysqli_real_escape_string($db, $_POST['email']);
+  $celebname = mysqli_real_escape_string($db, $_POST['celebname']);
+  $celebcountry = mysqli_real_escape_string($db, $_POST['celebcountry']);
+  $comments = mysqli_real_escape_string($db, $_POST['comments']);
+
+  // form validation: ensure that the form is correctly filled ...
+  // by adding (array_push()) corresponding error unto $errors array
+  if (empty($email)) { array_push($errors, "Your Email is required"); }
+  if (empty($celebname)) { array_push($errors, "Celebrity Name is required"); }
+  if (empty($celebcountry)) { array_push($errors, "Celebrity Country is required"); }
+
+
+  // first check the database to make sure 
+  // a user does not already exist with the same username and/or email
+  $user_check_query = "SELECT * FROM users WHERE email='$email'";
+  $result = mysqli_query($req, $user_check_query);
+  $user = mysqli_fetch_assoc($result);
+  
+ 
+
+  // Finally, register user if there are no errors in the form
+  if (count($errors) == 0) {
+
+  	$query = "INSERT INTO users (email, celebname, celebcountry, comments) 
+  			  VALUES('$email','$celebname','$celebcountry', '$comments')";
+  	mysqli_query($req, $query);
+  	$_SESSION['success'] = "Thanks for your request, We will look into it.";
+  }
 }
 ?>

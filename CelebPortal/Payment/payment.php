@@ -39,6 +39,7 @@
 	foreach($query_run as $row){
   ?>
   <form method="post" action="payment.php">
+  <?php include('errors.php'); ?>            
 	<div class="col-50">
 	  	<label for="fname">Every Order we will have a fixed deposit:</label><br>
         <label for="fname">Total Price: RM 100</label><br>

@@ -90,9 +90,9 @@
         <section class="d-flex-r justify-content-space-around p-1 bg-grey" id="social">
         <ul class="footerforhome d-flex-c" id="footer">
             <p class="wsnc">For more: </p>
-            <li class="rnc"><a href="#" >Request New Celebrity</a></li>
-            <li class="rnc"><a href="#" >How to Order?</a></li>
-            <li class="rnc"><a href="#" >Contact Us</a></li>
+            <li class="rnc"><a href="requestceleb.php" >Request New Celebrity</a></li>
+            <li class="rnc"><a href="howto.php" >How to Order?</a></li>
+            <li class="rnc"><a href="Contact.php" >Contact Us</a></li>
                     </br>
             <p>&copy; celebportal.com | Designed by Farmer Team</p>
         </ul>
@@ -101,10 +101,10 @@
             <li>
             <p>Follow us for more!</p>
             <p>Our Social Media Platform:</p>
-                <a href="face"><i class="fab fa-facebook"></i></a>
-                <a href="twi"><i class="fab fa-twitter"></i></a>
-                <a href="ins"><i class="fab fa-instagram"></i></a>
-                <a href="you"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
             </li>            
         </ul>
         
