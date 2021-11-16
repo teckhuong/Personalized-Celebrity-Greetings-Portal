@@ -32,7 +32,7 @@
 	  <?php if (isset($_SESSION['success'])) : ?>
       <div class="error success" >
           <?php 
-          	echo $_SESSION['success'] = "You money has been deposited sucessfully.\nA receipt has been sent to your email address\n You will be directed to the homepage in 5 Sec...";
+          	echo $_SESSION['success'] = "You money has been deposited sucessfully. A receipt has been sent to your email address";
           	// unset($_SESSION['success']);
           ?>
       </div>

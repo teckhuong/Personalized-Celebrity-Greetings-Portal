@@ -489,12 +489,10 @@ if (isset($_POST['login_user'])) {
         if (count($errors) == 0) {
          $fileNameNew = $celebname.".".$fileActualExt;
          $fileDestination = 'categorypic/'.$fileNameNew;
-         move_uploaded_file($fileTmpName, $fileDestination);
-         $_SESSION['addcelebalert'] ="Sucess";        
+         move_uploaded_file($fileTmpName, $fileDestination);        
             $insertceleb = "INSERT INTO wholeceleb (celebname,celebdescrip,celebpicture,tag) 
                   VALUES('$celebname','$celebdescrip','$fileDestination','$tag')";
-            mysqli_query($db, $insertceleb); 
-            $_SESSION['addcelebalert'] ="Sucess";           
+            mysqli_query($db, $insertceleb);            
             header('location: addceleb.php');
           }else{
             echo"
@@ -574,9 +572,9 @@ if (isset($_POST['login_user'])) {
     $allowed = array('jpg');
 
     if(!in_array($fileActualExt, $allowed)){
-      $_SESSION['slide'] ="You cannot upload file of this type!";
+      $_SESSION['success'] ="You cannot upload file of this type!";
     }elseif($fileSize > 5*1024*1024){
-      $_SESSION['slide'] ="Your file is too big!";
+      $_SESSION['success'] ="Your file is too big!";
       }else{
          $fileNameNew = $picname.".".$fileActualExt;
          $fileDestination = 'whatsnew/'.$fileNameNew;

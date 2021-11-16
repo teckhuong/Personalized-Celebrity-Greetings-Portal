@@ -143,7 +143,7 @@
                         <input type="text" name="tag" value="<?php echo $row['tag']?>" class="form-control" >
                     </div>
                     <div class="input-group">
-                        <label >Picture (Only Jpg format, Not over 5MB)</label>
+                        <label >Picture (Only Jpg format)</label>
                         <input type="file" name="celebpic">
                     </div>
                     <a href="adminhome.php" class="btn btn-danger"> Cancel </a>

@@ -110,7 +110,7 @@ $allowed = array('jpg');
               $mail->Subject = 'Email Verification from Celebrity Portal';
               $mail->Body    = "Thanks for registration! 
               Click the link below to verify the email address
-              <a href='http://localhost/Personalized-Celebrity-Greetings-Portal/CelebPortal/verify.php?email=$email&v_code=$v_code'>Verify</a>";
+              <a href='http://localhost/CelebPortalNEWW/verify.php?email=$email&v_code=$v_code'>Verify</a>";
 
               $mail->send();
               

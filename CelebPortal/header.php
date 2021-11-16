@@ -30,7 +30,6 @@
                      <li><a href="singer.php">Singers</a></li>
                      <li><a href="youtuberpage.php">Youtubers</a></li>
                      <li><a href="Actorpage.php">Actors</a></li>
-                     <li><a href="other.php">Other</a></li>
                   </ul>
             </li>
             <li>

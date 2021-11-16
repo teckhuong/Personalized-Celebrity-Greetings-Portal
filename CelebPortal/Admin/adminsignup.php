@@ -21,7 +21,7 @@
   	<?php endif ?>
   	<div class="input-group">
   	  <label>Admin ID</label>
-  	  <input type="text" name="adminid" required>
+  	  <input type="text" name="adminid">
   	</div>
 	  <div class="input-group">
   	  <label>Full Name</label>
