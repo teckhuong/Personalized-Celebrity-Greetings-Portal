@@ -74,7 +74,7 @@
 
         $query = "SELECT * FROM finalquotation WHERE markup='Yes' AND useremail='$useremail' AND status='Not Paid'";
         $query_run = mysqli_query($connection, $query);
-        $getorder = "SELECT * FROM completedorder WHERE useremail='$useremail' AND agentstatus='Accepted'";
+        $getorder = "SELECT * FROM completedorder WHERE useremail='$useremail' AND agentstatus='Accepted' AND markup=''";
         $query_runsec = mysqli_query($connection,$getorder);
         $getcompletedquot = "SELECT * FROM finalquotation WHERE useremail='$useremail' AND status='Paid'";
         $query_runthir = mysqli_query($connection,$getcompletedquot);

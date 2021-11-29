@@ -588,9 +588,9 @@ if (isset($_POST['login_user'])) {
     $allowed = array('jpg');
 
     if(!in_array($fileActualExt, $allowed)){
-      $_SESSION['slide'] ="You cannot upload file of this type!";
+      $_SESSION['success'] ="You cannot upload file of this type!";
     }elseif($fileSize > 5*1024*1024){
-      $_SESSION['slide'] ="Your file is too big!";
+      $_SESSION['success'] ="Your file is too big!";
       }else{
          $fileNameNew = $picname.".".$fileActualExt;
          $fileDestination = 'whatsnew/'.$fileNameNew;
